@@ -7,7 +7,7 @@ import userData from "@/app/UserData";
 import Post from "@/app/components/Post";
 import Sidebar from "@/app/components/Sidebar";
 
-const Page = () => {
+const   Page = () => {
   const [isFocused, setIsFocused] = useState(false);
   const ref = useClickOutside(() => setIsFocused(false));
   return (

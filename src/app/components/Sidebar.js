@@ -12,7 +12,7 @@ import Link from "next/link";
 
 const links = [
   {
-    name: "Home",
+    name: "Forum",
     icon: <FaHome />,
   },
   {
@@ -20,7 +20,7 @@ const links = [
     icon: <FaCompass />,
   },
   {
-    name: "Notifications",
+    name: "Connect",
     icon: <FaBell />,
   },
   {
