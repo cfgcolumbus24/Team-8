@@ -2,3 +2,4 @@ keys/keys.env
 keys/config.js
 .env
 node_modules/
+.next/
