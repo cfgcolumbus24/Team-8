@@ -1,35 +1,34 @@
 const path = require('path'),
     passport = require('passport'),
     express = require('express'),
+    cors = require('cors'),
+    cloudinary = require('cloudinary'),
     bodyParser = require('body-parser'),
-    {
-        users,
-        instructors,
-        students,
-        courses,
-        lectures,
-        questions,
-        answers,
-    } = require('./routes/api');
+    { auth, users, posts, reactions, comments, misc } = require('./routes');
 require('dotenv').config();
 const app = express();
 const port = process.env.PORT || 8000;
 //==========================================================================
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+app.use(cors());
 //==========================================================================
 app.use(passport.initialize());
 require('./config/passport')(passport);
+require('./config/passport-google')(passport);
 //==========================================================================
-// app.use("/instructor/dashboard", InstDashBRoutes);
+cloudinary.config({
+    cloud_name: process.env.CLOUDINARY_NAME,
+    api_key: process.env.CLOUDINARY_KEY,
+    api_secret: process.env.CLOUDINARY_SECRET,
+});
 //==========================================================================
-app.use('/api/users', users);
-app.use('/api/instructors', instructors);
-app.use('/api/students', students);
-app.use('/api/courses', courses);
-app.use('/api/lectures', lectures);
-app.use('/api/questions', questions);
-app.use('/api/answers', answers);
+app.use('/auth', auth);
+app.use('/users', users);
+app.use('/posts', posts);
+app.use('/reactions', reactions);
+app.use('/comments', comments);
+app.use('/', misc);
 //==========================================================================
 if (process.env.NODE_ENV === 'production') {
     app.use(express.static(path.join(__dirname, 'client', 'build')));

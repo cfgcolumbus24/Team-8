@@ -1,0 +1,16 @@
+
+.logo {
+    overflow: hidden;
+    box-shadow: 0 1.25rem 5rem rgba(0, 0, 0, .5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: white;
+    border-radius: 500px;
+
+    &__img {
+        max-width:75%;
+        max-height:75%;
+        animation: rotation 3s infinite linear;
+    }
+}

@@ -1,18 +1,16 @@
 import { combineReducers } from 'redux';
-import userReducers from './User Reducers';
-import errorReducers from './Error Reducers';
-import courseReducers from './Course Reducers';
-import lectureReducers from './Lecture Reducers';
-import questionReducers from './Question Reducers';
-import answerReducers from './Answer Reducers';
-import deleteReducers from './Delete Reducers';
+import userReducer from './User Reducer';
+import uploadReducer from './Upload Reducer';
+import postReducer from './Post Reducer';
+import errorReducer from './Error Reducer';
+import personReducer from './Person Reducer';
+import searchReducer from './Search Reducer';
 
 export default combineReducers({
-    user: userReducers,
-    courses: courseReducers,
-    errors: errorReducers,
-    lectures: lectureReducers,
-    questions: questionReducers,
-    answers: answerReducers,
-    deletion: deleteReducers
+    user: userReducer,
+    posts: postReducer,
+    uploads: uploadReducer,
+    errors: errorReducer,
+    person: personReducer,
+    search: searchReducer,
 });

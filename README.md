@@ -1,11 +1,11 @@
-# [**Elendil**](http://elendil.herokuapp.com/)
+# [**Connect<sup>+</sup>**](http://connect-plus.herokuapp.com/)
 
-An E-Learning website, based on the **MERN** stack. 
-[Visit&nbsp;the&nbsp;live&nbsp;website](http://elendil.herokuapp.com/)
+A Social-Networking website, based on the **MERN** stack. 
+[Visit&nbsp;the&nbsp;live&nbsp;website](http://connect-plus.herokuapp.com/)
 
-<a href="http://elendil.herokuapp.com/" target="_blank">
+<a href="http://connect-plus.herokuapp.com/" target="_blank">
 	<img src="./screenshots/landing.gif" 
-	alt="Elendil - Landing Page" />
+	alt="Connect+ - Landing Page" />
 </a>
 
 
@@ -18,19 +18,29 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 VARIABLE | Sample value
 --- | ---
 KEY | sample_key
-URI | mongodb://localhost/elendilDB
+URI | mongodb://localhost/connect_plusDB
+GS_CLIENT_ID | 12121212-somestuff.apps.googleusercontent.com
+GS_SECRET | THE-SECRET
+CLOUDINARY_NAME | your_name
+CLOUDINARY_KEY | 1234567890
+CLOUDINARY_SECRET | THE-BIG-SECRET
+
 
 
 ## Installation Instructions
 
 1. Install *Node.js*
 1. Install *npm*
-1. If you plan to use a local instance of *MongoDB database*, install *MongoDB atlas*.
+1. If you plan to use a local instance of *MongoDB database*, install *MongoDB community server*.
+1. If you are using a local instance of *MongoDB database*, open a terminal/cmd window, and run: `mongod`
 1. Clone this github repo.
 1. In the local project directory, create a new file called "`.env`".
 1. Setup the environment variables as described above.
-1. Open the local project directory in a terminal, and run: `npm install`.
-1. run: `npm run dev`.
+1. Open the local project directory in a terminal, and run:
+	```bash
+	>	npm install
+	>	npm run dev
+	```
 
 ## Available Scripts
 
@@ -58,13 +68,13 @@ Open [http://localhost:8000](http://localhost:8000) to view it in the browser. P
 
 ## Application Screenshots
 
-<a href="http://elendil.herokuapp.com/" target="_blank">
-	<img src="./screenshots/1.png" alt="Elendil Screenshot" />
-	<img src="./screenshots/2.png" alt="Elendil Screenshot" />
-	<img src="./screenshots/3.png" alt="Elendil Screenshot" />
-	<img src="./screenshots/4.png" alt="Elendil Screenshot" />
-	<img src="./screenshots/5.png" alt="Elendil Screenshot" />
-	<img src="./screenshots/6.png" alt="Elendil Screenshot" />
-	<img src="./screenshots/7.png" alt="Elendil Screenshot" />
-	<img src="./screenshots/8.png" alt="Elendil Screenshot" />
+<a href="http://connect-plus.herokuapp.com/" target="_blank">
+	<img src="./screenshots/Picture1.png" alt="Connect+ Screenshot" />
+	<img src="./screenshots/Picture2.png" alt="Connect+ Screenshot" />
+	<img src="./screenshots/Picture3.png" alt="Connect+ Screenshot" />
+	<img src="./screenshots/Picture4.png" alt="Connect+ Screenshot" />
+	<img src="./screenshots/Picture5.png" alt="Connect+ Screenshot" />
+	<img src="./screenshots/Picture6.png" alt="Connect+ Screenshot" />
+	<img src="./screenshots/Picture7.png" alt="Connect+ Screenshot" />
+	<img src="./screenshots/Picture8.png" alt="Connect+ Screenshot" />
 </a>

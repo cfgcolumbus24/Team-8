@@ -1,0 +1,308 @@
+.loader1 {
+	position: relative;
+	padding: 0;
+	width: 10rem;
+	height: $bar-height;
+	transform: scale(1.5);
+
+	& span {
+		display: block;
+		position: absolute;
+		right: 0;
+		width: $bar-width;
+		height: $bar-height;
+		border-radius: 0.1rem;
+		// Rotate from the middle of the bottom
+		transform-origin: 50% 100%;
+		background-color: $bar-colour;
+		animation: bar linear $bar-animation-duration infinite;
+		// Tell the browser which properties will change in the animation
+		will-change: transform;
+
+		&:nth-child(1) {
+			transform: translateX(0) rotate(0deg);
+			opacity: 0.2;
+		}
+		&:nth-child(2) {
+			transform: translateX(-1.5rem) rotate(0deg);
+			animation-delay: $bar-animation-duration-single;
+		}
+		&:nth-child(3) {
+			transform: translateX(-3rem) rotate(0deg);
+			animation-delay: ($bar-animation-duration-single * 2);
+		}
+		&:nth-child(4) {
+			transform: translateX(-4.5rem) rotate(10deg);
+			animation-delay: ($bar-animation-duration-single * 3);
+		}
+		&:nth-child(5) {
+			transform: translateX(-6rem) rotate(40deg);
+			animation-delay: ($bar-animation-duration-single * 4);
+		}
+		&:nth-child(6) {
+			transform: translateX(-7.5rem) rotate(62deg);
+			animation-delay: ($bar-animation-duration-single * 5);
+		}
+		&:nth-child(7) {
+			transform: translateX(-9rem) rotate(72deg);
+			animation-delay: ($bar-animation-duration-single * 6);
+		}
+	}
+
+	&__wrapper {
+		z-index: 100;
+		width: 100%;
+		height: 100%;
+		position: fixed;
+		background: rgba(#1a6aaf, 0.8);
+		transition: all 0.2s ease;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+	}
+}
+
+.loader2 {
+	border: 1.6rem solid #f3f3f3; /* Light grey */
+	border-top: 1.6rem solid #0058a5;
+	border-bottom: 1.6rem solid #0058a5;
+	border-radius: 50%;
+	width: 12rem;
+	height: 12rem;
+    animation: rotation 2s linear infinite;
+    
+    @include respond(tab-port) {
+        width: 6rem;
+        height: 6rem;
+        border: 0.6rem solid #f3f3f3; /* Light grey */
+        border-top: 0.6rem solid #0058a5;
+        border-bottom: 0.6rem solid #0058a5;
+    }
+
+	&--wrapper {
+		position: absolute;
+		top: 0;
+		left: 0;
+		z-index: 100;
+		width: 100%;
+		height: 100%;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		background: rgba(#fff, 0.6);
+	}
+}
+
+.eisenfoxLoader {
+	position: relative;
+	width: 12.5rem;
+	height: 12.5rem;
+
+	&:before,
+	&:after {
+		content: '';
+		display: block;
+		position: absolute;
+		border-width: 0.4rem;
+		border-style: solid;
+		border-radius: 50%;
+	}
+
+	&-1 {
+		&:before {
+			width: 11.7rem;
+			height: 11.7rem;
+			border-bottom-color: #333;
+			border-right-color: #333;
+			border-top-color: rgba(#333, 0);
+			border-left-color: rgba(#333, 0);
+			top: 0px;
+			left: 0px;
+			animation: rotate-animation 1s linear 0s infinite;
+		}
+
+		&:after {
+			width: 8.2rem;
+			height: 8.2rem;
+			border-bottom-color: #333;
+			border-right-color: #333;
+			border-top-color: rgba(#333, 0);
+			border-left-color: rgba(#333, 0);
+			top: (11.7rem - 8.2rem) / 2;
+			left: (11.7rem - 8.2rem) / 2;
+			animation: anti-rotate-animation 0.85s linear 0s infinite;
+		}
+	}
+
+	&-2 {
+		&:before {
+			width: 11.7rem;
+			height: 11.7rem;
+			border-color: #333;
+			top: 0px;
+			left: 0px;
+			animation: eisenfoxLoader_scale 1s linear 0s infinite;
+		}
+
+		&:after {
+			width: 11.7rem;
+			height: 11.7rem;
+			border-color: #333;
+			top: 0;
+			left: 0;
+			opacity: 0;
+			animation: eisenfoxLoader_scale 1s linear 0.5s infinite;
+		}
+	}
+
+	&--wrapper {
+		width: 100%;
+		height: fit-content;
+		display: flex;
+		justify-content: center;
+	}
+
+
+    @include respond(tab-port) {    
+        position: relative;
+        width: 6.5rem;
+        height: 6.5rem;
+
+        &:before,
+        &:after {
+            content: '';
+            display: block;
+            position: absolute;
+            border-width: 0.2rem;
+            border-style: solid;
+            border-radius: 50%;
+        }
+
+        &-1 {
+            &:before {
+                width: 6.1rem;
+                height: 6.1rem;
+                border-bottom-color: #333;
+                border-right-color: #333;
+                border-top-color: rgba(#333, 0);
+                border-left-color: rgba(#333, 0);
+                top: 0px;
+                left: 0px;
+                animation: rotate-animation 1s linear 0s infinite;
+            }
+
+            &:after {
+                width: 4.27rem;
+                height: 4.27rem;
+                border-bottom-color: #333;
+                border-right-color: #333;
+                border-top-color: rgba(#333, 0);
+                border-left-color: rgba(#333, 0);
+                top: (6.1rem - 4.27rem) / 2;
+                left: (6.1rem - 4.27rem) / 2;
+                animation: anti-rotate-animation 0.85s linear 0s infinite;
+            }
+        }
+
+        &-2 {
+            &:before {
+                width: 6.1rem;
+                height: 6.1rem;
+                border-color: #333;
+                top: 0px;
+                left: 0px;
+                animation: eisenfoxLoader_scale 1s linear 0s infinite;
+            }
+
+            &:after {
+                width: 6.1rem;
+                height: 6.1rem;
+                border-color: #333;
+                top: 0;
+                left: 0;
+                opacity: 0;
+                animation: eisenfoxLoader_scale 1s linear 0.5s infinite;
+            }
+        }
+
+        &--wrapper {
+            width: 100%;
+            height: fit-content;
+            display: flex;
+            justify-content: center;
+        }
+    }
+}
+
+/* .eisenfoxLoader {
+	position: relative;
+	width: $basic-spinner-dimensions;
+	height: $basic-spinner-dimensions;
+
+	&:before,
+	&:after {
+		content: '';
+		display: block;
+		position: absolute;
+		border-width: 4px;
+		border-style: solid;
+		border-radius: 50%;
+	}
+
+	&-1 {
+		&:before {
+			width: $main-spinner-dimensions;
+			height: $main-spinner-dimensions;
+			border-bottom-color: $basic-dark-color;
+			border-right-color: $basic-dark-color;
+			border-top-color: rgba($basic-dark-color, 0);
+			border-left-color: rgba($basic-dark-color, 0);
+			top: 0px;
+			left: 0px;
+			animation: rotate-animation 1s linear 0s infinite;
+		}
+
+		&:after {
+			width: $small-spinner-dimensions;
+			height: $small-spinner-dimensions;
+			border-bottom-color: $basic-dark-color;
+			border-right-color: $basic-dark-color;
+			border-top-color: rgba($basic-dark-color, 0);
+			border-left-color: rgba($basic-dark-color, 0);
+			top: ($main-spinner-dimensions - $small-spinner-dimensions) / 2;
+			left: ($main-spinner-dimensions - $small-spinner-dimensions) / 2;
+			animation: anti-rotate-animation 0.85s linear 0s infinite;
+		}
+	}
+
+	&-2 {
+		&:before {
+			width: $main-spinner-dimensions;
+			height: $main-spinner-dimensions;
+			border-color: $basic-dark-color;
+			top: 0px;
+			left: 0px;
+			animation: eisenfoxLoader_scale 1s linear 0s infinite;
+		}
+
+		&:after {
+			width: $main-spinner-dimensions;
+			height: $main-spinner-dimensions;
+			border-color: $basic-dark-color;
+			top: 0;
+			left: 0;
+			opacity: 0;
+			animation: eisenfoxLoader_scale 1s linear 0.5s infinite;
+		}
+	}
+
+	&--wrapper {
+		width: 100%;
+		height: fit-content;
+		display: flex;
+		justify-content: center;
+	}
+}
+ */

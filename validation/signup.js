@@ -3,21 +3,30 @@ const validator = require('validator'),
 
 module.exports = function(req, res, next) {
     const data = req.body;
+    const regModes = ['Native', 'Google'];
     let errors = {};
 
-    data.name = !isEmpty(data.name) ? data.name : '';
+    data.firstName = !isEmpty(data.firstName) ? data.firstName : '';
+    data.lastName = !isEmpty(data.lastName) ? data.lastName : '';
     data.email = !isEmpty(data.email) ? data.email : '';
     data.password = !isEmpty(data.password) ? data.password : '';
     data.password2 = !isEmpty(data.password2) ? data.password2 : '';
-    data.gender = !isEmpty(data.gender) ? data.gender : '';
-    data.role = !isEmpty(data.role) ? data.role : '';
+    data.regMode = !isEmpty(data.regMode) ? data.regMode : '';
 
-    if (!validator.isLength(data.name, { min: 2, max: 30 })) {
-        errors.name = 'Name must be between 2 to 30 characters!';
+    if (!validator.isLength(data.firstName, { min: 2, max: 30 })) {
+        errors.firstName = 'First name must be between 2 to 30 characters!';
     }
 
-    if (validator.isEmpty(data.name)) {
-        errors.name = 'Name field is required!';
+    if (validator.isEmpty(data.firstName)) {
+        errors.firstName = 'First name is required!';
+    }
+
+    if (!validator.isLength(data.lastName, { min: 2, max: 30 })) {
+        errors.lastName = 'Last name must be between 2 to 30 characters!';
+    }
+
+    if (validator.isEmpty(data.lastName)) {
+        errors.lastName = 'Last name is required!';
     }
 
     if (!validator.isEmail(data.email)) {
@@ -25,7 +34,7 @@ module.exports = function(req, res, next) {
     }
 
     if (validator.isEmpty(data.email)) {
-        errors.email = 'Email field is required!';
+        errors.email = 'Email is required!';
     }
 
     if (!validator.isLength(data.password, { min: 6, max: 30 })) {
@@ -33,7 +42,7 @@ module.exports = function(req, res, next) {
     }
 
     if (validator.isEmpty(data.password)) {
-        errors.password = 'Password field is required!';
+        errors.password = 'Password is required!';
     }
 
     if (!validator.equals(data.password, data.password2)) {
@@ -41,26 +50,19 @@ module.exports = function(req, res, next) {
     }
 
     if (validator.isEmpty(data.password2)) {
-        errors.password2 = 'Confirm password field is required!';
+        errors.password2 = 'Password confirmation is required!';
     }
 
-    if (!validator.isIn(data.gender, ['M', 'F', 'O'])) {
-        errors.gender = 'Please specify a valid gender!';
+    if (!isEmpty(data.gender))
+        if (!validator.isIn(data.gender, ['Male', 'Female', 'Other', 'None'])) {
+            errors.gender = 'Please specify a valid gender!';
+        }
+
+    if (!isEmpty(data.regMode) && !validator.isIn(data.regMode, regModes)) {
+        errors.regMode = 'Please specify a valid regMode!';
     }
 
-    if (validator.isEmpty(data.gender)) {
-        errors.gender = 'Please select a Gender!';
-    }
-
-    if (!validator.isIn(data.role, ['Student', 'Instructor'])) {
-        errors.role = 'Please specify a valid role!';
-    }
-
-    if (validator.isEmpty(data.role)) {
-        errors.role = 'Please select a role!';
-    }
-
-    if (!isEmpty(errors)) return res.status(400).json(errors);
+    if (!isEmpty(errors)) return res.status(400).json({ user: errors });
 
     next();
 };

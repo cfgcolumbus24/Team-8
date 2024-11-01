@@ -1,0 +1,44 @@
+// COLORS
+$color-primary: #55c57a;
+$color-primary-light: #7ed56f;
+$color-primary-dark: #28b485;
+
+$color-secondary-light: #ffb900;
+$color-secondary-dark: #ff7730;
+
+$color-tertiary-light: #2998ff;
+$color-tertiary-dark: #5643fa;
+
+$color-grey-light-1: #f7f7f7;
+$color-grey-light-2: #eee;
+
+$color-grey-dark: #777;
+$color-grey-dark-2: #999;
+$color-grey-dark-3: #333;
+
+$color-white: #fff;
+$color-black: #000;
+
+//===============================: Loader-1 :===============================
+// Bar Settings
+$text-colour: #fff;
+$bar-colour: $text-colour;
+$bar-animation-duration: 2.8s;
+
+// These are not to be adjusted; it would mess 
+// with the angles. If anyone knows how to make 
+// the angles dynamic. I'd love to hear it.
+$bar-width: 0.3rem;
+$bar-height: 2.5rem;
+$bar-count: 7;
+
+// Generated settings
+$bar-animation-duration-single: -($bar-animation-duration / $bar-count);
+
+//===============================: Loader-3 :===============================
+
+$basic-dark-color: #333; //color of the spinner
+$border-width: 0.4rem; //width of spinners border
+$basic-spinner-dimensions: 12.5rem; //width and height of spinner
+$main-spinner-dimensions: $basic-spinner-dimensions - $border-width * 2; //width and height of bigger circle
+$small-spinner-dimensions: $main-spinner-dimensions * 0.7; //width and height of smaller circle
