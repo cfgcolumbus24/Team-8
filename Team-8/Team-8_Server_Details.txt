@@ -1,2 +1,0 @@
-Username:force
-IP Address:ec2-34-239-133-172.compute-1.amazonaws.com
