@@ -16,7 +16,7 @@ const firebaseConfig = {
   storageBucket: "lmcc-team-8.firebasestorage.app",
   messagingSenderId: "142238046334",
   appId: "1:142238046334:web:7b001884ddb9ebc6f2e02f",
-  measurementId: "G-G5796BP05S"
+  measurementId: "G-G5796BP05S"// Create a unique set of tags from markers for filtering
 };
 
 const app = initializeApp(firebaseConfig);
@@ -100,9 +100,11 @@ const CustomMap = () => {
 
   const [selectedTags, setSelectedTags] = useState([]);
 
+  // Create a unique set of tags from markers for filtering
   const tagsSet = new Set(markers.flatMap(marker => marker.tags));
   const tags = Array.from(tagsSet);
 
+  // Filter markers based on selected tags
   const filteredMarkers = markers.filter(marker => 
     selectedTags.length === 0 || 
     marker.tags.some(tag => selectedTags.includes(tag))
@@ -120,8 +122,8 @@ const CustomMap = () => {
               key={tag}
               onClick={() => setSelectedTags(prev => 
                 prev.includes(tag) 
-                  ? prev.filter(t => t !== tag) 
-                  : [...prev, tag]
+                  ? prev.filter(t => t !== tag) // Remove tag if it's already selected
+                  : [...prev, tag] // Add tag if not selected
               )}
               className={`px-3 py-1 rounded-full text-sm transition-colors ${
                 selectedTags.includes(tag) 
@@ -142,6 +144,7 @@ const CustomMap = () => {
               gestureHandling={"greedy"}
               disableDefaultUI
             >
+              {/* Render markers on the map */}
               {filteredMarkers.map((marker, index) => (
                 marker.lat && marker.lng ? (
                   <Marker

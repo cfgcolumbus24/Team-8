@@ -30,7 +30,7 @@ const Navbar = () => {
 
   const handleLogout = () => {
     sessionStorage.clear();
-    window.location.href = '/welcome';
+    window.location.href = '/';
   };
 
   useEffect(() => {
