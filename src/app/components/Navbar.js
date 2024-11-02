@@ -36,8 +36,30 @@ const Navbar = () => {
 
   return (
     <>
-      <div className="inNavbar">
-        <Link href={"/"} className="inLogo">
+      <div
+        className="inNavbar"
+        style={{
+          backgroundImage: 'url("https://plus.unsplash.com/premium_photo-1694475411899-ebbce0efaf75?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D")',
+          backgroundSize: 'cover',
+          backgroundRepeat: 'no-repeat',
+          backgroundPosition: 'center',
+          height: '200px', // Adjust as needed
+          width: '100%',
+        }}
+      >
+        <Link
+          href={"/"}
+          className="inLogo"
+          style={{
+            display: 'inline-block',
+            padding: '10px 20px',
+            backgroundColor: 'white',
+            borderRadius: '12px', // Rounded edges
+            color: '#333', // Dark color for contrast
+            textDecoration: 'none',
+            fontWeight: 'bold',
+          }}
+        >
           Lower Manhattan Cultural Council
         </Link>
         <div
@@ -56,6 +78,10 @@ const Navbar = () => {
               onFocus={() => setIsFocused(true)}
               onChange={(e) => setSearchValue(e.target.value)}
               onKeyUp={(e) => searchUsers(e.target.value)}
+              style={{
+                background: 'transparent',
+                color: '#fff', // Ensure the text input stands out
+              }}
             />
             <div
               className={`inSearchCloseBtn ${
@@ -71,6 +97,7 @@ const Navbar = () => {
                     setSearchedUser(userData);
                   }, 300);
                 }}
+                style={{ color: '#fff' }}
               />
             </div>
           </div>
@@ -89,7 +116,7 @@ const Navbar = () => {
                 if (user.error) {
                   return (
                     <div className="noUserFound" key={index}>
-                      <FaFaceFrown />
+                      <FaFaceFrown style={{ color: '#fff' }} />
                       <h3>Sorry {user.error}</h3>
                     </div>
                   );
@@ -112,9 +139,9 @@ const Navbar = () => {
         </div>
         <div className="inNavRightOptions">
           <div className="mobileSearchBtn" onClick={() => setSearchPanel(true)}>
-            <MdSearch />
+            <MdSearch style={{ color: '#fff' }} />
           </div>
-          <label className="inBtn" htmlFor="createNewPost">
+          <label className="inBtn" htmlFor="createNewPost" style={{ color: '#fff' }}>
             Create
           </label>
           <div className="userProfile">
@@ -191,12 +218,12 @@ const Navbar = () => {
         }}
       >
         <div className="closeBtn" onClick={() => setSearchPanel(false)}>
-          <FaAngleDown />
+          <FaAngleDown style={{ color: '#fff' }} />
         </div>
 
         <div className="inMobileSearch">
           <div className="mobileSearchIcon">
-            <MdSearch className="inIcon" />
+            <MdSearch className="inIcon" style={{ color: '#fff' }} />
           </div>
           <input
             type="text"
@@ -204,6 +231,7 @@ const Navbar = () => {
             value={searchValue}
             onKeyUp={(e) => searchUsers(e.target.value)}
             onChange={(e) => setSearchValue(e.target.value)}
+            style={{ background: 'transparent', color: '#fff' }}
           />
           {searchValue.length >= 1 && (
             <MdClose
@@ -212,6 +240,7 @@ const Navbar = () => {
                 setSearchValue("");
                 setSearchedUser(userData);
               }}
+              style={{ color: '#fff' }}
             />
           )}
         </div>
@@ -221,8 +250,8 @@ const Navbar = () => {
             if (user.error) {
               return (
                 <div className="noUserFound" key={index}>
-                  <FaFaceFrown />
-                  <h3>Sorry {user.error}</h3>
+                  <FaFaceFrown style={{ color: '#fff' }} />
+                  <h3 style={{ color: '#fff' }}>Sorry {user.error}</h3>
                 </div>
               );
             } else {
@@ -238,7 +267,7 @@ const Navbar = () => {
                   <div className="profileImage">
                     <img src={`${user.profilePic}`} alt="" />
                   </div>
-                  <h3>{user.name}</h3>
+                  <h3 style={{ color: '#fff' }}>{user.name}</h3>
                 </div>
               );
             }
