@@ -8,6 +8,36 @@ import Post from "@/app/components/Post";
 import Sidebar from "@/app/components/Sidebar";
 import Navbar from "@/app/components/Navbar";
 
+import { collection, getFirestore, addDoc } from "firebase/firestore"; 
+import { initializeApp } from "firebase/app";
+
+// TODO: Replace the following with your app's Firebase project configuration
+// See: https://support.google.com/firebase/answer/7015592
+const firebaseConfig = {
+  apiKey: "",
+  authDomain: "lmcc-team-8.firebaseapp.com",
+  projectId: "lmcc-team-8",
+  storageBucket: "lmcc-team-8.firebasestorage.app",
+  messagingSenderId: "142238046334",
+  appId: "1:142238046334:web:7b001884ddb9ebc6f2e02f",
+  measurementId: "G-G5796BP05S"
+};
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+async function makePost() {
+  try {
+    const docRef = await addDoc(collection(db, "post"), {
+      content: content,
+      image: image
+    });
+    console.log("Document written with ID: ", docRef.id);
+  } catch (e) {
+    console.error("Error adding document: ", e);
+  }
+}
+
 const Page = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [allPosts, setAllPosts] = useState(userData);

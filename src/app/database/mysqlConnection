@@ -1,0 +1,17 @@
+import mysql from 'mysql2/promise';
+
+export async function startMySQL() {
+    const dbconnection = await mysql.createConnection({
+        host: "ip-172-31-51-193",
+        user: "cfg-team",
+        password: "password"
+    })
+    
+    try {
+        dbconnection.connect()
+    } catch (error) {
+
+    }
+}
+
+export default startMySQL

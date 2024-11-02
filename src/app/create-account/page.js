@@ -1,6 +1,25 @@
 "use client";
 import React, { useState } from "react";
 import MultiSelectDropdown from "../components/MultiSelectDropdown";
+import { collection, getFirestore, addDoc } from "firebase/firestore"; 
+import { initializeApp } from "firebase/app";
+
+// TODO: Replace the following with your app's Firebase project configuration
+// See: https://support.google.com/firebase/answer/7015592
+const firebaseConfig = {
+  apiKey: "",
+  authDomain: "lmcc-team-8.firebaseapp.com",
+  projectId: "lmcc-team-8",
+  storageBucket: "lmcc-team-8.firebasestorage.app",
+  messagingSenderId: "142238046334",
+  appId: "1:142238046334:web:7b001884ddb9ebc6f2e02f",
+  measurementId: "G-G5796BP05S"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
 
 const CreateAccount = () => {
   const [username, setUsername] = useState("");
@@ -11,6 +30,19 @@ const CreateAccount = () => {
   const [selectedInterests, setSelectedInterests] = useState([]);
   const [selectedMediums, setSelectedMediums] = useState([]);
   const [selectedPronouns, setSelectedPronouns] = useState([]);
+
+  async function makeUser() {
+    try {
+      const docRef = await addDoc(collection(db, "users"), {
+        username: username,
+        email: email,
+        password: password
+      });
+      console.log("Document written with ID: ", docRef.id);
+    } catch (e) {
+      console.error("Error adding document: ", e);
+    }
+  }
 
   const art_options = [
     { value: "Painting", label: "Painting" },
@@ -72,6 +104,7 @@ const CreateAccount = () => {
     console.log("Mediums:", selectedMediums);
     console.log("Open to Work:", openToWork);
     console.log("Interests:", selectedInterests);
+    makeUser();
   };
 
   return (
