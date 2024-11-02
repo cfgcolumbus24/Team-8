@@ -3,9 +3,6 @@
 import "./App.css";
 import React, { useState } from "react";
 import { Map, Marker, APIProvider} from "@vis.gl/react-google-maps";
-// import { config } from 'dotenv';
-
-
 
 const CustomMap = () => {
   // shows marker on London by default
