@@ -73,14 +73,6 @@ const Sidebar = ({ onCreatePost }) => {
         ))}
       </nav>
 
-      <label
-        className="inBtn sidebarCreateBtn"
-        onClick={onCreatePost}
-        style={{ cursor: 'pointer' }}
-      >
-        Create Post
-      </label>
-
       {isModalOpen && (
         <div
           style={{
