@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import MultiSelectDropdown from "../components/MultiSelectDropdown";
 import { collection, getFirestore, addDoc } from "firebase/firestore"; 
 import { initializeApp } from "firebase/app";
+import { useRouter } from "next/navigation";
 
 // TODO: Replace the following with your app's Firebase project configuration
 // See: https://support.google.com/firebase/answer/7015592
@@ -30,13 +31,19 @@ const CreateAccount = () => {
   const [selectedInterests, setSelectedInterests] = useState([]);
   const [selectedMediums, setSelectedMediums] = useState([]);
   const [selectedPronouns, setSelectedPronouns] = useState([]);
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
 
+
+  const router = useRouter();
   async function makeUser() {
     try {
       const docRef = await addDoc(collection(db, "users"), {
-        username: username,
         email: email,
-        password: password
+        firstName: firstName,
+        lastName: lastName,
+        password: password,
+        username: username,
       });
       console.log("Document written with ID: ", docRef.id);
     } catch (e) {
@@ -104,8 +111,11 @@ const CreateAccount = () => {
     console.log("Mediums:", selectedMediums);
     console.log("Open to Work:", openToWork);
     console.log("Interests:", selectedInterests);
+    sessionStorage.setItem("firstName", firstName); // Store the first name in sessionStorage
+    sessionStorage.setItem("lastName", lastName); // Store the last name in sessionStorage
     sessionStorage.setItem("username", username); // Store the username in sessionStorage
     makeUser();
+    router.push("/Home");
   };
 
   return (
@@ -123,6 +133,28 @@ const CreateAccount = () => {
                 id="username"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
+                className="w-full px-3 py-2 border rounded-md create-account-input"
+                required
+              />
+            </div>
+            <div className="mb-4">
+              <label className="block text-sm font-medium mb-1 create-account-label">First Name:{" "}</label>
+              <input
+                type="firstname"
+                id="firstname"
+                value={firstName}
+                onChange={(e) => setFirstName(e.target.value)}
+                className="w-full px-3 py-2 border rounded-md create-account-input"
+                required
+              />
+            </div>
+            <div className="mb-4">
+              <label className="block text-sm font-medium mb-1 create-account-label">Last Name:{" "}</label>
+              <input
+                type="lastname"
+                id="lastname"
+                value={lastName}
+                onChange={(e) => setLastName(e.target.value)}
                 className="w-full px-3 py-2 border rounded-md create-account-input"
                 required
               />
@@ -240,7 +272,9 @@ const CreateAccount = () => {
               }}
               className="w-full py-3 mt-2 rounded-sm"
             >
-              <a href="/Home">
+              {/* <a href="/Home"> */}
+              
+               <a>
                 Create Account
               </a>
             </button>
