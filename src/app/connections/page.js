@@ -1,5 +1,6 @@
 'use client';
 
+import { useState } from 'react';
 import { useParams } from 'next/navigation';
 import Link from 'next/link';
 import Sidebar from '../components/Sidebar';
@@ -132,6 +133,11 @@ const Connections = () => {
     }
   ];
 
+  const tagsSet = new Set(allUsers.flatMap(user => user.tags));
+  const tags = Array.from(tagsSet);
+
+  const [selectedTags, setSelectedTags] = useState([]);
+
   const getStatusBadge = (status) => {
     const statusStyles = {
       active: "w-3 h-3 rounded-full bg-green-500",
@@ -163,13 +169,6 @@ const Connections = () => {
                         <p>{user.username}</p>
                       </div>
                     </div>
-                    <div className="mt-2">
-                      <div className="flex flex-wrap gap-1">
-                        {user.tags.map((tag, tagIndex) => (
-                          <span key={tagIndex} className="px-2 py-1 bg-gray-100 text-gray-700 rounded-full text-xs">{tag}</span>
-                        ))}
-                      </div>
-                    </div>
                     <p className='mt-4'>{user.bio}</p>
                   </Link>
                 ))}
@@ -177,29 +176,48 @@ const Connections = () => {
             </div>
             <div className='mx-16 p-4'>
               <h1 className='text-lg font-bold'>All Users</h1>
-              <div className='flex flex-wrap'>
-                {allUsers.map((user, index) => (
-                  <Link key={index} href={`/profile/${user.username.slice(1)}`} className="m-4 p-4 rounded-md border w-72">
-                    <div className='flex gap-2'>
-                      <img src={user.profilePic} alt={`${user.name}'s profile`} className='w-12 rounded-full' />
-                      <div>
-                        <div className='flex gap-1 items-center justify-center'>
-                          <h2>{user.name}</h2> 
-                          {getStatusBadge(user.status)}
-                        </div>
-                        <p>{user.username}</p>
-                      </div>
-                    </div>
-                    <div className="mt-2">
-                      <div className="flex flex-wrap gap-1">
-                        {user.tags.map((tag, tagIndex) => (
-                          <span key={tagIndex} className="px-2 py-1 bg-gray-100 text-gray-700 rounded-full text-xs">{tag}</span>
-                        ))}
-                      </div>
-                    </div>
-                    <p className='mt-4'>{user.bio}</p>
-                  </Link>
+
+              <div className='mb-4 flex flex-wrap gap-2 bg-lightBlue p-4 rounded-lg shadow-sm'>
+                {tags.map(tag => (
+                  <button
+                    key={tag}
+                    onClick={() => setSelectedTags(prev =>
+                      prev.includes(tag)
+                        ? prev.filter(t => t !== tag)
+                        : [...prev, tag]
+                    )}
+                    className={`px-3 py-1 rounded-full text-sm transition-colors ${
+                      selectedTags.includes(tag)
+                        ? 'bg-teal text-black'
+                        : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                    }`}
+                  >
+                    {tag}
+                  </button>
                 ))}
+              </div>
+
+              <div className='flex flex-wrap'>
+                {allUsers
+                  .filter(user => 
+                    selectedTags.length === 0 || 
+                    user.tags.some(tag => selectedTags.includes(tag))
+                  )
+                  .map((user, index) => (
+                    <Link key={index} href={`/profile/${user.username.slice(1)}`} className="m-4 p-4 rounded-md border w-72">
+                      <div className='flex gap-2'>
+                        <img src={user.profilePic} alt={`${user.name}'s profile`} className='w-12 rounded-full' />
+                        <div>
+                          <div className='flex gap-1 items-center justify-center'>
+                            <h2>{user.name}</h2> 
+                            {getStatusBadge(user.status)}
+                          </div>
+                          <p>{user.username}</p>
+                        </div>
+                      </div>
+                      <p className='mt-4'>{user.bio}</p>
+                    </Link>
+                  ))}
               </div>
             </div>
           </div>
