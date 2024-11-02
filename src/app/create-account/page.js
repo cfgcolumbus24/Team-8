@@ -38,7 +38,9 @@ const CreateAccount = () => {
       const docRef = await addDoc(collection(db, "users"), {
         username: username,
         email: email,
-        password: password
+        password: password,
+        firstName: firstName,
+        lastName: lastName
       });
       console.log("Document written with ID: ", docRef.id);
     } catch (e) {
