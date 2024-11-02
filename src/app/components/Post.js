@@ -10,6 +10,23 @@ import {
 } from "react-icons/hi2";
 import { HiOutlineShare } from "react-icons/hi";
 import { useBookmarks } from "../contexts/BookmarkContext"; // Import the context
+import { collection, getFirestore, addDoc } from "firebase/firestore"; 
+import { initializeApp } from "firebase/app";
+
+// TODO: Replace the following with your app's Firebase project configuration
+// See: https://support.google.com/firebase/answer/7015592
+const firebaseConfig = {
+  apiKey: process.env.NEXT_PUBLIC_FIREBASE_KEY,
+  authDomain: "lmcc-team-8.firebaseapp.com",
+  projectId: "lmcc-team-8",
+  storageBucket: "lmcc-team-8.firebasestorage.app",
+  messagingSenderId: "142238046334",
+  appId: "1:142238046334:web:7b001884ddb9ebc6f2e02f",
+  measurementId: "G-G5796BP05S"
+};
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
 
 // PostHeader: Displays user information and post options
 const PostHeader = ({ userData }) => (
@@ -30,6 +47,18 @@ const PostHeader = ({ userData }) => (
     </div>
   </div>
 );
+
+async function makePost() {
+  try {
+    const docRef = await addDoc(collection(db, "post"), {
+      content: content,
+      image: image
+    });
+    console.log("Document written with ID: ", docRef.id);
+  } catch (e) {
+    console.error("Error adding document: ", e);
+  }
+}
 
 // PostContent: Handles both text and image content display
 const PostContent = ({ content, postImg, open, setOpen }) => (
@@ -195,6 +224,7 @@ const Post = ({ userData }) => {
   const [showComments, setShowComments] = useState(false);
   const [comments, setComments] = useState([]);
   const [newComment, setNewComment] = useState("");
+
 
   const handleLike = () => {
     setIsLiked(!isLiked);

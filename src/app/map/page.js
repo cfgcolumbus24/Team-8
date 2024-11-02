@@ -5,6 +5,24 @@ import React, { useState, useEffect } from "react";
 import { Map, APIProvider, Marker, InfoWindow } from "@vis.gl/react-google-maps";
 import Navbar from "../components/Navbar";
 import Sidebar from "../components/Sidebar";
+import { initializeApp } from "firebase/app";
+import { getFirestore } from "firebase/firestore"; 
+import { collection, getDocs } from "firebase/firestore";
+
+// Your Firebase configuration
+const firebaseConfig = {
+  apiKey: process.env.NEXT_PUBLIC_FIREBASE_KEY,
+  authDomain: "lmcc-team-8.firebaseapp.com",
+  projectId: "lmcc-team-8",
+  storageBucket: "lmcc-team-8.firebasestorage.app",
+  messagingSenderId: "142238046334",
+  appId: "1:142238046334:web:7b001884ddb9ebc6f2e02f",
+  measurementId: "G-G5796BP05S"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
 
 const CustomMap = () => {
   const center = {
@@ -17,16 +35,19 @@ const CustomMap = () => {
   // State for markers, active marker, and loading status
   const [markers, setMarkers] = useState([]);
   const [activeMarker, setActiveMarker] = useState(null);
+  const [addressList, setAddressList] = useState([]); // State to hold address data from Firestore
 
-  // Sample addresses for geocoding
-  const addressList = [
-    { address: "11 W 53rd St, New York, NY 10019", name: "Museum of Modern Art (MoMA)", description: "Renowned Museum with a Vast Collection of Modern Art" },
-    { address: "1000 5th Ave, New York, NY 10028", name: "The Metropolitan Museum of Art", description: "One of the Largest and Most Prestigious Art Museums in the World" },
-    { address: "1071 5th Ave, New York, NY 10128", name: "Solomon R. Guggenheim Museum", description: "Iconic Frank Lloyd Wright-designed Museum for Modern Art" },
-    { address: "107 Suffolk St, New York, NY 10002", name: "The Tenement Museum", description: "Museum Preserving the History of Immigrants in the U.S." },
-    { address: "18 Bleecker St, New York, NY 10012", name: "The New Museum", description: "Contemporary Art Museum Focused on New Art and Ideas" },
-  ];
-  
+
+  async function getAllDocuments() {
+      const querySnapshot = await getDocs(collection(db, "locations"));
+      const documents = [];
+      querySnapshot.forEach((doc) => {
+          documents.push({ id: doc.id, ...doc.data() });
+      });
+      console.log("All documents:", documents);
+      return documents;
+  }
+
 
   // Function to geocode addresses
   const geocodeAddress = async (address) => {
@@ -43,20 +64,25 @@ const CustomMap = () => {
     }
   };
 
-  // Load markers on component mount
   useEffect(() => {
-    const loadMarkers = async () => {
+    const loadAddressesAndMarkers = async () => {
+      // Step 1: Fetch addresses from Firestore
+      const addresses = await getAllDocuments(db);
+      setAddressList(addresses);
+
+      // Step 2: Geocode each address and create markers
       const loadedMarkers = await Promise.all(
         addressList.map(async (marker) => {
-          const coords = await geocodeAddress(marker.address);
+          const coords = await geocodeAddress(marker.address, apiKey);
           return { ...marker, ...(coords || { lat: null, lng: null }) };
         })
       );
-      setMarkers(loadedMarkers);
+
+      setMarkers(loadedMarkers); // Update markers with geocoded coordinates
     };
 
-    loadMarkers();
-  }, [apiKey]);
+    loadAddressesAndMarkers();
+  }, [db, apiKey]);
 
   return (
     <>

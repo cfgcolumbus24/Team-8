@@ -2,11 +2,14 @@
 
 import React from 'react';
 import { useParams } from 'react-router-dom';
+import { startMySQL } from 'mysqlConnection';
 
 const UserProfile = () => {
   // Get the username from the URL parameters
   const { username } = useParams();
 
+  startMySQL()
+  
   // Simulate fetching user data (replace with actual API call)
   const userData = {
     name: username, // For demonstration, using username as the name
