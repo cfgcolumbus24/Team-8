@@ -48,7 +48,7 @@ const links = [
   },
 ];
 
-const Sidebar = () => {
+const Sidebar = ({ onCreatePost }) => {
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -102,7 +102,11 @@ const Sidebar = () => {
         })}
       </div>
 
-      <label htmlFor="createNewPost" className="inBtn sidebarCreateBtn">
+      <label 
+        className="inBtn sidebarCreateBtn" 
+        onClick={onCreatePost} 
+        style={{ cursor: 'pointer' }}
+      >
         Create Post
       </label>
 
