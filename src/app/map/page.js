@@ -36,34 +36,34 @@ const CustomMap = () => {
 
   const addressList = [
     { 
-      address: "350 5th Ave, New York, NY 10118", 
-      name: "Empire State Building", 
-      description: "Iconic Skyscraper",
-      tags: ["open house", "free", "art show", "family friendly"] 
+      address: "1000 5th Ave, New York, NY 10028", 
+      name: "The Metropolitan Museum of Art", 
+      description: "A magnificent cultural treasure trove featuring breathtaking artworks from across the globe",
+      tags: ["exquisite", "educational", "diverse", "historic"] 
     },
     { 
-      address: "1 World Trade Center, New York, NY 10007", 
-      name: "One World Trade Center", 
-      description: "Tallest Building in the Western Hemisphere",
-      tags: ["live music", "panel discussion", "free"] 
+      address: "11 W 53rd St, New York, NY 10019", 
+      name: "The Museum of Modern Art", 
+      description: "A dynamic hub for innovative and contemporary art, showcasing astonishing pieces that challenge perception",
+      tags: ["thought-provoking", "inspiring", "interactive", "iconic"] 
     },
     { 
-      address: "10 Columbus Circle, New York, NY 10019", 
-      name: "Time Warner Center", 
-      description: "Mixed-use Complex",
-      tags: ["workshop", "networking", "exhibition"] 
+      address: "1071 5th Ave, New York, NY 10128", 
+      name: "The Guggenheim Museum", 
+      description: "An architecturally stunning venue, renowned for its extraordinary collection of modern masterpieces",
+      tags: ["unique", "elegant", "immersive", "timeless"] 
     },
     { 
-      address: "200 Central Park South, New York, NY 10019", 
-      name: "The Plaza Hotel", 
-      description: "Luxury Hotel near Central Park",
-      tags: ["fundraiser", "community event", "talk"] 
+      address: "99 Gansevoort St, New York, NY 10014", 
+      name: "The Whitney Museum of American Art", 
+      description: "A vibrant celebration of American art, emphasizing living artists and compelling narratives",
+      tags: ["exciting", "inclusive", "culturally rich", "engaging"] 
     },
     { 
-      address: "30 Rockefeller Plaza, New York, NY 10112", 
-      name: "Rockefeller Center", 
-      description: "Entertainment and Shopping Complex",
-      tags: ["festival", "free", "performance"] 
+      address: "1 E 70th St, New York, NY 10021", 
+      name: "The Frick Collection", 
+      description: "A charming and intimate museum displaying exquisite Old Master paintings in a refined mansion setting",
+      tags: ["elegant", "cozy", "historic", "sophisticated"] 
     },
   ];
 
