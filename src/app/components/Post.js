@@ -1,4 +1,5 @@
-"use client"; 
+"use client"; // Ensures this component runs on the client side
+import Link from 'next/link';
 import React, { useState, useEffect } from "react";
 import {
   HiOutlineHeart,
@@ -8,17 +9,19 @@ import {
   HiBookmark,
 } from "react-icons/hi2";
 import { HiOutlineShare } from "react-icons/hi";
-import { useBookmarks } from "../contexts/BookmarkContext"; 
+import { useBookmarks } from "../contexts/BookmarkContext"; // Import the context
 
 // PostHeader: Displays user information and post options
 const PostHeader = ({ userData }) => (
   <div className="header">
     <div className="left">
-      <img src={userData.profilePic} alt="" className="profileImg" />
-      <div className="userDetails">
-        <div className="name">{userData.name}</div>
-        <div className="username">{userData.username}</div>
-      </div>
+      <Link href={`/profile/${userData.username}`} className="flex items-center gap-2">
+        <img src={userData.profilePic} alt="" className="profileImg" />
+        <div className="userDetails">
+          <div className="name">{userData.name}</div>
+          <div className="username">{userData.username}</div>
+        </div>
+      </Link>
     </div>
     <div className="right">
       <div className="option">
@@ -166,8 +169,11 @@ const CommentItem = ({ comment }) => (
 // CommentInput: New comment input field
 const CommentInput = ({ newComment, setNewComment, handleAddComment }) => (
   <div className="p-4 border-t border-gray-200">
-    <div className="flex gap-2">
-      <img src="/assets/image/avatar_default.jpg" alt="" className="w-8 h-8 rounded-full" />
+    <div className="flex items-center gap-2">
+      <div className="flex items-center gap-2">
+        <img src="/assets/image/avatar_default.jpg" alt="" className="w-8 h-8 rounded-full" />
+        <span className="text-sm font-medium">Philip Tonder</span>
+      </div>
       <input
         type="text"
         value={newComment}
@@ -179,6 +185,7 @@ const CommentInput = ({ newComment, setNewComment, handleAddComment }) => (
     </div>
   </div>
 );
+
 
 // Main Post Component: Orchestrates all post functionality
 const Post = ({ userData }) => {
