@@ -15,12 +15,13 @@ const Navbar = () => {
   const [ProfileMenu, setProfileMenu] = useState(false);
   const [searchedUser, setSearchedUser] = useState(userData);
   const [searchPanel, setSearchPanel] = useState(false);
-  const [firstName, setFirstNames] = useState();
-  const [lastName, setLastNames] = useState();
+  const [username, setUsername] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
 
   const searchUsers = (value) => {
     const filteredUsers = userData.filter((user) =>
-      firstName.toLowerCase().includes(value.toLowerCase())
+      user.name.toLowerCase().includes(value.toLowerCase())
     );
     setSearchedUser(
       filteredUsers.length === 0 ? [{ error: "User Not Found" }] : filteredUsers
@@ -28,54 +29,50 @@ const Navbar = () => {
   };
 
   useEffect(() => {
-    window.addEventListener("click", (e) => {
+    const handleClick = (e) => {
       if (!e.target.closest(".userProfile")) {
         setProfileMenu(false);
       }
+    };
 
+    const loadUserData = () => {
       const storedUsername = sessionStorage.getItem("username");
       const storedFirstName = sessionStorage.getItem("firstName");
       const storedLastName = sessionStorage.getItem("lastName");
-      if (storedUsername) {
-        setUsername(storedUsername); // Set the username in state
-      }
-      if (storedFirstName && storedLastName) {
-        setFirstName(storedFirstName);
-        setLastName(storedLastName);
-      }
-    });
-  }, []);
+      
+      if (storedUsername) setUsername(storedUsername);
+      if (storedFirstName) setFirstName(storedFirstName);
+      if (storedLastName) setLastName(storedLastName);
+    };
 
-  const [username, setUsername] = useState("");
+    window.addEventListener("click", handleClick);
+    loadUserData();
+
+    return () => window.removeEventListener("click", handleClick);
+  }, []);
 
   return (
     <>
-      <div
-        className="inNavbar"
-        style={{
-          backgroundImage: 'url("https://plus.unsplash.com/premium_photo-1694475411899-ebbce0efaf75?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D")',
-          backgroundSize: 'cover',
-          backgroundRepeat: 'no-repeat',
-          backgroundPosition: 'center',
-          height: '200px',
-          width: '100%',
-        }}
-      >
-        <Link
-          href="/"
-          className="inLogo"
-          style={{
-            display: 'inline-block',
-            padding: '10px 20px',
-            backgroundColor: 'white',
-            borderRadius: '12px',
-            color: '#333',
-            textDecoration: 'none',
-            fontWeight: 'bold',
-          }}
-        >
+      <div className="inNavbar" style={{
+        backgroundImage: 'url("https://plus.unsplash.com/premium_photo-1694475411899-ebbce0efaf75?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D")',
+        backgroundSize: 'cover',
+        backgroundRepeat: 'no-repeat',
+        backgroundPosition: 'center',
+        height: '200px',
+        width: '100%',
+      }}>
+        <Link href="/" className="inLogo" style={{
+          display: 'inline-block',
+          padding: '10px 20px',
+          backgroundColor: 'white',
+          borderRadius: '12px',
+          color: '#333',
+          textDecoration: 'none',
+          fontWeight: 'bold',
+        }}>
           Lower Manhattan Cultural Council
         </Link>
+
         <div ref={ref} className={`inSearch ${isFocused ? "inSearchFocused" : ""}`}>
           <div className="inSearchWrapper">
             <div className="inSearchIcon">
@@ -87,30 +84,28 @@ const Navbar = () => {
               placeholder="Search"
               value={searchValue}
               onFocus={() => setIsFocused(true)}
-              onChange={(e) => setSearchValue(e.target.value)}
-              onKeyUp={(e) => searchUsers(e.target.value)}
+              onChange={(e) => {
+                setSearchValue(e.target.value);
+                searchUsers(e.target.value);
+              }}
               style={{
                 background: 'transparent',
                 color: '#000',
               }}
             />
-            <div
-              className={`inSearchCloseBtn ${
-                searchValue.length >= 1 ? "inSearchCloseBtnActive" : ""
-              }`}
-            >
-              <MdClose
-                className="inIcon"
-                onClick={() => {
-                  setSearchValue("");
-                  setIsFocused(false);
-                  setTimeout(() => {
+            {searchValue && (
+              <div className="inSearchCloseBtn inSearchCloseBtnActive">
+                <MdClose
+                  className="inIcon"
+                  onClick={() => {
+                    setSearchValue("");
+                    setIsFocused(false);
                     setSearchedUser(userData);
-                  }, 300);
-                }}
-                style={{ color: '#000' }}
-              />
-            </div>
+                  }}
+                  style={{ color: '#000' }}
+                />
+              </div>
+            )}
           </div>
 
           <motion.div
@@ -122,32 +117,28 @@ const Navbar = () => {
               pointerEvents: isFocused ? "auto" : "none",
             }}
           >
-            {isFocused &&
-              searchedUser.map((user, index) => {
-                if (user.error) {
-                  return (
-                    <div className="noUserFound" key={index}>
-                      <FaFaceFrown style={{ color: '#000' }} />
-                      <h3 style={{ color: '#000' }}>Sorry {user.error}</h3>
-                    </div>
-                  );
-                } else {
-                  return (
-                    <div
-                      key={index}
-                      className="searchResultItem"
-                      onClick={() => setSearchValue(firstName)}
-                    >
-                      <div className="userImage">
-                        <img src={`${user.profilePic}`} alt="" />
-                      </div>
-                      <h3 style={{ color: '#000' }}>{user.name}</h3>
-                    </div>
-                  );
-                }
-              })}
+            {isFocused && searchedUser.map((user, index) => (
+              user.error ? (
+                <div className="noUserFound" key={index}>
+                  <FaFaceFrown style={{ color: '#000' }} />
+                  <h3 style={{ color: '#000' }}>Sorry {user.error}</h3>
+                </div>
+              ) : (
+                <div
+                  key={index}
+                  className="searchResultItem"
+                  onClick={() => setSearchValue(user.name)}
+                >
+                  <div className="userImage">
+                    <img src={user.profilePic} alt="" />
+                  </div>
+                  <h3 style={{ color: '#000' }}>{user.name}</h3>
+                </div>
+              )
+            ))}
           </motion.div>
         </div>
+
         <div className="inNavRightOptions">
           <div className="mobileSearchBtn" onClick={() => setSearchPanel(true)}>
             <MdSearch style={{ color: '#000' }} />
@@ -164,11 +155,13 @@ const Navbar = () => {
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
+                cursor: 'pointer',
+                border: '2px solid white'
               }}
             >
               <img
                 src="https://t4.ftcdn.net/jpg/01/87/75/15/360_F_187751502_TrPkDYFA1MzKcJO9CWoDi2NgcCWqOCUi.jpg"
-                alt="User Profile Pic"
+                alt="User Profile"
                 style={{
                   width: '100%',
                   height: '100%',
@@ -176,6 +169,7 @@ const Navbar = () => {
                 }}
               />
             </div>
+
             <motion.div
               className="userProfileDropdown"
               initial={{ y: 40, opacity: 0, pointerEvents: "none" }}
@@ -190,11 +184,19 @@ const Navbar = () => {
               <div className="profileWrapper">
                 <img
                   src="https://t4.ftcdn.net/jpg/01/87/75/15/360_F_187751502_TrPkDYFA1MzKcJO9CWoDi2NgcCWqOCUi.jpg"
-                  alt="User Profile Pic"
+                  alt="User Profile"
+                  style={{
+                    width: '50px',
+                    height: '50px',
+                    borderRadius: '50%',
+                    objectFit: 'cover'
+                  }}
                 />
                 <div className="profileData">
                   <div className="name" style={{ color: '#000' }}>{username}</div>
-                  <Link href={`/profile/${username}`} className="seeProfile" style={{ color: '#000' }}>See Profile</Link>
+                  <Link href={`/profile/${username}`} className="seeProfile" style={{ color: '#000' }}>
+                    See Profile
+                  </Link>
                 </div>
               </div>
               <div className="linksWrapper">
@@ -240,11 +242,13 @@ const Navbar = () => {
             type="text"
             placeholder="Search"
             value={searchValue}
-            onKeyUp={(e) => searchUsers(e.target.value)}
-            onChange={(e) => setSearchValue(e.target.value)}
+            onChange={(e) => {
+              setSearchValue(e.target.value);
+              searchUsers(e.target.value);
+            }}
             style={{ background: 'transparent', color: '#000' }}
           />
-          {searchValue.length >= 1 && (
+          {searchValue && (
             <MdClose
               className="inIcon cursor-pointer"
               onClick={() => {
@@ -257,32 +261,28 @@ const Navbar = () => {
         </div>
 
         <div className="mobileSearchResult">
-          {searchedUser.map((user, index) => {
-            if (user.error) {
-              return (
-                <div className="noUserFound" key={index}>
-                  <FaFaceFrown style={{ color: '#000' }} />
-                  <h3 style={{ color: '#000' }}>Sorry {user.error}</h3>
+          {searchedUser.map((user, index) => (
+            user.error ? (
+              <div className="noUserFound" key={index}>
+                <FaFaceFrown style={{ color: '#000' }} />
+                <h3 style={{ color: '#000' }}>Sorry {user.error}</h3>
+              </div>
+            ) : (
+              <div
+                className="mobileSearchItem"
+                key={index}
+                onClick={() => {
+                  setSearchValue(user.name);
+                  setSearchPanel(false);
+                }}
+              >
+                <div className="profileImage">
+                  <img src={user.profilePic} alt="" />
                 </div>
-              );
-            } else {
-              return (
-                <div
-                  className="mobileSearchItem"
-                  key={index}
-                  onClick={() => {
-                    setSearchValue(firstName);
-                    setSearchPanel(false);
-                  }}
-                >
-                  <div className="profileImage">
-                    <img src={`${user.profilePic}`} alt="" />
-                  </div>
-                  <h3 style={{ color: '#000' }}>{user.name}</h3>
-                </div>
-              );
-            }
-          })}
+                <h3 style={{ color: '#000' }}>{user.name}</h3>
+              </div>
+            )
+          ))}
         </div>
       </motion.div>
     </>
