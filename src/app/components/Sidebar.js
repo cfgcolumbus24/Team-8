@@ -46,8 +46,6 @@ const Sidebar = ({ onCreatePost }) => {
       <Link href= {`/profile/${username}`} className="flex items-center gap-2 hover:bg-gray-100 p-2 rounded-lg">
         <img src="https://t4.ftcdn.net/jpg/01/87/75/15/360_F_187751502_TrPkDYFA1MzKcJO9CWoDi2NgcCWqOCUi.jpg" alt="User Avatar" className="w-8 h-8 rounded-full" />
         <div>
-          <div className="font-medium">{username}</div>
-          <div className="text-xs text-gray-500">@{username}</div>
         </div>
         <div className="userDetails">
           <Link href="/Profile" className="name">
