@@ -44,7 +44,7 @@ const Page = () => {
     <>
     <Navbar />
     <div className="mainContainer" style={{ position: 'relative' }}>
-      <Sidebar />
+      <Sidebar onCreatePost={() => setIsModalOpen(true)} />
       <div className="mainSection">
         {/* Stories section remains the same */}
 
