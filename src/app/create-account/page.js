@@ -76,143 +76,150 @@ const CreateAccount = () => {
 
   return (
     <>
-    <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"><a href="/welcome">Go to Welcome</a></button>
-    <div className="max-w-sm mx-auto p-6 border create-account-container">
-      <h2 className="text-2xl font-bold mb-4 create-account-title">
-        Create Account
-      </h2>
-      <form onSubmit={handleCreateAccount}>
-        <div className="mb-4">
-          <label className="block text-sm font-medium mb-1 create-account-label">
-            Username:{" "}
-          </label>
-          <input
-            type="username"
-            id="username"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            className="w-full px-3 py-2 border rounded-md create-account-input"
-            required
-          />
-        </div>
-        <div className="mb-4">
-          <label
-            htmlFor="email"
-            className="block text-sm font-medium mb-1 create-account-label"
-          >
-            Email:
-          </label>
-          <input
-            type="email"
-            id="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            className="w-full px-3 py-2 border rounded-md create-account-input"
-            required
-          />
-        </div>
-        <div className="mb-4">
-          <label
-            htmlFor="password"
-            className="block text-sm font-medium mb-1 create-account-label"
-          >
-            Password:
-          </label>
-          <input
-            type="password"
-            id="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            className="w-full px-3 py-2 border rounded-md create-account-input"
-            required
-          />
-        </div>
-        <div className="mb-4 flex items-center">
-          <label
-            htmlFor="isAlumni"
-            className="text-sm font-medium mr-2 create-account-label"
-          >
-            Are you an Alumni?
-          </label>
-          <input
-            type="checkbox"
-            id="isAlumni"
-            checked={isAlumni}
-            onChange={(e) => setAlumni(e.target.checked)}
-          />
-        </div>
-        <div className="mb-4">
-          <label
-            htmlFor="selectInterests"
-            className="text-sm font-medium mr-2 create-account-label"
-          >
-            Interests
-          </label>
-          <MultiSelectDropdown
-            options={art_options}
-            onChange={handleInterestsChange}
-          />
-        </div>
-        <div className="mb-4">
-          <label
-            htmlFor="selectMediums"
-            className="text-sm font-medium mr-2 create-account-label"
-          >
-            Mediums you work in
-          </label>
-          <MultiSelectDropdown
-            options={art_options}
-            onChange={handleMediumsChange}
-          />
-        </div>
-        <div className="mb-4">
-          <label
-            htmlFor="selectPronouns"
-            className="text-sm font-medium mr-2 create-account-label"
-          >
-            Pronouns
-          </label>
-          <MultiSelectDropdown
-            options={pronoun_options}
-            onChange={handlePronounsChange}
-          />
-        </div>
-        <div className="mb-4 flex items-center">
-          <label
-            htmlFor="openToWork"
-            className="text-sm font-medium mr-2 create-account-label"
-          >
-            Open to Work?
-          </label>
-          <input
-            type="checkbox"
-            id="openToWork"
-            checked={openToWork}
-            onChange={(e) => setOpenToWork(e.target.checked)}
-          />
-        </div>
-        <button
-          type="submit"
-          style={{
-            backgroundColor: "rgb(225, 29, 72)",
-            color: "white",
-            borderRadius: "0.375rem",
-          }}
-          className="w-full py-3 mt-2 create-account-button"
-          onMouseDown={(e) => {
-            e.target.classList.add("active");
-            e.target.style.backgroundColor = "rgb(200, 0, 50)";
-          }}
-          onMouseUp={(e) => {
-            e.target.classList.remove("active");
-            e.target.style.backgroundColor = "rgb(225, 29, 72)";
-          }}
-        >
-          <a href="/Home">
+    <div className="flex">
+      <div className="w-384">
+        <button className="bg-primary w-full hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-sm"><a href="/welcome">Back</a></button>
+        <div className="p-6 border">
+          <h2 className="text-2xl font-bold mb-4 create-account-title">
             Create Account
-          </a>
-        </button>
-      </form>
+          </h2>
+          <form onSubmit={handleCreateAccount}>
+            <div className="mb-4">
+              <label className="block text-sm font-medium mb-1 create-account-label">
+                Username:{" "}
+              </label>
+              <input
+                type="username"
+                id="username"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+                className="w-full px-3 py-2 border rounded-md create-account-input"
+                required
+              />
+            </div>
+            <div className="mb-4">
+              <label
+                htmlFor="email"
+                className="block text-sm font-medium mb-1 create-account-label"
+              >
+                Email:
+              </label>
+              <input
+                type="email"
+                id="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="w-full px-3 py-2 border rounded-md create-account-input"
+                required
+              />
+            </div>
+            <div className="mb-4">
+              <label
+                htmlFor="password"
+                className="block text-sm font-medium mb-1 create-account-label"
+              >
+                Password:
+              </label>
+              <input
+                type="password"
+                id="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                className="w-full px-3 py-2 border rounded-md create-account-input"
+                required
+              />
+            </div>
+            <div className="mb-4 flex items-center">
+              <label
+                htmlFor="isAlumni"
+                className="text-sm font-medium mr-2 create-account-label"
+              >
+                Are you an Alumni?
+              </label>
+              <input
+                type="checkbox"
+                id="isAlumni"
+                checked={isAlumni}
+                onChange={(e) => setAlumni(e.target.checked)}
+              />
+            </div>
+            <div className="mb-4">
+              <label
+                htmlFor="selectInterests"
+                className="text-sm font-medium mr-2 create-account-label"
+              >
+                Interests
+              </label>
+              <MultiSelectDropdown
+                options={art_options}
+                onChange={handleInterestsChange}
+              />
+            </div>
+            <div className="mb-4">
+              <label
+                htmlFor="selectMediums"
+                className="text-sm font-medium mr-2 create-account-label"
+              >
+                Mediums you work in
+              </label>
+              <MultiSelectDropdown
+                options={art_options}
+                onChange={handleMediumsChange}
+              />
+            </div>
+            <div className="mb-4">
+              <label
+                htmlFor="selectPronouns"
+                className="text-sm font-medium mr-2 create-account-label"
+              >
+                Pronouns
+              </label>
+              <MultiSelectDropdown
+                options={pronoun_options}
+                onChange={handlePronounsChange}
+              />
+            </div>
+            <div className="mb-4 flex items-center">
+              <label
+                htmlFor="openToWork"
+                className="text-sm font-medium mr-2 create-account-label"
+              >
+                Open to Work?
+              </label>
+              <input
+                type="checkbox"
+                id="openToWork"
+                checked={openToWork}
+                onChange={(e) => setOpenToWork(e.target.checked)}
+              />
+            </div>
+            <button
+              type="submit"
+              style={{
+                backgroundColor: "rgb(29, 188, 238)",
+                color: "white",
+                borderRadius: "0.375rem",
+              }}
+              className="w-full py-3 mt-2 create-account-button"
+              onMouseDown={(e) => {
+                e.target.classList.add("active");
+                e.target.style.backgroundColor = "rgb(28, 123, 237)";
+              }}
+              onMouseUp={(e) => {
+                e.target.classList.remove("active");
+                e.target.style.backgroundColor = "rgb(29, 188, 238";
+              }}
+            >
+              <a href="/Home">
+                Create Account
+              </a>
+            </button>
+          </form>
+        </div>
+      </div>
+      <div className="flex flex-col flex-1 justify-center items-center bg-[url('/assets/image/create-account-bg.jpg')] bg-cover bg-center bg-gray-700/75 bg-blend-overlay w-screen h-screen overflow-hidden">
+        <img />
+      </div>
     </div>
     </>
   );
