@@ -40,7 +40,6 @@ const Navbar = () => {
 
   const [username, setUsername] = useState("");
 
-
   return (
     <>
       <div
@@ -84,7 +83,7 @@ const Navbar = () => {
               onKeyUp={(e) => searchUsers(e.target.value)}
               style={{
                 background: 'transparent',
-                color: '#fff',
+                color: '#000',
               }}
             />
             <div
@@ -101,7 +100,7 @@ const Navbar = () => {
                     setSearchedUser(userData);
                   }, 300);
                 }}
-                style={{ color: '#fff' }}
+                style={{ color: '#000' }}
               />
             </div>
           </div>
@@ -120,8 +119,8 @@ const Navbar = () => {
                 if (user.error) {
                   return (
                     <div className="noUserFound" key={index}>
-                      <FaFaceFrown style={{ color: '#fff' }} />
-                      <h3>Sorry {user.error}</h3>
+                      <FaFaceFrown style={{ color: '#000' }} />
+                      <h3 style={{ color: '#000' }}>Sorry {user.error}</h3>
                     </div>
                   );
                 } else {
@@ -134,7 +133,7 @@ const Navbar = () => {
                       <div className="userImage">
                         <img src={`${user.profilePic}`} alt="" />
                       </div>
-                      <h3>{username}</h3>
+                      <h3 style={{ color: '#000' }}>{user.name}</h3>
                     </div>
                   );
                 }
@@ -143,7 +142,7 @@ const Navbar = () => {
         </div>
         <div className="inNavRightOptions">
           <div className="mobileSearchBtn" onClick={() => setSearchPanel(true)}>
-            <MdSearch style={{ color: '#fff' }} />
+            <MdSearch style={{ color: '#000' }} />
           </div>
           <div className="userProfile" style={{ marginRight: '10px' }}>
             <div
@@ -186,8 +185,8 @@ const Navbar = () => {
                   alt="User Profile Pic"
                 />
                 <div className="profileData">
-                  <div className="name">{username}</div>
-                  <Link href={`/profile/${username}`} className="seeProfile">See Profile</Link>
+                  <div className="name" style={{ color: '#000' }}>{username}</div>
+                  <Link href={`/profile/${username}`} className="seeProfile" style={{ color: '#000' }}>See Profile</Link>
                 </div>
               </div>
               <div className="linksWrapper">
@@ -196,7 +195,7 @@ const Navbar = () => {
                     <span className="icon">
                       <RiQuestionFill />
                     </span>
-                    <span className="name">Help & Support</span>
+                    <span className="name" style={{ color: '#000' }}>Help & Support</span>
                   </div>
                   <span className="actionIcon">
                     <FaAngleRight />
@@ -222,12 +221,12 @@ const Navbar = () => {
         }}
       >
         <div className="closeBtn" onClick={() => setSearchPanel(false)}>
-          <FaAngleDown style={{ color: '#fff' }} />
+          <FaAngleDown style={{ color: '#000' }} />
         </div>
 
         <div className="inMobileSearch">
           <div className="mobileSearchIcon">
-            <MdSearch className="inIcon" style={{ color: '#fff' }} />
+            <MdSearch className="inIcon" style={{ color: '#000' }} />
           </div>
           <input
             type="text"
@@ -235,7 +234,7 @@ const Navbar = () => {
             value={searchValue}
             onKeyUp={(e) => searchUsers(e.target.value)}
             onChange={(e) => setSearchValue(e.target.value)}
-            style={{ background: 'transparent', color: '#fff' }}
+            style={{ background: 'transparent', color: '#000' }}
           />
           {searchValue.length >= 1 && (
             <MdClose
@@ -244,7 +243,7 @@ const Navbar = () => {
                 setSearchValue("");
                 setSearchedUser(userData);
               }}
-              style={{ color: '#fff' }}
+              style={{ color: '#000' }}
             />
           )}
         </div>
@@ -254,8 +253,8 @@ const Navbar = () => {
             if (user.error) {
               return (
                 <div className="noUserFound" key={index}>
-                  <FaFaceFrown style={{ color: '#fff' }} />
-                  <h3 style={{ color: '#fff' }}>Sorry {user.error}</h3>
+                  <FaFaceFrown style={{ color: '#000' }} />
+                  <h3 style={{ color: '#000' }}>Sorry {user.error}</h3>
                 </div>
               );
             } else {
@@ -271,7 +270,7 @@ const Navbar = () => {
                   <div className="profileImage">
                     <img src={`${user.profilePic}`} alt="" />
                   </div>
-                  <h3 style={{ color: '#fff' }}>{username}</h3>
+                  <h3 style={{ color: '#000' }}>{user.name}</h3>
                 </div>
               );
             }
@@ -283,4 +282,3 @@ const Navbar = () => {
 };
 
 export default Navbar;
-
