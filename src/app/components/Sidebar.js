@@ -14,37 +14,44 @@ const links = [
   {
     name: "Forum",
     icon: <FaHome />,
+    path: "/"
   },
   {
     name: "Explore",
     icon: <FaCompass />,
+    path: "/explore"
   },
   {
     name: "Connect",
     icon: <FaBell />,
+    path: "/connect"
   },
   {
-    name: "Messages",
+    name: "Listings",
     icon: <FaEnvelope />,
+    path: "/listings"
   },
   {
     name: "Bookmarks",
     icon: <FaBookmark />,
+    path: "/bookmarks"
   },
   {
     name: "Theme",
     icon: <FaBrush />,
+    path: "/theme"
   },
   {
     name: "Settings",
     icon: <MdSettings />,
+    path: "/settings"
   },
 ];
 
 const Sidebar = () => {
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  // function to change the theme
+
   useEffect(() => {
     document.body.style.backgroundColor = isDarkMode ? "#000" : "#fff";
     document.body.style.color = isDarkMode ? "#fff" : "#000";
@@ -52,7 +59,7 @@ const Sidebar = () => {
 
   const toggleTheme = (theme) => {
     setIsDarkMode(theme === "dark");
-    setIsModalOpen(false); // closing the modal
+    setIsModalOpen(false);
   };
 
   return (
@@ -62,13 +69,14 @@ const Sidebar = () => {
           <img src={"/assets/image/avatar_default.jpg"} alt="" />
         </div>
         <div className="userDetails">
-          <Link href={"/Profile"} className="name">
+          <Link href="/Profile" className="name">
             John Doe
           </Link>
           <div className="username">@johndoe</div>
         </div>
       </div>
-      <div className="inSidebar">
+
+      <nav className="inSidebar">
         {links.map((link, index) => {
           if (link.name === "Theme") {
             return (
@@ -78,19 +86,30 @@ const Sidebar = () => {
                 onClick={() => setIsModalOpen(true)} 
                 style={{ cursor: "pointer" }}
               >
-                <div className="icon">{link.icon}</div>
+                <span className="icon">{link.icon}</span>
                 <h3>{link.name}</h3>
               </div>
             );
           }
           return (
-            <div className="link" key={index}>
-              <div className="icon">{link.icon}</div>
+            <Link 
+              href={link.path} 
+              key={index}
+              className="link"
+              style={{ 
+                textDecoration: 'none', 
+                color: 'inherit',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '10px'
+              }}
+            >
+              <span className="icon">{link.icon}</span>
               <h3>{link.name}</h3>
-            </div>
+            </Link>
           );
         })}
-      </div>
+      </nav>
 
       <label htmlFor="createNewPost" className="inBtn sidebarCreateBtn">
         Create Post
