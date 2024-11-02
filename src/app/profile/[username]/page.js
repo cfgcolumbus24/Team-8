@@ -1,32 +1,28 @@
 "use client";
 
-import { useParams, useState } from 'next/navigation'
-import userData from '../../UserData'
-import { use } from 'passport'
+import { useParams } from 'next/navigation'
+import { useEffect, useState } from 'react'
+import { getFirestore, collection, query, where, getDocs } from "firebase/firestore"
+import { initializeApp } from "firebase/app"
+
+const firebaseConfig = {
+  apiKey: process.env.NEXT_PUBLIC_FIREBASE_KEY,
+  authDomain: "lmcc-team-8.firebaseapp.com",
+  projectId: "lmcc-team-8",
+  storageBucket: "lmcc-team-8.firebasestorage.app",
+  messagingSenderId: "142238046334",
+  appId: "1:142238046334:web:7b001884ddb9ebc6f2e02f",
+  measurementId: "G-G5796BP05S"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
 
 const UserProfile = () => {
   const params = useParams()
   const para_username = params.username
 
-  const [username, setUsername] = useState("");
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-
-    useEffect(() => {
-      const storedUsername = sessionStorage.getItem("username");
-      const storedFirstName = sessionStorage.getItem("firstName");
-      const storedLastName = sessionStorage.getItem("lastName");
-      if (storedUsername && storedFirstName && storedLastName) {
-        setUsername(storedUsername); // Set the username in state
-        setFirstName(storedFirstName); // Set the firstName in state
-        setFirstName(storedLastName); // Set the lastName in state
-      }
-    }, []);
-
-  // Enhanced user data with default values
-  const currentUser = userData.find(user => 
-    para_username === username
-  ) || {
+  const [currentUser, setCurrentUser] = useState({
     name: 'John Michael',
     username: '@johnmichael',
     profilePic: "https://t4.ftcdn.net/jpg/01/87/75/15/360_F_187751502_TrPkDYFA1MzKcJO9CWoDi2NgcCWqOCUi.jpg",
@@ -43,7 +39,28 @@ const UserProfile = () => {
         year: "1889"
       }
     ]
-  }
+  });
+
+  useEffect(() => {
+    const fetchUserData = async () => {
+      const usersCollection = collection(db, "users");
+      const q = query(usersCollection, where("username", "==", para_username));
+      const querySnapshot = await getDocs(q);
+
+      if (!querySnapshot.empty) {
+        const userDoc = querySnapshot.docs[0].data();
+        setCurrentUser(prevUser => ({
+          ...prevUser,
+          name: `${userDoc.firstName} ${userDoc.lastName}`,
+          username: userDoc.username,
+        }));
+      }
+    };
+
+    if (para_username) {
+      fetchUserData();
+    }
+  }, [para_username]);
 
   const getStatusBadge = (status) => {
     const statusStyles = {
@@ -56,7 +73,6 @@ const UserProfile = () => {
 
   return (
     <div className="max-w-4xl mx-auto p-6 space-y-6">
-      {/* Profile Header */}
       <div className="bg-white rounded-lg shadow-lg p-6">
         <div className="flex items-center gap-6">
           <img
@@ -75,7 +91,6 @@ const UserProfile = () => {
         </div>
       </div>
 
-      {/* Tags Section */}
       <div className="bg-white rounded-lg shadow-lg p-6">
         <h2 className="text-xl font-semibold mb-3">Tags</h2>
         <div className="flex flex-wrap gap-2">
@@ -87,13 +102,11 @@ const UserProfile = () => {
         </div>
       </div>
 
-      {/* About Me Section */}
       <div className="bg-white rounded-lg shadow-lg p-6">
         <h2 className="text-xl font-semibold mb-3">About Me</h2>
         <p className="text-gray-700">{currentUser.aboutMe}</p>
       </div>
 
-      {/* Posts Section */}
       <div className="bg-white rounded-lg shadow-lg p-6">
         <h2 className="text-xl font-semibold mb-3">Posts</h2>
         <div className="grid grid-cols-2 gap-4">
@@ -105,7 +118,6 @@ const UserProfile = () => {
         </div>
       </div>
 
-      {/* Favorite Artwork Section */}
       {currentUser.favoriteArtwork && currentUser.favoriteArtwork.length > 0 && (
         <div className="bg-white rounded-lg shadow-lg p-6">
           <h2 className="text-xl font-semibold mb-3">Favorite Artwork</h2>

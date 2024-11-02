@@ -7,7 +7,6 @@ import { RiQuestionFill } from "react-icons/ri";
 import userData from "@/app/UserData";
 import { motion } from "framer-motion";
 import { useClickOutside } from "@mantine/hooks";
-import { set } from "mongoose";
 
 const Navbar = () => {
   const [isFocused, setIsFocused] = useState(false);
