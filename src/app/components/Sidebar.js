@@ -35,7 +35,7 @@ const links = [
   {
     name: "Bookmarks",
     icon: <FaBookmark />,
-    path: "/bookmarks"
+    path: "/bookmark"
   },
   {
     name: "Theme",
