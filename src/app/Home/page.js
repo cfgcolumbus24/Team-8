@@ -62,7 +62,7 @@ const Page = () => {
               borderRadius: '20px',
               cursor: 'pointer' 
             }}>
-              Whats on your mind, Jhon Doe?
+              Share your ideas!
             </div>
           </div>
         </div>

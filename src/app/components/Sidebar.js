@@ -1,4 +1,4 @@
-"use client"; // Add this line at the very top
+"use client";
 import React, { useState, useEffect } from "react";
 import { MdSettings } from "react-icons/md";
 import {
@@ -15,36 +15,37 @@ const links = [
   {
     name: "Forum",
     icon: <FaHome />,
-    path: "/forum", 
+    path: "/",
   },
   {
     name: "Explore",
     icon: <FaCompass />,
-    path: "/explore",
+    path: "/explore"
   },
   {
     name: "Connect",
     icon: <FaBell />,
-    path: "/connections", // Added path for "Connect"
+    path: "/connect"
   },
   {
-    name: "Messages",
+    name: "Listings",
     icon: <FaEnvelope />,
-    path: "/messages",
+    path: "/listings"
   },
   {
     name: "Bookmarks",
     icon: <FaBookmark />,
-    path: "/bookmark", // Added a path for the bookmark it will lead us to the bookmark page
+    path: "/bookmarks"
   },
   {
     name: "Theme",
     icon: <FaBrush />,
+    path: "/theme"
   },
   {
     name: "Settings",
     icon: <MdSettings />,
-    path: "/settings",
+    path: "/settings"
   },
 ];
 
@@ -52,7 +53,6 @@ const Sidebar = ({ onCreatePost }) => {
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  // Function to change the theme
   useEffect(() => {
     document.body.style.backgroundColor = isDarkMode ? "#000" : "#fff";
     document.body.style.color = isDarkMode ? "#fff" : "#000";
@@ -60,7 +60,7 @@ const Sidebar = ({ onCreatePost }) => {
 
   const toggleTheme = (theme) => {
     setIsDarkMode(theme === "dark");
-    setIsModalOpen(false); // Close the modal
+    setIsModalOpen(false);
   };
 
   return (
@@ -70,13 +70,14 @@ const Sidebar = ({ onCreatePost }) => {
           <img src={"/assets/image/avatar_default.jpg"} alt="" />
         </div>
         <div className="userDetails">
-          <Link href={"/Profile"} className="name">
+          <Link href="/Profile" className="name">
             John Doe
           </Link>
           <div className="username">@johndoe</div>
         </div>
       </div>
-      <div className="inSidebar">
+
+      <nav className="inSidebar">
         {links.map((link, index) => {
           if (link.name === "Theme") {
             return (
@@ -86,28 +87,21 @@ const Sidebar = ({ onCreatePost }) => {
                 onClick={() => setIsModalOpen(true)}
                 style={{ cursor: "pointer" }}
               >
-                <div className="icon">{link.icon}</div>
+                <span className="icon">{link.icon}</span>
                 <h3>{link.name}</h3>
               </div>
             );
           }
           return (
-            <div className="link" key={index}>
-              {link.name === "Connect" ? (
-                <Link href={link.path} style={{ display: 'flex', alignItems: 'center' }}>
-                  <div className="icon">{link.icon}</div>
-                  <h3>{link.name}</h3>
-                </Link>
-              ) : (
-                <>
-                  <div className="icon">{link.icon}</div>
-                  <h3>{link.name}</h3>
-                </>
-              )}
-            </div>
+            <Link href={link.path} key={index}>
+              <div className="link">
+                <div className="icon">{link.icon}</div>
+                <h3>{link.name}</h3>
+              </div>
+            </Link>
           );
         })}
-      </div>
+      </nav>
 
       <label 
         className="inBtn sidebarCreateBtn" 
