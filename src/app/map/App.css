@@ -1,13 +1,28 @@
 .app {
-    display: flex;
+  display: flex;
+  flex-direction: column;
+  padding: 4rem;
+  justify-content: center;
+  align-items: center;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.map-container {
+  height: 60vh; /* Adjusted to take 80% of the viewport height */
+  width: 40vw;  /* Adjusted to take 90% of the viewport width */
+  border: 2px solid black;
+  /* border-radius: 20px; */
+}
+
+@media (min-width: 768px) {
+  .app {
+    flex-direction: row;
     padding: 5rem;
     justify-content: space-evenly;
-    font-family: Verdana, Geneva, Tahoma, sans-serif
   }
-  
+
   .map-container {
-    height: 500px;
-    width: 50%;
-    border: 2px solid black;
-    border-radius: 20px;
+    height: 80vh; /* Adjusted to take 80% of the viewport height */
+    width: 80vw;  /* Adjusted to take 80% of the viewport width */
   }
+}
