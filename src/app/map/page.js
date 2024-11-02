@@ -87,8 +87,12 @@ const CustomMap = () => {
                   onCloseClick={() => setActiveMarker(null)}
                 >
                   <div>
-                    <h2>{activeMarker.name}</h2>
-                    <p>{activeMarker.description}</p>
+                    <h2 className="font-bold text-lg">{activeMarker.name}</h2>
+                    <p className="text-md">{activeMarker.description}</p>
+                    <div className="flex items-center gap-2">
+                      <img src="assets/image/location-marker.png" className="w-4" />
+                      <p className="text-sm">{activeMarker.address}</p>
+                    </div>
                   </div>
                 </InfoWindow>
               )}
