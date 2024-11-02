@@ -6,6 +6,7 @@ import { useClickOutside } from "@mantine/hooks";
 import userData from "@/app/UserData";
 import Post from "@/app/components/Post";
 import Sidebar from "@/app/components/Sidebar";
+import Navbar from "@/app/components/Navbar";
 
 const Page = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -40,6 +41,8 @@ const Page = () => {
   };
 
   return (
+    <>
+    <Navbar />
     <div className="mainContainer" style={{ position: 'relative' }}>
       <Sidebar />
       <div className="mainSection">
@@ -208,6 +211,7 @@ const Page = () => {
 
       {/* Right section remains the same */}
     </div>
+    </>
   );
 };
 
