@@ -40,11 +40,6 @@ const PostHeader = ({ userData }) => (
         </div>
       </Link>
     </div>
-    <div className="right">
-      <div className="option">
-        <HiOutlineShare />
-      </div>
-    </div>
   </div>
 );
 
