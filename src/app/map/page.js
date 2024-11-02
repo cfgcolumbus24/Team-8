@@ -3,18 +3,21 @@
 import "./App.css";
 import React, { useState } from "react";
 import { Map, Marker, APIProvider} from "@vis.gl/react-google-maps";
-import { config } from 'dotenv';
+// import { config } from 'dotenv';
+
+
 
 const CustomMap = () => {
   // shows marker on London by default
-  const [markerLocation, setMarkerLocation] = useState({
-    lat: 51.509865,
-    lng: -0.118092,
+
+  const [center, setCenter] = useState({
+    lat: 40.72625,
+    lng: -74.000222,
   });
 
-  config();
+  require('dotenv').config();
 
-  const apiKey = process.env.REACT_APP_GOOGLE_MAP_API_KEY;
+  let apiKey = process.env.NEXT_PUBLIC_MAP_API_KEY
 
   return (
     <div className="app">
@@ -23,11 +26,10 @@ const CustomMap = () => {
           <Map
             style={{ borderRadius: "20px" }}
             defaultZoom={13}
-            defaultCenter={markerLocation}
+            defaultCenter={center}
             gestureHandling={"greedy"}
             disableDefaultUI
           >
-            <Marker position={markerLocation} />
           </Map>
         </div>
       </APIProvider>
