@@ -47,19 +47,15 @@ const Navbar = () => {
           width: '100%',
         }}
       >
-        <Link
-          href={"/"}
-          className="inLogo"
-          style={{
-            display: 'inline-block',
-            padding: '10px 20px',
-            backgroundColor: 'white',
-            borderRadius: '12px',
-            color: '#333',
-            textDecoration: 'none',
-            fontWeight: 'bold',
-          }}
-        >
+        <Link href="/" className="inLogo" style={{
+          display: 'inline-block',
+          padding: '10px 20px',
+          backgroundColor: 'white',
+          borderRadius: '12px',
+          color: '#333',
+          textDecoration: 'none',
+          fontWeight: 'bold',
+        }}>
           Lower Manhattan Cultural Council
         </Link>
         <div
@@ -182,34 +178,22 @@ const Navbar = () => {
                   alt="User Profile Pic"
                 />
                 <div className="profileData">
-                  <div className="name">John Doe</div>
+                  <div className="name">Cece Clementine</div>
                   <span className="seeProfile">See Profile</span>
                 </div>
               </div>
               <div className="linksWrapper">
-                <div className="link">
+                <div className="link" onClick={() => window.location.href = '/help'}>
                   <div className="leftSide">
                     <span className="icon">
-                      <MdSettings />
+                      <RiQuestionFill />
                     </span>
-                    <span className="name">Settings & Privacy</span>
+                    <span className="name">Help & Support</span>
                   </div>
                   <span className="actionIcon">
                     <FaAngleRight />
                   </span>
                 </div>
-                <div className="link" onClick={() => window.location.href = '/help'}>
-                <div className="leftSide">
-                  <span className="icon">
-                    <RiQuestionFill />
-                  </span>
-                  <span className="name">Help & Support</span>
-                </div>
-                <span className="actionIcon">
-                  <FaAngleRight />
-                </span>
-              </div>
-
               </div>
             </motion.div>
           </div>

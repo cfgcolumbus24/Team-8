@@ -12,41 +12,12 @@ import {
 import Link from "next/link";
 
 const links = [
-  {
-    name: "Forum",
-    icon: <FaHome />,
-    path: "/",
-  },
-  {
-    name: "Explore",
-    icon: <FaCompass />,
-    path: "/explore"
-  },
-  {
-    name: "Connect",
-    icon: <FaBell />,
-    path: "/connect"
-  },
-  {
-    name: "Listings",
-    icon: <FaEnvelope />,
-    path: "/listings"
-  },
-  {
-    name: "Bookmarks",
-    icon: <FaBookmark />,
-    path: "/bookmark"
-  },
-  {
-    name: "Theme",
-    icon: <FaBrush />,
-    path: "/theme"
-  },
-  {
-    name: "Settings",
-    icon: <MdSettings />,
-    path: "/settings"
-  },
+  { name: "Forum", icon: <FaHome />, path: "/" },
+  { name: "Explore", icon: <FaCompass />, path: "/map" },
+  { name: "Connect", icon: <FaBell />, path: "/connections" },
+  { name: "Listings", icon: <FaEnvelope />, path: "/listings" },
+  { name: "Bookmarks", icon: <FaBookmark />, path: "/bookmark" },
+  { name: "Theme", icon: <FaBrush />, path: "/theme" },
 ];
 
 const Sidebar = ({ onCreatePost }) => {
@@ -66,41 +37,39 @@ const Sidebar = ({ onCreatePost }) => {
   return (
     <div className="leftSection">
       <Link href="/profile/johndoe" className="flex items-center gap-2 hover:bg-gray-100 p-2 rounded-lg">
-        <img src="/assets/image/avatar_default.jpg" alt="" className="w-8 h-8 rounded-full" />
+        <img src="/assets/image/avatar_default.jpg" alt="User Avatar" className="w-8 h-8 rounded-full" />
         <div>
           <div className="font-medium">John Doe</div>
           <div className="text-xs text-gray-500">@johndoe</div>
         </div>
       </Link>
+
       <nav className="inSidebar">
-        {links.map((link, index) => {
-          if (link.name === "Theme") {
-            return (
-              <div
-                className="link"
-                key={index}
-                onClick={() => setIsModalOpen(true)}
-                style={{ cursor: "pointer" }}
-              >
-                <span className="icon">{link.icon}</span>
-                <h3>{link.name}</h3>
-              </div>
-            );
-          }
-          return (
+        {links.map((link, index) => (
+          link.name === "Theme" ? (
+            <div
+              className="link"
+              key={index}
+              onClick={() => setIsModalOpen(true)}
+              style={{ cursor: "pointer" }}
+            >
+              <span className="icon">{link.icon}</span>
+              <h3>{link.name}</h3>
+            </div>
+          ) : (
             <Link href={link.path} key={index}>
               <div className="link">
                 <div className="icon">{link.icon}</div>
                 <h3>{link.name}</h3>
               </div>
             </Link>
-          );
-        })}
+          )
+        ))}
       </nav>
 
-      <label 
-        className="inBtn sidebarCreateBtn" 
-        onClick={onCreatePost} 
+      <label
+        className="inBtn sidebarCreateBtn"
+        onClick={onCreatePost}
         style={{ cursor: 'pointer' }}
       >
         Create Post

@@ -1,5 +1,11 @@
 ## Team 8
 
+
+
+
+![IMG_3433](https://github.com/user-attachments/assets/1439c874-684b-4ea0-8f0a-0dac56013c1e)
+
+
 First, run the development server:
 
 ```bash
