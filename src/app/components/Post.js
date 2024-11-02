@@ -32,7 +32,7 @@ const db = getFirestore(app);
 const PostHeader = ({ userData }) => (
   <div className="header">
     <div className="left">
-      <Link href={`/profile/${userData.username}`} className="flex items-center gap-2">
+      <Link href={`/profile/${userData.username.replace('@','')}`} className="flex items-center gap-2">
         <img src={userData.profilePic} alt="" className="profileImg" />
         <div className="userDetails">
           <div className="name">{userData.name}</div>
@@ -200,7 +200,7 @@ const CommentInput = ({ newComment, setNewComment, handleAddComment }) => (
   <div className="p-4 border-t border-gray-200">
     <div className="flex items-center gap-2">
       <div className="flex items-center gap-2">
-        <img src="/assets/image/avatar_default.jpg" alt="" className="w-8 h-8 rounded-full" />
+        <img src="https://t4.ftcdn.net/jpg/01/87/75/15/360_F_187751502_TrPkDYFA1MzKcJO9CWoDi2NgcCWqOCUi.jpg" alt="" className="w-8 h-8 rounded-full" />
         <span className="text-sm font-medium">Philip Tonder</span>
       </div>
       <input
@@ -235,8 +235,8 @@ const Post = ({ userData }) => {
     if (newComment.trim()) {
       const comment = {
         id: Date.now(),
-        user: "John Doe",
-        avatar: "/assets/image/avatar_default.jpg",
+        user: "John Michael",
+        avatar: "https://t4.ftcdn.net/jpg/01/87/75/15/360_F_187751502_TrPkDYFA1MzKcJO9CWoDi2NgcCWqOCUi.jpg",
         content: newComment,
         timestamp: new Date().toISOString(),
       };

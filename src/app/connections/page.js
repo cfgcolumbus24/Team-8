@@ -14,7 +14,7 @@ const Connections = () => {
     {
       name: "Philip Tonder",
       username: "@philip",
-      profilePic: "/assets/image/avatar_default.jpg",
+      profilePic: "https://t3.ftcdn.net/jpg/06/99/46/60/360_F_699466075_DaPTBNlNQTOwwjkOiFEoOvzDV0ByXR9E.jpg",
       status: "active",
       bio: "Software Developer | Coffee Enthusiast",
       posts: [],
@@ -23,7 +23,7 @@ const Connections = () => {
     {
       name: "Alice Johnson",
       username: "@alice",
-      profilePic: "/assets/image/avatar_alice.jpg",
+      profilePic: "https://media.istockphoto.com/id/1386479313/photo/happy-millennial-afro-american-business-woman-posing-isolated-on-white.jpg?s=612x612&w=0&k=20&c=8ssXDNTp1XAPan8Bg6mJRwG7EXHshFO5o0v9SIj96nY=",
       status: "active",
       bio: "Graphic Designer | Art Lover",
       posts: [],
@@ -32,7 +32,7 @@ const Connections = () => {
     {
       name: "Bob Smith",
       username: "@bob",
-      profilePic: "/assets/image/avatar_bob.jpg",
+      profilePic: "https://img.freepik.com/free-photo/portrait-man-laughing_23-2148859448.jpg",
       status: "inactive",
       bio: "Content Creator | Gamer",
       posts: [],
@@ -44,7 +44,7 @@ const Connections = () => {
     {
       name: "Philip Tonder",
       username: "@philip",
-      profilePic: "/assets/image/avatar_default.jpg",
+      profilePic: "https://t4.ftcdn.net/jpg/01/87/75/15/360_F_187751502_TrPkDYFA1MzKcJO9CWoDi2NgcCWqOCUi.jpg",
       status: "active",
       bio: "Software Developer | Coffee Enthusiast",
       posts: [],
@@ -53,7 +53,7 @@ const Connections = () => {
     {
       name: "Alice Johnson",
       username: "@alice",
-      profilePic: "/assets/image/avatar_alice.jpg",
+      profilePic: "https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
       status: "active",
       bio: "Graphic Designer | Art Lover",
       posts: [],
@@ -62,7 +62,7 @@ const Connections = () => {
     {
       name: "Bob Smith",
       username: "@bob",
-      profilePic: "/assets/image/avatar_bob.jpg",
+      profilePic: "https://www.stockvault.net//data/2009/06/09/109080/thumb16.jpg",
       status: "inactive",
       bio: "Content Creator | Gamer",
       posts: [],
@@ -71,7 +71,7 @@ const Connections = () => {
     {
       name: "Charlie Brown",
       username: "@charlie",
-      profilePic: "/assets/image/avatar_charlie.jpg",
+      profilePic: "https://assets.skool.com/f/789b6be1daaa40a0b4364a2ef53334ba/79f098547e16476d892072e141117ffe2bb3db5bcadf4846a0eda95bdb3df4ad-md.jpg",
       status: "active",
       bio: "Web Developer | Coffee Drinker",
       posts: [],
@@ -80,7 +80,7 @@ const Connections = () => {
     {
       name: "Diana Prince",
       username: "@diana",
-      profilePic: "/assets/image/avatar_diana.jpg",
+      profilePic: "https://static01.nyt.com/newsgraphics/2020/11/12/fake-people/4b806cf591a8a76adfc88d19e90c8c634345bf3d/fallbacks/mobile-04.jpg",
       status: "active",
       bio: "Marketing Specialist | Travel Enthusiast",
       posts: [],
@@ -89,7 +89,7 @@ const Connections = () => {
     {
       name: "Ethan Hunt",
       username: "@ethan",
-      profilePic: "/assets/image/avatar_ethan.jpg",
+      profilePic: "https://media.istockphoto.com/id/1347005975/photo/portrait-of-a-serious-muslim-young-man-looking-at-camera.jpg?s=612x612&w=0&k=20&c=mxRUDCuwDD3ML6-vMaUlTY7Ghqlj2R_LOhWWCB5CTXE=",
       status: "inactive",
       bio: "Adventure Seeker | Photographer",
       posts: [],
@@ -98,7 +98,7 @@ const Connections = () => {
     {
       name: "Fiona Apple",
       username: "@fiona",
-      profilePic: "/assets/image/avatar_fiona.jpg",
+      profilePic: "https://st4.depositphotos.com/12852350/41021/i/450/depositphotos_410212674-stock-photo-portrait-shooting-stylish-girl-beige.jpg",
       status: "active",
       bio: "Singer | Songwriter",
       posts: [],
@@ -107,7 +107,7 @@ const Connections = () => {
     {
       name: "George Clooney",
       username: "@george",
-      profilePic: "/assets/image/avatar_george.jpg",
+      profilePic: "https://www.shutterstock.com/image-photo/happy-mid-aged-older-business-600nw-2322385015.jpg",
       status: "active",
       bio: "Actor | Filmmaker",
       posts: [],
@@ -116,7 +116,7 @@ const Connections = () => {
     {
       name: "Hannah Montana",
       username: "@hannah",
-      profilePic: "/assets/image/avatar_hannah.jpg",
+      profilePic: "https://t3.ftcdn.net/jpg/03/67/46/48/360_F_367464887_f0w1JrL8PddfuH3P2jSPlIGjKU2BI0rn.jpg",
       status: "inactive",
       bio: "Pop Star | Actress",
       posts: [],
@@ -125,7 +125,7 @@ const Connections = () => {
     {
       name: "Ivy League",
       username: "@ivy",
-      profilePic: "/assets/image/avatar_ivy.jpg",
+      profilePic: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/Harvard_University_coat_of_arms.svg/1200px-Harvard_University_coat_of_arms.svg.png",
       status: "active",
       bio: "Student | Aspiring Author",
       posts: [],

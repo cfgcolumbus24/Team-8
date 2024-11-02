@@ -57,9 +57,9 @@ const Page = () => {
 
     const newPost = {
       id: Date.now(),
-      name: "John Doe",
-      username: "@johndoe",
-      profilePic: "/assets/image/avatar_default.jpg",
+      name: "John Michael",
+      username: "@johnmichael",
+      profilePic: "https://t4.ftcdn.net/jpg/01/87/75/15/360_F_187751502_TrPkDYFA1MzKcJO9CWoDi2NgcCWqOCUi.jpg",
       postImg: selectedImage,
       content: postContent
     };
@@ -81,7 +81,7 @@ const Page = () => {
         <div className="createPostWidget" onClick={() => setIsModalOpen(true)}>
           <div className="createInput" style={{ display: 'flex', alignItems: 'center', gap: '10px', width: '100%', padding: '15px' }}>
             <img 
-              src="/assets/image/avatar_default.jpg" 
+              src="https://t4.ftcdn.net/jpg/01/87/75/15/360_F_187751502_TrPkDYFA1MzKcJO9CWoDi2NgcCWqOCUi.jpg" 
               alt="" 
               style={{ width: '40px', height: '40px', borderRadius: '50%' }}
             />
@@ -133,13 +133,13 @@ const Page = () => {
               <div style={{ padding: '16px' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '16px' }}>
                   <img 
-                    src="/assets/image/avatar_default.jpg" 
+                    src="https://t4.ftcdn.net/jpg/01/87/75/15/360_F_187751502_TrPkDYFA1MzKcJO9CWoDi2NgcCWqOCUi.jpg" 
                     alt="" 
                     style={{ width: '40px', height: '40px', borderRadius: '50%' }}
                   />
                   <div>
-                    <div style={{ fontWeight: '500' }}>Jhon Doe</div>
-                    <div style={{ fontSize: '12px', color: '#65676b' }}>@johndoe</div>
+                    <div style={{ fontWeight: '500' }}>John Michael</div>
+                    <div style={{ fontSize: '12px', color: '#65676b' }}>@johnmichael</div>
                   </div>
                 </div>
 
