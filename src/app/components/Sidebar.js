@@ -22,6 +22,7 @@ const links = [
   {
     name: "Connect",
     icon: <FaBell />,
+    path: "/connections",
   },
   {
     name: "Messages",
@@ -44,6 +45,7 @@ const links = [
 const Sidebar = () => {
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
+
   // function to change the theme
   useEffect(() => {
     document.body.style.backgroundColor = isDarkMode ? "#000" : "#fff";
@@ -85,8 +87,17 @@ const Sidebar = () => {
           }
           return (
             <div className="link" key={index}>
-              <div className="icon">{link.icon}</div>
-              <h3>{link.name}</h3>
+              {link.name === "Connect" ? (
+                <Link href={link.path} style={{ display: 'flex', alignItems: 'center' }}>
+                  <div className="icon">{link.icon}</div>
+                  <h3>{link.name}</h3>
+                </Link>
+              ) : (
+                <>
+                  <div className="icon">{link.icon}</div>
+                  <h3>{link.name}</h3>
+                </>
+              )}
             </div>
           );
         })}
