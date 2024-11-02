@@ -1,4 +1,4 @@
-// File: /Users/shashankraghuraj/Documents/GitHub/Team-8/src/app/Home/page.js
+// File: /Users/markogjurevski/Desktop/Team-8/src/app/Home/page.js
 import * as entry from '../../../../src/app/Home/page.js'
 import type { ResolvingMetadata } from 'next/dist/lib/metadata/types/metadata-interface.js'
 

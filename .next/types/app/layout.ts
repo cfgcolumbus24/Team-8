@@ -1,4 +1,4 @@
-// File: /Users/shashankraghuraj/Documents/GitHub/Team-8/src/app/layout.js
+// File: /Users/markogjurevski/Desktop/Team-8/src/app/layout.js
 import * as entry from '../../../src/app/layout.js'
 import type { ResolvingMetadata } from 'next/dist/lib/metadata/types/metadata-interface.js'
 
