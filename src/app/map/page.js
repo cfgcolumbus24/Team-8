@@ -20,11 +20,11 @@ const CustomMap = () => {
 
   // Sample addresses for geocoding
   const addressList = [
-    { address: "350 5th Ave, New York, NY 10118", name: "Empire State Building", description: "Iconic Skyscraper" },
-    { address: "1 World Trade Center, New York, NY 10007", name: "One World Trade Center", description: "Tallest Building in the Western Hemisphere" },
-    { address: "10 Columbus Circle, New York, NY 10019", name: "Time Warner Center", description: "Mixed-use Complex" },
-    { address: "200 Central Park South, New York, NY 10019", name: "The Plaza Hotel", description: "Luxury Hotel near Central Park" },
-    { address: "30 Rockefeller Plaza, New York, NY 10112", name: "Rockefeller Center", description: "Entertainment and Shopping Complex" },
+    { address: "11 W 53rd St, New York, NY 10019", name: "Museum of Modern Art (MoMA)", description: "Renowned Museum with a Vast Collection of Modern Art" },
+    { address: "1000 5th Ave, New York, NY 10028", name: "The Metropolitan Museum of Art", description: "One of the Largest and Most Prestigious Art Museums in the World" },
+    { address: "1071 5th Ave, New York, NY 10128", name: "Solomon R. Guggenheim Museum", description: "Iconic Frank Lloyd Wright-designed Museum for Modern Art" },
+    { address: "107 Suffolk St, New York, NY 10002", name: "The Tenement Museum", description: "Museum Preserving the History of Immigrants in the U.S." },
+    { address: "18 Bleecker St, New York, NY 10012", name: "The New Museum", description: "Contemporary Art Museum Focused on New Art and Ideas" },
   ];
   
 
