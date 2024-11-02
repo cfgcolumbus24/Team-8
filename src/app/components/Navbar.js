@@ -1,5 +1,7 @@
 "use client";
+// Essential imports for Next.js routing, React hooks, and UI components
 import Link from "next/link";
+import { useRouter } from 'next/navigation';
 import React, { useEffect, useState } from "react";
 import { MdSearch, MdClose, MdSettings } from "react-icons/md";
 import { FaAngleRight } from "react-icons/fa";
@@ -10,6 +12,8 @@ import { motion } from "framer-motion";
 import { useClickOutside } from "@mantine/hooks";
 
 const Navbar = () => {
+  // Initialize router and state management
+  const router = useRouter();
   const [isFocused, setIsFocused] = useState(false);
   const ref = useClickOutside(() => setIsFocused(false));
   const [searchValue, setSearchValue] = useState("");
@@ -17,6 +21,7 @@ const Navbar = () => {
   const [searchedUser, setSearchedUser] = useState(userData);
   const [searchPanel, setSearchPanel] = useState(false);
 
+  // Function to filter users based on search input
   const searchUsers = (value) => {
     let searchedUser = userData.filter((user) => {
       return user.name.toLowerCase().includes(value.toLowerCase());
@@ -26,6 +31,7 @@ const Navbar = () => {
     );
   };
 
+  // Event listener to close profile menu when clicking outside
   useEffect(() => {
     window.addEventListener("click", (e) => {
       if (!e.target.closest(".userProfile")) {
@@ -36,17 +42,16 @@ const Navbar = () => {
 
   return (
     <>
-      <div
-        className="inNavbar"
-        style={{
-          backgroundImage: 'url("https://plus.unsplash.com/premium_photo-1694475411899-ebbce0efaf75?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D")',
-          backgroundSize: 'cover',
-          backgroundRepeat: 'no-repeat',
-          backgroundPosition: 'center',
-          height: '200px',
-          width: '100%',
-        }}
-      >
+      {/* Main navbar container with background image */}
+      <div className="inNavbar" style={{
+        backgroundImage: 'url("https://plus.unsplash.com/premium_photo-1694475411899-ebbce0efaf75?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D")',
+        backgroundSize: 'cover',
+        backgroundRepeat: 'no-repeat',
+        backgroundPosition: 'center',
+        height: '200px',
+        width: '100%',
+      }}>
+        {/* Logo/Brand section */}
         <Link href="/" className="inLogo" style={{
           display: 'inline-block',
           padding: '10px 20px',
@@ -58,11 +63,12 @@ const Navbar = () => {
         }}>
           Lower Manhattan Cultural Council
         </Link>
-        <div
-          ref={ref}
-          className={`inSearch ${isFocused ? "inSearchFocused" : ""}`}
-        >
+        
+        {/* Desktop Search Section with animation and results */}
+        <div ref={ref} className={`inSearch ${isFocused ? "inSearchFocused" : ""}`}>
+          {/* Search input wrapper */}
           <div className="inSearchWrapper">
+            {/* Search input field with icons */}
             <div className="inSearchIcon">
               <MdSearch className="inIcon" />
             </div>
@@ -79,11 +85,8 @@ const Navbar = () => {
                 color: '#fff',
               }}
             />
-            <div
-              className={`inSearchCloseBtn ${
-                searchValue.length >= 1 ? "inSearchCloseBtnActive" : ""
-              }`}
-            >
+            {/* Clear search input button */}
+            <div className={`inSearchCloseBtn ${searchValue.length >= 1 ? "inSearchCloseBtnActive" : ""}`}>
               <MdClose
                 className="inIcon"
                 onClick={() => {
@@ -98,6 +101,7 @@ const Navbar = () => {
             </div>
           </div>
 
+          {/* Animated search results dropdown */}
           <motion.div
             className="searchResult"
             initial={{ y: 30, opacity: 0, pointerEvents: "none" }}
@@ -107,6 +111,7 @@ const Navbar = () => {
               pointerEvents: isFocused ? "auto" : "none",
             }}
           >
+            {/* Map through search results or show error */}
             {isFocused &&
               searchedUser.map((user, index) => {
                 if (user.error) {
@@ -121,7 +126,11 @@ const Navbar = () => {
                     <div
                       key={index}
                       className="searchResultItem"
-                      onClick={() => setSearchValue(user.name)}
+                      onClick={() => {
+                        router.push(`/profile/${user.username.replace('@','')}`);
+                        setSearchValue("");
+                        setIsFocused(false);
+                      }}
                     >
                       <div className="userImage">
                         <img src={`${user.profilePic}`} alt="" />
@@ -133,11 +142,16 @@ const Navbar = () => {
               })}
           </motion.div>
         </div>
+
+        {/* Right side navigation options */}
         <div className="inNavRightOptions">
+          {/* Mobile search button */}
           <div className="mobileSearchBtn" onClick={() => setSearchPanel(true)}>
             <MdSearch style={{ color: '#fff' }} />
           </div>
+          {/* User profile section with dropdown */}
           <div className="userProfile" style={{ marginRight: '10px' }}>
+            {/* Profile image */}
             <div
               className="userImage"
               onClick={() => setProfileMenu(!ProfileMenu)}
@@ -161,6 +175,8 @@ const Navbar = () => {
                 }}
               />
             </div>
+            
+            {/* Animated profile dropdown menu */}
             <motion.div
               className="userProfileDropdown"
               initial={{ y: 40, opacity: 0, pointerEvents: "none" }}
@@ -172,6 +188,7 @@ const Navbar = () => {
               }}
               transition={{ duration: 0.48 }}
             >
+              {/* Profile information and links */}
               <div className="profileWrapper">
                 <img
                   src={"/assets/image/avatar_default.jpg"}
@@ -200,6 +217,7 @@ const Navbar = () => {
         </div>
       </div>
 
+      {/* Mobile search panel with animation */}
       <motion.div
         className="mobileSearchPanel"
         initial={{ y: "100vh", pointerEvents: "none", display: "none" }}
@@ -213,10 +231,12 @@ const Navbar = () => {
           },
         }}
       >
+        {/* Mobile search panel content */}
         <div className="closeBtn" onClick={() => setSearchPanel(false)}>
           <FaAngleDown style={{ color: '#fff' }} />
         </div>
 
+        {/* Mobile search input */}
         <div className="inMobileSearch">
           <div className="mobileSearchIcon">
             <MdSearch className="inIcon" style={{ color: '#fff' }} />
@@ -241,6 +261,7 @@ const Navbar = () => {
           )}
         </div>
 
+        {/* Mobile search results */}
         <div className="mobileSearchResult">
           {searchedUser.map((user, index) => {
             if (user.error) {
@@ -256,7 +277,8 @@ const Navbar = () => {
                   className="mobileSearchItem"
                   key={index}
                   onClick={() => {
-                    setSearchValue(user.name);
+                    router.push(`/profile/${user.username}`);
+                    setSearchValue("");
                     setSearchPanel(false);
                   }}
                 >
