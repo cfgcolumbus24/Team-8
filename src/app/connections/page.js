@@ -1,16 +1,20 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useParams } from 'next/navigation';
 import Link from 'next/link';
 import Sidebar from '../components/Sidebar';
 import Navbar from '../components/Navbar';
+import { getTopMatches } from '../utils/geminiApi'; 
 
 const Connections = () => {
   const params = useParams();
 
-  /** Dummy data */
-  const topUsers = [
+  // Simulated current user's About Me section for matching
+  const myAboutMe = "Coffee enthusiast. Dancing my way through life. Pottery lover, shaping clay and moments. Finding joy in the simple and the spontaneous. Always chasing creativity and good vibes. Here for the art, movement, and a perfect brew.";
+
+  // Full user data for matching
+  const allUsers = [
     {
       name: "Philip Tonder",
       username: "@philip",
@@ -33,36 +37,6 @@ const Connections = () => {
       name: "Bob Smith",
       username: "@bob",
       profilePic: "https://img.freepik.com/free-photo/portrait-man-laughing_23-2148859448.jpg",
-      status: "inactive",
-      bio: "Content Creator | Gamer",
-      posts: [],
-      tags: ["Gaming", "Content Creation"]
-    }
-  ];
-
-  const allUsers = [
-    {
-      name: "Philip Tonder",
-      username: "@philip",
-      profilePic: "https://t4.ftcdn.net/jpg/01/87/75/15/360_F_187751502_TrPkDYFA1MzKcJO9CWoDi2NgcCWqOCUi.jpg",
-      status: "active",
-      bio: "Software Developer | Coffee Enthusiast",
-      posts: [],
-      tags: ["Software Development", "Coffee", "Tech Enthusiast"]
-    },
-    {
-      name: "Alice Johnson",
-      username: "@alice",
-      profilePic: "https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
-      status: "active",
-      bio: "Graphic Designer | Art Lover",
-      posts: [],
-      tags: ["Design", "Art", "Creativity"]
-    },
-    {
-      name: "Bob Smith",
-      username: "@bob",
-      profilePic: "https://www.stockvault.net//data/2009/06/09/109080/thumb16.jpg",
       status: "inactive",
       bio: "Content Creator | Gamer",
       posts: [],
@@ -133,10 +107,31 @@ const Connections = () => {
     }
   ];
 
+  // Get top 3 active users
+  const topUsers = allUsers
+    .filter(user => user.status === 'active') // Filter for active users
+    .slice(0, 3); // Take the first 3 after filtering
+
   const tagsSet = new Set(allUsers.flatMap(user => user.tags));
   const tags = Array.from(tagsSet);
 
   const [selectedTags, setSelectedTags] = useState([]);
+  const [topMatches, setTopMatches] = useState([]);
+  const API_KEY = process.env.NEXT_PUBLIC_GEMINI_API_KEY; 
+
+  useEffect(() => {
+    const fetchTopMatches = async () => {
+      const profiles = allUsers.map(user => ({
+        name: user.name,
+        aboutMe: user.bio
+      }));
+
+      const matches = await getTopMatches(myAboutMe, profiles, API_KEY);
+      setTopMatches(matches);
+    };
+
+    fetchTopMatches();
+  }, []);
 
   const getStatusBadge = (status) => {
     const statusStyles = {
@@ -154,6 +149,29 @@ const Connections = () => {
         <Sidebar />
         <div>
           <div className='flex flex-col gap-8'>
+            {/* Top Matches Section */}
+            <div className='bg-lightBlue mx-16 p-4 rounded-md'>
+              <h1 className='text-lg font-bold'>Top 3 Matches</h1>
+              <div className='flex flex-wrap justify-start'>
+                {topMatches.map((match, index) => (
+                  <Link key={index} href={`/profile/${match.name.toLowerCase()}`} className="m-4 p-4 rounded-md border w-72">
+                    <div className='flex gap-2'>
+                      <img src={allUsers.find(user => user.name === match.name)?.profilePic} alt={`${match.name}'s profile`} className='w-12 rounded-full' />
+                      <div>
+                        <div className='flex gap-2 items-center justify-center'>
+                          <h2>{match.name}</h2> 
+                          {getStatusBadge(allUsers.find(user => user.name === match.name)?.status)}
+                        </div>
+                        <p>{allUsers.find(user => user.name === match.name)?.username}</p>
+                      </div>
+                    </div>
+                    <p className='mt-4'>{match.aboutMe}</p>
+                  </Link>
+                ))}
+              </div>
+            </div>
+
+            {/* Recommended Users Section */}
             <div className='bg-lightBlue mx-16 p-4 rounded-md'>
               <h1 className='text-lg font-bold'>Recommended Users</h1>
               <div className='flex flex-wrap justify-start'>
@@ -181,6 +199,8 @@ const Connections = () => {
                 ))}
               </div>
             </div>
+
+            {/* All Users Section */}
             <div className='mx-16 p-4'>
               <h1 className='text-lg font-bold'>All Users</h1>
               <div className='mb-4 flex flex-wrap gap-2 bg-lightBlue p-4 rounded-lg shadow-sm'>
