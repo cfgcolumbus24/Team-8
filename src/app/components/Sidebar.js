@@ -1,3 +1,4 @@
+"use client"; // Add this line at the very top
 import React, { useState, useEffect } from "react";
 import { MdSettings } from "react-icons/md";
 import {
@@ -14,22 +15,27 @@ const links = [
   {
     name: "Forum",
     icon: <FaHome />,
+    path: "/forum", 
   },
   {
     name: "Explore",
     icon: <FaCompass />,
+    path: "/explore",
   },
   {
     name: "Connect",
     icon: <FaBell />,
+    path: "/connect",
   },
   {
     name: "Messages",
     icon: <FaEnvelope />,
+    path: "/messages",
   },
   {
     name: "Bookmarks",
     icon: <FaBookmark />,
+    path: "/bookmark", // Added a path for the bookmark it will lead us to the bookmark page
   },
   {
     name: "Theme",
@@ -38,13 +44,15 @@ const links = [
   {
     name: "Settings",
     icon: <MdSettings />,
+    path: "/settings",
   },
 ];
 
 const Sidebar = ({ onCreatePost }) => {
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  // function to change the theme
+
+  // Function to change the theme
   useEffect(() => {
     document.body.style.backgroundColor = isDarkMode ? "#000" : "#fff";
     document.body.style.color = isDarkMode ? "#fff" : "#000";
@@ -52,7 +60,7 @@ const Sidebar = ({ onCreatePost }) => {
 
   const toggleTheme = (theme) => {
     setIsDarkMode(theme === "dark");
-    setIsModalOpen(false); // closing the modal
+    setIsModalOpen(false); // Close the modal
   };
 
   return (
@@ -75,7 +83,7 @@ const Sidebar = ({ onCreatePost }) => {
               <div
                 className="link"
                 key={index}
-                onClick={() => setIsModalOpen(true)} 
+                onClick={() => setIsModalOpen(true)}
                 style={{ cursor: "pointer" }}
               >
                 <div className="icon">{link.icon}</div>
@@ -84,10 +92,12 @@ const Sidebar = ({ onCreatePost }) => {
             );
           }
           return (
-            <div className="link" key={index}>
-              <div className="icon">{link.icon}</div>
-              <h3>{link.name}</h3>
-            </div>
+            <Link href={link.path || "#"} key={index}>
+              <div className="link" style={{ cursor: "pointer" }}>
+                <div className="icon">{link.icon}</div>
+                <h3>{link.name}</h3>
+              </div>
+            </Link>
           );
         })}
       </div>
