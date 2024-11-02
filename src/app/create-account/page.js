@@ -30,6 +30,8 @@ const CreateAccount = () => {
   const [selectedInterests, setSelectedInterests] = useState([]);
   const [selectedMediums, setSelectedMediums] = useState([]);
   const [selectedPronouns, setSelectedPronouns] = useState([]);
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
 
   async function makeUser() {
     try {
@@ -104,6 +106,8 @@ const CreateAccount = () => {
     console.log("Mediums:", selectedMediums);
     console.log("Open to Work:", openToWork);
     console.log("Interests:", selectedInterests);
+    sessionStorage.setItem("firstName", firstName); // Store the first name in sessionStorage
+    sessionStorage.setItem("lastName", lastName); // Store the last name in sessionStorage
     sessionStorage.setItem("username", username); // Store the username in sessionStorage
     makeUser();
   };
@@ -123,6 +127,28 @@ const CreateAccount = () => {
                 id="username"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
+                className="w-full px-3 py-2 border rounded-md create-account-input"
+                required
+              />
+            </div>
+            <div className="mb-4">
+              <label className="block text-sm font-medium mb-1 create-account-label">First Name:{" "}</label>
+              <input
+                type="firstname"
+                id="firstname"
+                value={firstName}
+                onChange={(e) => setFirstName(e.target.value)}
+                className="w-full px-3 py-2 border rounded-md create-account-input"
+                required
+              />
+            </div>
+            <div className="mb-4">
+              <label className="block text-sm font-medium mb-1 create-account-label">Last Name:{" "}</label>
+              <input
+                type="lastname"
+                id="lastname"
+                value={lastName}
+                onChange={(e) => setLastName(e.target.value)}
                 className="w-full px-3 py-2 border rounded-md create-account-input"
                 required
               />

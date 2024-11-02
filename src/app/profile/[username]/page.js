@@ -1,15 +1,31 @@
-'use client'
+"use client";
 
-import { useParams } from 'next/navigation'
+import { useParams, useState } from 'next/navigation'
 import userData from '../../UserData'
+import { use } from 'passport'
 
 const UserProfile = () => {
   const params = useParams()
-  const username = params.username
+  const para_username = params.username
+
+  const [username, setUsername] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+
+    useEffect(() => {
+      const storedUsername = sessionStorage.getItem("username");
+      const storedFirstName = sessionStorage.getItem("firstName");
+      const storedLastName = sessionStorage.getItem("lastName");
+      if (storedUsername && storedFirstName && storedLastName) {
+        setUsername(storedUsername); // Set the username in state
+        setFirstName(storedFirstName); // Set the firstName in state
+        setFirstName(storedLastName); // Set the lastName in state
+      }
+    }, []);
 
   // Enhanced user data with default values
   const currentUser = userData.find(user => 
-    user.username.replace('@', '') === username
+    para_username === username
   ) || {
     name: 'John Michael',
     username: '@johnmichael',
