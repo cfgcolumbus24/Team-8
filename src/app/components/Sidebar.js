@@ -68,7 +68,6 @@ const Sidebar = () => {
           <div className="username">@johndoe</div>
         </div>
       </div>
-      // Sidebar links
       <div className="inSidebar">
         {links.map((link, index) => {
           if (link.name === "Theme") {
