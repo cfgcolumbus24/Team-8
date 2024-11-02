@@ -9,7 +9,6 @@ import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore"; 
 import { collection, getDocs } from "firebase/firestore";
 
-// Your Firebase configuration
 const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_KEY,
   authDomain: "lmcc-team-8.firebaseapp.com",
@@ -20,7 +19,6 @@ const firebaseConfig = {
   measurementId: "G-G5796BP05S"
 };
 
-// Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
@@ -36,15 +34,38 @@ const CustomMap = () => {
   const [markers, setMarkers] = useState([]);
   const [activeMarker, setActiveMarker] = useState(null);
 
-
   const addressList = [
-    { address: "350 5th Ave, New York, NY 10118", name: "Empire State Building", description: "Iconic Skyscraper" },
-    { address: "1 World Trade Center, New York, NY 10007", name: "One World Trade Center", description: "Tallest Building in the Western Hemisphere" },
-    { address: "10 Columbus Circle, New York, NY 10019", name: "Time Warner Center", description: "Mixed-use Complex" },
-    { address: "200 Central Park South, New York, NY 10019", name: "The Plaza Hotel", description: "Luxury Hotel near Central Park" },
-    { address: "30 Rockefeller Plaza, New York, NY 10112", name: "Rockefeller Center", description: "Entertainment and Shopping Complex" },
+    { 
+      address: "350 5th Ave, New York, NY 10118", 
+      name: "Empire State Building", 
+      description: "Iconic Skyscraper",
+      tags: ["open house", "free", "art show", "family friendly"] 
+    },
+    { 
+      address: "1 World Trade Center, New York, NY 10007", 
+      name: "One World Trade Center", 
+      description: "Tallest Building in the Western Hemisphere",
+      tags: ["live music", "panel discussion", "free"] 
+    },
+    { 
+      address: "10 Columbus Circle, New York, NY 10019", 
+      name: "Time Warner Center", 
+      description: "Mixed-use Complex",
+      tags: ["workshop", "networking", "exhibition"] 
+    },
+    { 
+      address: "200 Central Park South, New York, NY 10019", 
+      name: "The Plaza Hotel", 
+      description: "Luxury Hotel near Central Park",
+      tags: ["fundraiser", "community event", "talk"] 
+    },
+    { 
+      address: "30 Rockefeller Plaza, New York, NY 10112", 
+      name: "Rockefeller Center", 
+      description: "Entertainment and Shopping Complex",
+      tags: ["festival", "free", "performance"] 
+    },
   ];
-
 
   // Function to geocode addresses
   const geocodeAddress = async (address) => {
@@ -77,12 +98,42 @@ const CustomMap = () => {
     loadAddressesAndMarkers();
   }, [db, apiKey]);
 
+  const [selectedTags, setSelectedTags] = useState([]);
+
+  const tagsSet = new Set(markers.flatMap(marker => marker.tags));
+  const tags = Array.from(tagsSet);
+
+  const filteredMarkers = markers.filter(marker => 
+    selectedTags.length === 0 || 
+    marker.tags.some(tag => selectedTags.includes(tag))
+  );  
+
   return (
     <>
     <Navbar />
     <div className="mainContainer">
       <Sidebar />
       <div className="app">
+        <div className="mb-4">
+          {tags.map(tag => (
+            <button
+              key={tag}
+              onClick={() => setSelectedTags(prev => 
+                prev.includes(tag) 
+                  ? prev.filter(t => t !== tag) 
+                  : [...prev, tag]
+              )}
+              className={`px-3 py-1 rounded-full text-sm transition-colors ${
+                selectedTags.includes(tag) 
+                  ? 'bg-lightBlue text-white' 
+                  : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+              }`}
+            >
+              {tag}
+            </button>
+          ))}
+        </div>
+
         <APIProvider apiKey={apiKey}>
           <div className="map-container">
             <Map
@@ -91,7 +142,7 @@ const CustomMap = () => {
               gestureHandling={"greedy"}
               disableDefaultUI
             >
-              {markers.map((marker, index) => (
+              {filteredMarkers.map((marker, index) => (
                 marker.lat && marker.lng ? (
                   <Marker
                     key={index}
@@ -111,6 +162,11 @@ const CustomMap = () => {
                     <div className="flex items-center gap-2">
                       <img src="assets/image/location-marker.png" className="w-4" />
                       <p className="text-sm">{activeMarker.address}</p>
+                    </div>
+                    <div className="tags mt-2">
+                      {activeMarker.tags && activeMarker.tags.map((tag, index) => (
+                        <span key={index} className="px-2 py-1 bg-gray-100 text-gray-700 rounded-full text-xs">{tag}</span>
+                      ))}
                     </div>
                   </div>
                 </InfoWindow>
