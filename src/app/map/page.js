@@ -35,18 +35,15 @@ const CustomMap = () => {
   // State for markers, active marker, and loading status
   const [markers, setMarkers] = useState([]);
   const [activeMarker, setActiveMarker] = useState(null);
-  const [addressList, setAddressList] = useState([]); // State to hold address data from Firestore
 
 
-  async function getAllDocuments() {
-      const querySnapshot = await getDocs(collection(db, "locations"));
-      const documents = [];
-      querySnapshot.forEach((doc) => {
-          documents.push({ id: doc.id, ...doc.data() });
-      });
-      console.log("All documents:", documents);
-      return documents;
-  }
+  const addressList = [
+    { address: "350 5th Ave, New York, NY 10118", name: "Empire State Building", description: "Iconic Skyscraper" },
+    { address: "1 World Trade Center, New York, NY 10007", name: "One World Trade Center", description: "Tallest Building in the Western Hemisphere" },
+    { address: "10 Columbus Circle, New York, NY 10019", name: "Time Warner Center", description: "Mixed-use Complex" },
+    { address: "200 Central Park South, New York, NY 10019", name: "The Plaza Hotel", description: "Luxury Hotel near Central Park" },
+    { address: "30 Rockefeller Plaza, New York, NY 10112", name: "Rockefeller Center", description: "Entertainment and Shopping Complex" },
+  ];
 
 
   // Function to geocode addresses
@@ -66,10 +63,6 @@ const CustomMap = () => {
 
   useEffect(() => {
     const loadAddressesAndMarkers = async () => {
-      // Step 1: Fetch addresses from Firestore
-      const addresses = await getAllDocuments(db);
-      setAddressList(addresses);
-
       // Step 2: Geocode each address and create markers
       const loadedMarkers = await Promise.all(
         addressList.map(async (marker) => {

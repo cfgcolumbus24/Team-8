@@ -3,6 +3,7 @@ import React, { useState, useRef } from "react";
 import { MdSettings, MdInsertPhoto, MdEmojiEmotions } from "react-icons/md";
 import { BsFillCameraVideoFill } from "react-icons/bs";
 import { useClickOutside } from "@mantine/hooks";
+import { useEffect } from "react";
 import userData from "@/app/UserData";
 import Post from "@/app/components/Post";
 import Sidebar from "@/app/components/Sidebar";
@@ -43,6 +44,8 @@ const Page = () => {
   const [allPosts, setAllPosts] = useState(userData);
   const [postContent, setPostContent] = useState("");
   const [selectedImage, setSelectedImage] = useState(null);
+  const [username, setUsername] = useState("");
+
   const fileInputRef = useRef(null);
 
   const handleImageUpload = (e) => {
@@ -51,6 +54,13 @@ const Page = () => {
       setSelectedImage(URL.createObjectURL(file));
     }
   };
+
+  useEffect(() => {
+    const storedUsername = sessionStorage.getItem("username");
+    if (storedUsername) {
+      setUsername(storedUsername); // Set the username in state
+    }
+    }, []);
 
   const createNewPost = () => {
     if (!postContent.trim()) return;
@@ -138,13 +148,13 @@ const Page = () => {
                     style={{ width: '40px', height: '40px', borderRadius: '50%' }}
                   />
                   <div>
-                    <div style={{ fontWeight: '500' }}>John Michael</div>
-                    <div style={{ fontSize: '12px', color: '#65676b' }}>@johnmichael</div>
+                    <div style={{ fontWeight: '500' }}>{username}</div>
+                    <div style={{ fontSize: '12px', color: '#65676b' }}>@{username}</div>
                   </div>
                 </div>
 
                 <textarea
-                  placeholder="What's on your mind, Jhon Doe?"
+                  placeholder={`What's on your mind, ${username}?`}
                   value={postContent}
                   onChange={(e) => setPostContent(e.target.value)}
                   style={{ 
