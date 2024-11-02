@@ -28,6 +28,11 @@ const Navbar = () => {
     );
   };
 
+  const handleLogout = () => {
+    sessionStorage.clear();
+    window.location.href = '/welcome';
+  };
+
   useEffect(() => {
     const handleClick = (e) => {
       if (!e.target.closest(".userProfile")) {
@@ -143,22 +148,6 @@ const Navbar = () => {
                 </div>
               )
             ))}
-            {isFocused && searchedUser.map((user, index) => (
-              <div className="mobileSearchItem" key={index}>
-                <div className="profileImage">
-                  <img src={user.profilePic} alt="" />
-                </div>
-                <div 
-                  onClick={() => window.location.href = `/profile/${user.username.replace('@', '')}`}
-                  style={{ 
-                    color: '#000',
-                    cursor: 'pointer'
-                  }}
-                >
-                  <h3>{user.name}</h3>
-                </div>
-              </div>
-            ))}
           </motion.div>
         </div>
 
@@ -229,6 +218,17 @@ const Navbar = () => {
                       <RiQuestionFill />
                     </span>
                     <span className="name" style={{ color: '#000' }}>Help & Support</span>
+                  </div>
+                  <span className="actionIcon">
+                    <FaAngleRight />
+                  </span>
+                </div>
+                <div className="link" onClick={handleLogout}>
+                  <div className="leftSide">
+                    <span className="icon">
+                      <MdClose />
+                    </span>
+                    <span className="name" style={{ color: '#000' }}>Logout</span>
                   </div>
                   <span className="actionIcon">
                     <FaAngleRight />
