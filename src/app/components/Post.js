@@ -16,7 +16,7 @@ import { initializeApp } from "firebase/app";
 // TODO: Replace the following with your app's Firebase project configuration
 // See: https://support.google.com/firebase/answer/7015592
 const firebaseConfig = {
-  apiKey: "",
+  apiKey: process.env.NEXT_PUBLIC_FIREBASE_KEY,
   authDomain: "lmcc-team-8.firebaseapp.com",
   projectId: "lmcc-team-8",
   storageBucket: "lmcc-team-8.firebasestorage.app",
