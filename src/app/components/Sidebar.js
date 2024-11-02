@@ -20,12 +20,12 @@ const links = [
   {
     name: "Explore",
     icon: <FaCompass />,
-    path: "/explore"
+    path: "/map"
   },
   {
     name: "Connect",
     icon: <FaBell />,
-    path: "/connect"
+    path: "/connections"
   },
   {
     name: "Listings",
