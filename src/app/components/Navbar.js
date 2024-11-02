@@ -127,14 +127,37 @@ const Navbar = () => {
                 <div
                   key={index}
                   className="searchResultItem"
-                  onClick={() => setSearchValue(user.name)}
                 >
                   <div className="userImage">
                     <img src={user.profilePic} alt="" />
                   </div>
-                  <h3 style={{ color: '#000' }}>{user.name}</h3>
+                  <div 
+                    onClick={() => window.location.href = `/profile/${user.username.replace('@', '')}`}
+                    style={{ 
+                      color: '#000',
+                      cursor: 'pointer'
+                    }}
+                  >
+                    <h3>{user.name}</h3>
+                  </div>
                 </div>
               )
+            ))}
+            {isFocused && searchedUser.map((user, index) => (
+              <div className="mobileSearchItem" key={index}>
+                <div className="profileImage">
+                  <img src={user.profilePic} alt="" />
+                </div>
+                <div 
+                  onClick={() => window.location.href = `/profile/${user.username.replace('@', '')}`}
+                  style={{ 
+                    color: '#000',
+                    cursor: 'pointer'
+                  }}
+                >
+                  <h3>{user.name}</h3>
+                </div>
+              </div>
             ))}
           </motion.div>
         </div>
@@ -274,12 +297,13 @@ const Navbar = () => {
                 onClick={() => {
                   setSearchValue(user.name);
                   setSearchPanel(false);
+                  window.location.href = `/profile/${user.username.replace('@', '')}`;
                 }}
               >
                 <div className="profileImage">
                   <img src={user.profilePic} alt="" />
                 </div>
-                <h3 style={{ color: '#000' }}>{user.name}</h3>
+                <h3 style={{ color: '#000' }}>{user.username.replace('@', '')}</h3>
               </div>
             )
           ))}

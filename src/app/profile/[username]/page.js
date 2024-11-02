@@ -4,6 +4,9 @@ import { useParams } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { getFirestore, collection, query, where, getDocs } from "firebase/firestore"
 import { initializeApp } from "firebase/app"
+import userData from '@/app/UserData';
+
+
 
 const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_KEY,
@@ -43,10 +46,14 @@ const UserProfile = () => {
 
   useEffect(() => {
     const fetchUserData = async () => {
+      // First check Firebase
       const usersCollection = collection(db, "users");
       const q = query(usersCollection, where("username", "==", para_username));
       const querySnapshot = await getDocs(q);
-
+  
+      // Then check local UserData
+      const localUserMatch = userData.find(user => user.username === `@${para_username}`);
+  
       if (!querySnapshot.empty) {
         const userDoc = querySnapshot.docs[0].data();
         setCurrentUser(prevUser => ({
@@ -54,9 +61,11 @@ const UserProfile = () => {
           name: `${userDoc.firstName} ${userDoc.lastName}`,
           username: userDoc.username,
         }));
+      } else if (localUserMatch) {
+        setCurrentUser(localUserMatch);
       }
     };
-
+  
     if (para_username) {
       fetchUserData();
     }
