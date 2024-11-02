@@ -62,7 +62,7 @@ const CreateAccount = () => {
   };
 
   const handleCreateAccount = (e) => {
-    // this is wehre we will send the data to the server
+    // this is where we will send the data to the server
     e.preventDefault();
     console.log("Username:", username);
     console.log("Pronouns:", selectedPronouns);
@@ -78,16 +78,12 @@ const CreateAccount = () => {
     <>
     <div className="flex">
       <div className="w-384">
-        <button className="bg-primary w-full hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-sm"><a href="/welcome">Back</a></button>
+        <button className="bg-primary w-full hover:bg-blue-700 text-white font-bold py-2 px-4"><a href="/welcome">Back</a></button>
         <div className="p-6 border">
-          <h2 className="text-2xl font-bold mb-4 create-account-title">
-            Create Account
-          </h2>
+          <h2 className="text-2xl font-bold mb-4 create-account-title">Create Account</h2>
           <form onSubmit={handleCreateAccount}>
             <div className="mb-4">
-              <label className="block text-sm font-medium mb-1 create-account-label">
-                Username:{" "}
-              </label>
+              <label className="block text-sm font-medium mb-1 create-account-label">Username:{" "}</label>
               <input
                 type="username"
                 id="username"
@@ -200,7 +196,6 @@ const CreateAccount = () => {
                 color: "white",
                 borderRadius: "0.375rem",
               }}
-              className="w-full py-3 mt-2 create-account-button"
               onMouseDown={(e) => {
                 e.target.classList.add("active");
                 e.target.style.backgroundColor = "rgb(28, 123, 237)";
@@ -209,6 +204,7 @@ const CreateAccount = () => {
                 e.target.classList.remove("active");
                 e.target.style.backgroundColor = "rgb(29, 188, 238";
               }}
+              className="w-full py-3 mt-2 rounded-sm"
             >
               <a href="/Home">
                 Create Account
@@ -217,8 +213,31 @@ const CreateAccount = () => {
           </form>
         </div>
       </div>
-      <div className="flex flex-col flex-1 justify-center items-center bg-[url('/assets/image/create-account-bg.jpg')] bg-cover bg-center bg-gray-700/75 bg-blend-overlay w-screen h-screen overflow-hidden">
-        <img />
+      <div className="flex flex-col gap-8 flex-1 justify-center items-center bg-[url('/assets/image/create-account-bg.jpg')] bg-cover bg-center bg-gray-700/75 bg-blend-overlay w-screen h-screen overflow-hidden p-48">
+        <img src="assets/image/lmcc-50-years-logo.png" className="h-36 auto" />
+        <p className="text-white">Founded as Lower Manhattan Cultural Council, LMCC serves, connects, and makes space for artists and community. Since 1973, LMCC has been the champion for independent artists in New York City and the cultural life force of Lower Manhattan.</p>
+        <div className="flex">
+          <a href="https://www.facebook.com/LMCCNYC/" target="_blank"><img src="assets/image/facebook.svg" /></a>
+          <a href="https://x.com/LMCC?mx=2" target="_blank"><img src="assets/image/twitter.svg" /></a>
+          <a href="https://www.instagram.com/lmcc_nyc/" target="_blank"><img src="assets/image/instagram.svg" /></a>
+          <a href="https://www.linkedin.com/company/lower-manhattan-cultural-council/" target="_blank"><img src="assets/image/linkedin.svg" /></a>
+        </div>
+        <div className="flex flex-col items-center">
+          <div className="flex gap-4">
+            <div className="flex gap-2 items-center">
+              <img src="assets/image/phone.png" />
+              <p className="text-white">(212) 219-9401</p>
+            </div>
+            <div className="flex gap-2 items-center">
+              <img src="assets/image/email.png" />
+              <p className="text-white">info@lmcc.net</p>
+            </div>
+          </div>
+          <div className="flex gap-2 items-center">
+            <img src="assets/image/map.png" />
+            <p className="text-white">125 Maiden Lane, 2nd Floor, New York, NY 10038</p>
+          </div>
+        </div>
       </div>
     </div>
     </>
