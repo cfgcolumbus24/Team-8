@@ -38,7 +38,7 @@ const Navbar = () => {
     <>
       <div className="inNavbar">
         <Link href={"/"} className="inLogo">
-          InSocial
+          Lower Manhattan Cultural Council
         </Link>
         <div
           ref={ref}
