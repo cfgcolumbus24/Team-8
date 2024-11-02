@@ -45,7 +45,12 @@ const Post = ({ userData }) => {
           <div className="left">
             <img src={userData.profilePic} alt="" className="profileImg" />
             <div className="userDetails">
-              <div className="name">{userData.name}</div>
+            <a href={`https://www.cnn.com/${userData.username}`} 
+           className="name" 
+           target="_blank" 
+           rel="noopener noreferrer">
+          {userData.name}
+        </a>
               <div className="username">{userData.username}</div>
             </div>
           </div>
