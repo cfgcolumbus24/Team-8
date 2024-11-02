@@ -56,6 +56,7 @@ const Login = () => {
       
       return { success: true, userData, username }; // Return success status, user data, and username
     } else {
+      alert("Invalid email or password.");
       console.log("Invalid email or password.");
       return { success: false };
     }
