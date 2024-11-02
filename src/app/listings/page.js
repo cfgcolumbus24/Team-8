@@ -1,6 +1,8 @@
 'use client'
 
 import { useState } from 'react'
+import Navbar from '../components/Navbar'
+import Sidebar from '../components/Sidebar'
 
 const Listings = () => {
   // Predefined art styles for filtering - can be expanded based on needs
@@ -80,96 +82,104 @@ const Listings = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gray-100">
-      <div className="max-w-6xl mx-auto p-6">
-        {/* Header Section */}
-        <div className="flex justify-between items-center mb-8">
-          <h1 className="text-3xl font-bold text-gray-800">Art Job Listings</h1>
-          <button 
-            onClick={() => setShowForm(!showForm)}
-            className="bg-teal px-6 py-2 text-white rounded-sm hover:bg-teal-700 transition-colors"
-          >
-            + New Listing
-          </button>
-        </div>
-
-        {/* Tag Filtering Section */}
-        <div className="mb-8 flex flex-wrap gap-2 bg-teal-50 p-4 rounded-lg shadow-sm">
-          {artStyles.map(style => (
-            <button
-              key={style}
-              onClick={() => setSelectedTags(
-                selectedTags.includes(style)
-                  ? selectedTags.filter(tag => tag !== style)
-                  : [...selectedTags, style]
-              )}
-              className={`px-3 py-1 rounded-full text-sm transition-colors ${
-                selectedTags.includes(style)
-                  ? 'bg-teal text-black'
-                  : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
-              }`}
-            >
-              {style}
-            </button>
-          ))}
-        </div>
-
-        {/* Listings Grid */}
-        <div className="grid gap-6">
-          {listings
-            .filter(listing => 
-              selectedTags.length === 0 || 
-              listing.tags.some(tag => selectedTags.includes(tag))
-            )
-            .map(listing => (
-            <div key={listing.id} className="bg-teal-50 p-6 rounded-lg shadow-md hover:shadow-lg transition-all duration-300">
-              {/* Listing Header */}
-              <div className="flex justify-between items-start">
-                <div>
-                  <h2 className="text-xl font-bold text-gray-800">{listing.title}</h2>
-                  <p className="text-gray-600">{listing.company} • {listing.location}</p>
-                  <p className="text-sm text-gray-500 mt-1">Posted on {formatDate(listing.datePosted)}</p>
-                </div>
-                <span className="bg-teal-100 text-teal-800 px-3 py-1 rounded-full text-sm">
-                  {listing.type}
-                </span>
-              </div>
-              
-              {/* Tag Display */}
-              <div className="flex gap-2 mt-4">
-                {listing.tags.map(tag => (
-                  <span key={tag} className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">
-                    {tag}
-                  </span>
-                ))}
-              </div>
-
-              {/* Listing Details */}
-              <p className="mt-4 text-gray-700">{listing.description}</p>
-              
-              <div className="mt-4 space-y-2 text-gray-700">
-                <p><span className="font-semibold">Requirements:</span> {listing.requirements}</p>
-                <p><span className="font-semibold">Salary:</span> {listing.salary}</p>
-                <p><span className="font-semibold">Contact:</span> {listing.contactEmail}</p>
-              </div>
-
-              {/* Interest Section */}
-              <div className="mt-6 flex justify-between items-center">
-              <button
-                  onClick={() => handleInterested(listing.id)}
-                  className="bg-gray-600 hover:bg-gray-700 text-white px-6 py-2 rounded-full transition-colors"
-                >
-                  I'm Interested
-                </button>
-                <span className="text-gray-600">
-                  {listing.interestedCount} {listing.interestedCount === 1 ? 'person' : 'people'} interested
-                </span>
-              </div>
+    <>
+    <Navbar />
+    <div className="mainContainer">
+      <Sidebar />
+      <div className="mx-16">
+        <div className="min-h-screen bg-gray-100">
+          <div className="max-w-10xl mx-auto p-6">
+            {/* Header Section */}
+            <div className="flex justify-between items-center mb-8">
+              <h1 className="text-3xl font-bold text-gray-800">Art Job Listings</h1>
+              <button 
+                onClick={() => setShowForm(!showForm)}
+                className="bg-teal px-6 py-2 text-white rounded-sm hover:bg-teal-700 transition-colors"
+              >
+                + New Listing
+              </button>
             </div>
-          ))}
+
+            {/* Tag Filtering Section */}
+            <div className="mb-8 flex flex-wrap gap-2 bg-teal-50 p-4 rounded-lg shadow-sm">
+              {artStyles.map(style => (
+                <button
+                  key={style}
+                  onClick={() => setSelectedTags(
+                    selectedTags.includes(style)
+                      ? selectedTags.filter(tag => tag !== style)
+                      : [...selectedTags, style]
+                  )}
+                  className={`px-3 py-1 rounded-full text-sm transition-colors ${
+                    selectedTags.includes(style)
+                      ? 'bg-teal text-black'
+                      : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                  }`}
+                >
+                  {style}
+                </button>
+              ))}
+            </div>
+
+            {/* Listings Grid */}
+            <div className="grid gap-6">
+              {listings
+                .filter(listing => 
+                  selectedTags.length === 0 || 
+                  listing.tags.some(tag => selectedTags.includes(tag))
+                )
+                .map(listing => (
+                <div key={listing.id} className="bg-teal-50 p-6 rounded-lg shadow-md hover:shadow-lg transition-all duration-300">
+                  {/* Listing Header */}
+                  <div className="flex justify-between items-start">
+                    <div>
+                      <h2 className="text-xl font-bold text-gray-800">{listing.title}</h2>
+                      <p className="text-gray-600">{listing.company} • {listing.location}</p>
+                      <p className="text-sm text-gray-500 mt-1">Posted on {formatDate(listing.datePosted)}</p>
+                    </div>
+                    <span className="bg-teal-100 text-teal-800 px-3 py-1 rounded-full text-sm">
+                      {listing.type}
+                    </span>
+                  </div>
+                  
+                  {/* Tag Display */}
+                  <div className="flex gap-2 mt-4">
+                    {listing.tags.map(tag => (
+                      <span key={tag} className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+
+                  {/* Listing Details */}
+                  <p className="mt-4 text-gray-700">{listing.description}</p>
+                  
+                  <div className="mt-4 space-y-2 text-gray-700">
+                    <p><span className="font-semibold">Requirements:</span> {listing.requirements}</p>
+                    <p><span className="font-semibold">Salary:</span> {listing.salary}</p>
+                    <p><span className="font-semibold">Contact:</span> {listing.contactEmail}</p>
+                  </div>
+
+                  {/* Interest Section */}
+                  <div className="mt-6 flex justify-between items-center">
+                  <button
+                      onClick={() => handleInterested(listing.id)}
+                      className="bg-gray-600 hover:bg-gray-700 text-white px-6 py-2 rounded-full transition-colors"
+                    >
+                      I'm Interested
+                    </button>
+                    <span className="text-gray-600">
+                      {listing.interestedCount} {listing.interestedCount === 1 ? 'person' : 'people'} interested
+                    </span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     </div>
+    </>
   )
 }
 
