@@ -67,7 +67,7 @@ const Sidebar = ({ onCreatePost }) => {
         </div>
         <div className="userDetails">
           <Link href="/Profile" className="name">
-            John Doe
+            Cece Clementine
           </Link>
           <div className="username">@johndoe</div>
         </div>
