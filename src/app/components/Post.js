@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { FaEllipsisH } from "react-icons/fa";
+"use client"; 
+import React, { useState, useEffect } from "react";
 import {
   HiOutlineHeart,
   HiHeart,
@@ -8,10 +8,9 @@ import {
   HiBookmark,
 } from "react-icons/hi2";
 import { HiOutlineShare } from "react-icons/hi";
-import { motion } from "framer-motion";
+import { useBookmarks } from "../contexts/BookmarkContext"; 
 
 // PostHeader: Displays user information and post options
-// Features: Profile picture, name, username, and menu dots
 const PostHeader = ({ userData }) => (
   <div className="header">
     <div className="left">
@@ -23,14 +22,13 @@ const PostHeader = ({ userData }) => (
     </div>
     <div className="right">
       <div className="option">
-        <FaEllipsisH />
+        <HiOutlineShare />
       </div>
     </div>
   </div>
 );
 
 // PostContent: Handles both text and image content display
-// Features: Responsive layout, image zoom animation
 const PostContent = ({ content, postImg, open, setOpen }) => (
   <div className="mainPostContent flex flex-col gap-3">
     {content && (
@@ -39,46 +37,64 @@ const PostContent = ({ content, postImg, open, setOpen }) => (
       </div>
     )}
     {postImg && (
-      <motion.img
+      <img
         src={postImg}
         alt=""
         className="postImage"
         onClick={() => setOpen(!open)}
-        animate={{ scale: open ? 2 : 1 }}
+        style={{ cursor: "pointer", transition: "transform 0.3s" }}
       />
     )}
   </div>
 );
 
 // PostActions: Interactive buttons section
-// Features: Like, Comment, Share, and Save functionality with counters
-const PostActions = ({ isLiked, handleLike, likeCount, commentCount, isSaved, setIsSaved, setShowComments }) => (
-  <div className="postFooter">
-    <div className="postActions">
-      <div className="left flex items-center gap-4">
-        <div className="likeBtn flex items-center gap-1" onClick={handleLike}>
-          {isLiked ? <HiHeart className="text-red-500" /> : <HiOutlineHeart />}
-          <span>{likeCount > 0 ? likeCount : ''}</span>
+const PostActions = ({ userData, isLiked, handleLike, likeCount, commentCount, setShowComments }) => {
+  const { bookmarkedPosts, addBookmark, removeBookmark } = useBookmarks(); // Use the bookmark context
+  const [isSaved, setIsSaved] = useState(false);
+
+  // Check if the post is already bookmarked
+  useEffect(() => {
+    const isPostBookmarked = bookmarkedPosts.some(post => post.id === userData.id);
+    setIsSaved(isPostBookmarked);
+  }, [bookmarkedPosts, userData.id]);
+
+  const handleBookmark = () => {
+    if (isSaved) {
+      removeBookmark(userData.id); // Remove bookmark by post ID
+    } else {
+      addBookmark(userData); // Add the full post data
+    }
+    setIsSaved(!isSaved);
+  };
+
+  return (
+    <div className="postFooter">
+      <div className="postActions">
+        <div className="left flex items-center gap-4">
+          <div className="likeBtn flex items-center gap-1" onClick={handleLike}>
+            {isLiked ? <HiHeart className="text-red-500" /> : <HiOutlineHeart />}
+            <span>{likeCount > 0 ? likeCount : ''}</span>
+          </div>
+          <div className="commentBtn flex items-center gap-1" onClick={() => setShowComments(true)}>
+            <HiOutlineChatBubbleOvalLeftEllipsis />
+            <span>{commentCount > 0 ? commentCount : ''}</span>
+          </div>
+          <div className="shareBtn">
+            <HiOutlineShare />
+          </div>
         </div>
-        <div className="commentBtn flex items-center gap-1" onClick={() => setShowComments(true)}>
-          <HiOutlineChatBubbleOvalLeftEllipsis />
-          <span>{commentCount > 0 ? commentCount : ''}</span>
-        </div>
-        <div className="shareBtn">
-          <HiOutlineShare />
-        </div>
-      </div>
-      <div className="right">
-        <div className="saveBtn" onClick={() => setIsSaved(!isSaved)}>
-          {isSaved ? <HiBookmark /> : <HiOutlineBookmark />}
+        <div className="right">
+          <div className="saveBtn" onClick={handleBookmark}>
+            {isSaved ? <HiBookmark className="text-blue-500" /> : <HiOutlineBookmark />}
+          </div>
         </div>
       </div>
     </div>
-  </div>
-);
+  );
+};
 
 // CommentModal: Full-screen comment view with blur overlay
-// Features: Split view layout, scroll functionality
 const CommentModal = ({ userData, comments, newComment, setNewComment, handleAddComment, setShowComments }) => (
   <>
     <div 
@@ -98,7 +114,6 @@ const CommentModal = ({ userData, comments, newComment, setNewComment, handleAdd
 );
 
 // PostModalContent: Left side of the comment modal
-// Features: Original post content with user details
 const PostModalContent = ({ userData }) => (
   <div className="flex-1 border-r border-gray-200 flex flex-col">
     <div className="p-4 border-b border-gray-200">
@@ -120,7 +135,6 @@ const PostModalContent = ({ userData }) => (
 );
 
 // CommentSection: Right side of the modal for comments
-// Features: Scrollable comment list with input field
 const CommentSection = ({ comments, newComment, setNewComment, handleAddComment }) => (
   <div className="w-[360px] flex flex-col">
     <div className="flex-1 overflow-y-auto p-4">
@@ -137,7 +151,6 @@ const CommentSection = ({ comments, newComment, setNewComment, handleAddComment 
 );
 
 // CommentItem: Individual comment display component
-// Features: User avatar, name, and comment bubble design
 const CommentItem = ({ comment }) => (
   <div className="mb-4">
     <div className="flex gap-2">
@@ -151,7 +164,6 @@ const CommentItem = ({ comment }) => (
 );
 
 // CommentInput: New comment input field
-// Features: User avatar, input field with Enter key submit
 const CommentInput = ({ newComment, setNewComment, handleAddComment }) => (
   <div className="p-4 border-t border-gray-200">
     <div className="flex gap-2">
@@ -169,11 +181,9 @@ const CommentInput = ({ newComment, setNewComment, handleAddComment }) => (
 );
 
 // Main Post Component: Orchestrates all post functionality
-// Features: State management, user interactions, and modal control
 const Post = ({ userData }) => {
   const [open, setOpen] = useState(false);
   const [isLiked, setIsLiked] = useState(false);
-  const [isSaved, setIsSaved] = useState(false);
   const [likeCount, setLikeCount] = useState(0);
   const [showComments, setShowComments] = useState(false);
   const [comments, setComments] = useState([]);
@@ -188,10 +198,10 @@ const Post = ({ userData }) => {
     if (newComment.trim()) {
       const comment = {
         id: Date.now(),
-        user: "Jhon Doe",
+        user: "John Doe",
         avatar: "/assets/image/avatar_default.jpg",
         content: newComment,
-        timestamp: new Date().toISOString()
+        timestamp: new Date().toISOString(),
       };
       setComments([...comments, comment]);
       setNewComment("");
@@ -209,12 +219,11 @@ const Post = ({ userData }) => {
           setOpen={setOpen}
         />
         <PostActions 
+          userData={userData}
           isLiked={isLiked}
           handleLike={handleLike}
           likeCount={likeCount}
           commentCount={comments.length}
-          isSaved={isSaved}
-          setIsSaved={setIsSaved}
           setShowComments={setShowComments}
         />
       </div>
