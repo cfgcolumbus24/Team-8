@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import MultiSelectDropdown from "../components/MultiSelectDropdown";
 import { collection, getFirestore, addDoc } from "firebase/firestore"; 
 import { initializeApp } from "firebase/app";
+import { useRouter } from "next/navigation";
 
 // TODO: Replace the following with your app's Firebase project configuration
 // See: https://support.google.com/firebase/answer/7015592
@@ -33,14 +34,16 @@ const CreateAccount = () => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
 
+
+  const router = useRouter();
   async function makeUser() {
     try {
       const docRef = await addDoc(collection(db, "users"), {
-        username: username,
         email: email,
-        password: password,
         firstName: firstName,
-        lastName: lastName
+        lastName: lastName,
+        password: password,
+        username: username,
       });
       console.log("Document written with ID: ", docRef.id);
     } catch (e) {
@@ -112,6 +115,7 @@ const CreateAccount = () => {
     sessionStorage.setItem("lastName", lastName); // Store the last name in sessionStorage
     sessionStorage.setItem("username", username); // Store the username in sessionStorage
     makeUser();
+    router.push("/Home");
   };
 
   return (
@@ -268,7 +272,9 @@ const CreateAccount = () => {
               }}
               className="w-full py-3 mt-2 rounded-sm"
             >
-              <a href="/Home">
+              {/* <a href="/Home"> */}
+              
+               <a>
                 Create Account
               </a>
             </button>
