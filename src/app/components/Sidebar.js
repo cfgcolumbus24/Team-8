@@ -48,10 +48,17 @@ const links = [
 const Sidebar = ({ onCreatePost }) => {
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [username, setUsername] = useState("");
+
 
   useEffect(() => {
     document.body.style.backgroundColor = isDarkMode ? "#000" : "#fff";
     document.body.style.color = isDarkMode ? "#fff" : "#000";
+
+    const storedUsername = sessionStorage.getItem("username");
+    if (storedUsername) {
+      setUsername(storedUsername); // Set the username in state
+    }
   }, [isDarkMode]);
 
   const toggleTheme = (theme) => {
@@ -67,9 +74,9 @@ const Sidebar = ({ onCreatePost }) => {
         </div>
         <div className="userDetails">
           <Link href="/Profile" className="name">
-            Cece Clementine
+            {username}
           </Link>
-          <div className="username">@johndoe</div>
+          <div className="username">@{username}</div>
         </div>
       </div>
 

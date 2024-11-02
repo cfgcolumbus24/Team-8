@@ -26,33 +26,41 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const router = useRouter();
-
-
-  const usersCollection = collection(db, "users");
-
   const handleSubmitLogin = async (e) => {
     e.preventDefault();
     console.log("Email:", email);
     console.log("Password:", password);
 
+    const usersCollection = collection(db, "users"); // Reference to your 'users' collection
     const q = query(
       usersCollection,
       where("email", "==", email),
-      where("password", "==", password) // probably should not be plaintext but for now it's fine
+      where("password", "==", password) // This should be hashed in a real application
     );
 
     const querySnapshot = await getDocs(q);
 
     if (!querySnapshot.empty) {
       console.log("Login successful!");
-      const userData = querySnapshot.docs[0].data();
+      const userData = querySnapshot.docs[0].data(); // Retrieve the data from the first matching document
+      const username = userData.username; // Access the username field
+
+      // Save the username to sessionStorage
+      sessionStorage.setItem("username", username); // Store the username in sessionStorage
+
+      // Optionally, you can log the username
+      console.log("Username:", username);
+
+      // Redirect the user to the Home page
       router.push("/Home");
-      return { success: true, userData };
+      
+      return { success: true, userData, username }; // Return success status, user data, and username
     } else {
       console.log("Invalid email or password.");
       return { success: false };
     }
   };
+
 
   return (
     <div className="flex h-screen">
