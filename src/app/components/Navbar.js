@@ -186,8 +186,8 @@ const Navbar = () => {
                   alt="User Profile Pic"
                 />
                 <div className="profileData">
-                  <div className="name">{username}</div>
-                  <span className="seeProfile">See Profile</span>
+                  <div className="name">John Michael</div>
+                  <Link href="/profile/johndoe" className="seeProfile">See Profile</Link>
                 </div>
               </div>
               <div className="linksWrapper">
