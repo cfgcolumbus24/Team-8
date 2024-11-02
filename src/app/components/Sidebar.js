@@ -42,11 +42,7 @@ const links = [
     icon: <FaBrush />,
     path: "/theme"
   },
-  {
-    name: "Settings",
-    icon: <MdSettings />,
-    path: "/settings"
-  },
+  
 ];
 
 const Sidebar = ({ onCreatePost }) => {
