@@ -54,18 +54,18 @@ const Navbar = () => {
   return (
     <>
       <div className="inNavbar" style={{
-        backgroundImage: 'url("https://plus.unsplash.com/premium_photo-1694475411899-ebbce0efaf75?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D")',
+        backgroundImage: 'url("assets/image/governors-island.jpg")',
         backgroundSize: 'cover',
         backgroundRepeat: 'no-repeat',
         backgroundPosition: 'center',
-        height: '200px',
+        height: '124px',
         width: '100%',
       }}>
         <Link href="/" className="inLogo" style={{
           display: 'inline-block',
           padding: '10px 20px',
           backgroundColor: 'white',
-          borderRadius: '12px',
+          borderRadius: '8px',
           color: '#333',
           textDecoration: 'none',
           fontWeight: 'bold',

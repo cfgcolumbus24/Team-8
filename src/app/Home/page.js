@@ -93,7 +93,7 @@ const Page = () => {
             <img 
               src="https://t4.ftcdn.net/jpg/01/87/75/15/360_F_187751502_TrPkDYFA1MzKcJO9CWoDi2NgcCWqOCUi.jpg" 
               alt="" 
-              style={{ width: '40px', height: '40px', borderRadius: '50%' }}
+              style={{ width: '40px', height: '40px', borderRadius: '50%', objectFit: 'cover' }}
             />
             <div style={{ 
               flex: 1, 
