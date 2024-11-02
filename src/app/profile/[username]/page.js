@@ -11,19 +11,19 @@ const UserProfile = () => {
   const currentUser = userData.find(user => 
     user.username.replace('@', '') === username
   ) || {
-    name: 'User Not Found',
-    username: username,
-    profilePic: "/assets/image/avatar_default.jpg",
+    name: 'John Michael',
+    username: '@johnmichael',
+    profilePic: "https://t4.ftcdn.net/jpg/01/87/75/15/360_F_187751502_TrPkDYFA1MzKcJO9CWoDi2NgcCWqOCUi.jpg",
     status: "active",
-    bio: "Software Developer | Coffee Enthusiast",
-    tags: ["They/Them", "Software Development", "Web Design", "UI/UX", "Coffee"],
-    aboutMe: "I'm a passionate software developer with 5 years of experience building web applications.",
+    bio: "Contemporary Dancer | Coffee Enthusiast",
+    tags: ["They/Them", "Ceramics", "Pottery", "Dance", "Coffee"],
+    aboutMe: "Coffee enthusiast. Dancing my way through life. Pottery lover, shaping clay and moments. Finding joy in the simple and the spontaneous. Always chasing creativity and good vibes. Here for the art, movement, and a perfect brew.",
     posts: [],
     favoriteArtwork: [
       {
         title: "Starry Night",
         artist: "Vincent van Gogh",
-        image: "/assets/image/starry-night.jpg",
+        image: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg/640px-Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg",
         year: "1889"
       }
     ]

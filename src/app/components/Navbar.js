@@ -1,9 +1,8 @@
 "use client";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
-import { MdSearch, MdClose, MdSettings } from "react-icons/md";
-import { FaAngleRight } from "react-icons/fa";
-import { FaAngleDown, FaFaceFrown } from "react-icons/fa6";
+import { MdSearch, MdClose } from "react-icons/md";
+import { FaAngleRight, FaAngleDown, FaFaceFrown } from "react-icons/fa6";
 import { RiQuestionFill } from "react-icons/ri";
 import userData from "@/app/UserData";
 import { motion } from "framer-motion";
@@ -18,11 +17,11 @@ const Navbar = () => {
   const [searchPanel, setSearchPanel] = useState(false);
 
   const searchUsers = (value) => {
-    let searchedUser = userData.filter((user) => {
-      return user.name.toLowerCase().includes(value.toLowerCase());
-    });
+    const filteredUsers = userData.filter((user) =>
+      user.name.toLowerCase().includes(value.toLowerCase())
+    );
     setSearchedUser(
-      searchedUser.length === 0 ? [{ error: "User Not Found" }] : searchedUser
+      filteredUsers.length === 0 ? [{ error: "User Not Found" }] : filteredUsers
     );
   };
 
@@ -47,21 +46,22 @@ const Navbar = () => {
           width: '100%',
         }}
       >
-        <Link href="/" className="inLogo" style={{
-          display: 'inline-block',
-          padding: '10px 20px',
-          backgroundColor: 'white',
-          borderRadius: '12px',
-          color: '#333',
-          textDecoration: 'none',
-          fontWeight: 'bold',
-        }}>
+        <Link
+          href="/"
+          className="inLogo"
+          style={{
+            display: 'inline-block',
+            padding: '10px 20px',
+            backgroundColor: 'white',
+            borderRadius: '12px',
+            color: '#333',
+            textDecoration: 'none',
+            fontWeight: 'bold',
+          }}
+        >
           Lower Manhattan Cultural Council
         </Link>
-        <div
-          ref={ref}
-          className={`inSearch ${isFocused ? "inSearchFocused" : ""}`}
-        >
+        <div ref={ref} className={`inSearch ${isFocused ? "inSearchFocused" : ""}`}>
           <div className="inSearchWrapper">
             <div className="inSearchIcon">
               <MdSearch className="inIcon" />
@@ -152,7 +152,7 @@ const Navbar = () => {
               }}
             >
               <img
-                src={"/assets/image/avatar_default.jpg"}
+                src="https://t4.ftcdn.net/jpg/01/87/75/15/360_F_187751502_TrPkDYFA1MzKcJO9CWoDi2NgcCWqOCUi.jpg"
                 alt="User Profile Pic"
                 style={{
                   width: '100%',
@@ -165,7 +165,7 @@ const Navbar = () => {
               className="userProfileDropdown"
               initial={{ y: 40, opacity: 0, pointerEvents: "none" }}
               animate={{
-                y: !ProfileMenu ? -30 : [0, 30, 10],
+                y: ProfileMenu ? 0 : -30,
                 opacity: ProfileMenu ? 1 : 0,
                 pointerEvents: ProfileMenu ? "auto" : "none",
                 zIndex: 999999,
@@ -174,11 +174,11 @@ const Navbar = () => {
             >
               <div className="profileWrapper">
                 <img
-                  src={"/assets/image/avatar_default.jpg"}
+                  src="https://t4.ftcdn.net/jpg/01/87/75/15/360_F_187751502_TrPkDYFA1MzKcJO9CWoDi2NgcCWqOCUi.jpg"
                   alt="User Profile Pic"
                 />
                 <div className="profileData">
-                  <div className="name">Cece Clementine</div>
+                  <div className="name">John Michael</div>
                   <Link href="/profile/johndoe" className="seeProfile">See Profile</Link>
                 </div>
               </div>
@@ -275,3 +275,4 @@ const Navbar = () => {
 };
 
 export default Navbar;
+

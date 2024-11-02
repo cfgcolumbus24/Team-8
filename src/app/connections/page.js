@@ -44,7 +44,7 @@ const Connections = () => {
     {
       name: "Philip Tonder",
       username: "@philip",
-      profilePic: "/assets/image/avatar_default.jpg",
+      profilePic: "https://t4.ftcdn.net/jpg/01/87/75/15/360_F_187751502_TrPkDYFA1MzKcJO9CWoDi2NgcCWqOCUi.jpg",
       status: "active",
       bio: "Software Developer | Coffee Enthusiast",
       posts: [],

@@ -17,10 +17,10 @@ const ProfilePage = () => {
           </a>
           <a href="/profile/johndoe" className="p-4 border rounded-lg hover:bg-gray-50">
             <div className="flex items-center gap-4">
-              <img src="/assets/image/avatar_default.jpg" alt="John Doe" className="w-12 h-12 rounded-full" />
+              <img src="https://t4.ftcdn.net/jpg/01/87/75/15/360_F_187751502_TrPkDYFA1MzKcJO9CWoDi2NgcCWqOCUi.jpg" alt="John Michael" className="w-12 h-12 rounded-full" />
               <div>
-                <h2 className="font-semibold">John Doe</h2>
-                <p className="text-gray-600">@johndoe</p>
+                <h2 className="font-semibold">John Michael</h2>
+                <p className="text-gray-600">@johnmichael</p>
               </div>
             </div>
           </a>

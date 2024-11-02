@@ -36,11 +36,11 @@ const Sidebar = ({ onCreatePost }) => {
 
   return (
     <div className="leftSection">
-      <Link href="/profile/johndoe" className="flex items-center gap-2 hover:bg-gray-100 p-2 rounded-lg">
-        <img src="/assets/image/avatar_default.jpg" alt="User Avatar" className="w-8 h-8 rounded-full" />
+      <Link href="/profile/john michael" className="flex items-center gap-2 hover:bg-gray-100 p-2 rounded-lg">
+        <img src="https://t4.ftcdn.net/jpg/01/87/75/15/360_F_187751502_TrPkDYFA1MzKcJO9CWoDi2NgcCWqOCUi.jpg" alt="User Avatar" className="w-8 h-8 rounded-full" />
         <div>
-          <div className="font-medium">John Doe</div>
-          <div className="text-xs text-gray-500">@johndoe</div>
+          <div className="font-medium">John Michael</div>
+          <div className="text-xs text-gray-500">@johnmichael</div>
         </div>
       </Link>
 
