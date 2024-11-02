@@ -1,61 +1,20 @@
-import HomePage from "@/app/Home/page";
-import { useParams } from 'next/navigation'
+const Home = () => {
+    return (
+        <>
+            <div className="bg-[url('/assets/image/welcome-screen-bg.jpg')] bg-cover bg-center bg-gray-700/75 bg-blend-overlay w-screen h-screen overflow-hidden flex flex-col">
+                <div className="flex gap-8 p-4 justify-end text-lg bg-[#1dbcee] text-white">
+                    <a href="https://lmcc.net/" target="_blank" className="font-bold hover:text-black">About Us</a>
+                    <a href="/create-account" className="font-bold hover:text-black">Sign Up</a>
+                    <a href="/signin"className="font-bold hover:text-black">Log In</a>
+                </div>
+                <div className="flex flex-col gap-8 flex-1 justify-center items-center">
+                    <img src="/assets/image/lmcc-50-years-logo.png" className="h-72 w-auto"></img>
+                    <p className="text-lg font-bold text-white">Networking platform for alumni.</p>
+                    <button className="bg-teal text-white px-6 py-2 rounded-sm hover:bg-teal-700 font-bold">Connect with Artists</button>
+                </div>
+            </div>
+        </>
+    );
+};
 
-export default function Home() {
-  return (
-    <>
-      <HomePage />
-    </>
-
-    
-  );
-
-  const UserProfile = () => {
-      const params = useParams()
-      const username = params.username
-    
-    
-      const userData = {
-        name: "Philip Tonder",
-        username: username,
-        profilePic: "https://t4.ftcdn.net/jpg/01/87/75/15/360_F_187751502_TrPkDYFA1MzKcJO9CWoDi2NgcCWqOCUi.jpg",
-        status: "active",
-        bio: "Software Developer | Coffee Enthusiast",
-        posts: []
-      }
-    
-    
-      const getStatusBadge = (status) => {
-        const statusStyles = {
-          active: "w-3 h-3 rounded-full bg-green-500",
-          inactive: "w-3 h-3 rounded-full bg-red-500",
-          disabled: "w-3 h-3 rounded-full bg-gray-400 relative after:content-[''] after:absolute after:w-full after:h-0.5 after:bg-gray-600 after:top-1/2 after:-rotate-45"
-        }
-        return <div className={statusStyles[status]}></div>
-      }
-    
-    
-      return (
-        <div className="max-w-2xl mx-auto p-6">
-          <div className="flex items-center gap-6">
-            <img
-              src={userData.profilePic}
-              alt={userData.name}
-              className="w-32 h-32 rounded-full object-cover"
-            />
-            <div className="flex-1">
-              <div className="flex items-center gap-3">
-                <h1 className="text-2xl font-bold">{userData.name}</h1>
-                {getStatusBadge(userData.status)}
-              </div>
-              <p className="text-gray-600">@{userData.username}</p>
-              <p className="mt-2">{userData.bio}</p>
-            </div>
-          </div>
-        </div>
-      )
-    }
-  
-}
-
-
+export default Home;
