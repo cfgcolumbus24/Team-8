@@ -89,6 +89,7 @@ const CreateAccount = () => {
 
 
   const handleInterestsChange = (selectedOptions) => {
+    console.log(selectedOptions)
     setSelectedInterests(selectedOptions);
   };
 
@@ -100,8 +101,9 @@ const CreateAccount = () => {
     setSelectedPronouns(selectedOptions);
   };
 
-  const handleCreateAccount = (e) => {
+  function handleCreateAccount(e) {
     // this is where we will send the data to the server
+    console.log(e)
     e.preventDefault();
     console.log("Username:", username);
     console.log("Pronouns:", selectedPronouns);
@@ -125,7 +127,7 @@ const CreateAccount = () => {
         <button className="bg-primary w-full hover:bg-blue-700 text-white font-bold py-2 px-4"><a href="/welcome">Back</a></button>
         <div className="p-6 border">
           <h2 className="text-2xl font-bold mb-4 create-account-title">Create Account</h2>
-          <form onSubmit={handleCreateAccount}>
+          <form onSubmit={(e) => handleCreateAccount(e)}>
             <div className="mb-4">
               <label className="block text-sm font-medium mb-1 create-account-label">Username:{" "}</label>
               <input
@@ -213,6 +215,7 @@ const CreateAccount = () => {
                 Interests
               </label>
               <MultiSelectDropdown
+                id="1"
                 options={art_options}
                 onChange={handleInterestsChange}
               />
@@ -225,6 +228,7 @@ const CreateAccount = () => {
                 Mediums you work in
               </label>
               <MultiSelectDropdown
+                id="2"
                 options={art_options}
                 onChange={handleMediumsChange}
               />
@@ -237,6 +241,7 @@ const CreateAccount = () => {
                 Pronouns
               </label>
               <MultiSelectDropdown
+                id="3"
                 options={pronoun_options}
                 onChange={handlePronounsChange}
               />

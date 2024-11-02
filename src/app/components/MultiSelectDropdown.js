@@ -40,6 +40,7 @@ const MultiSelectDropdown = ({ onChange, options }) => {
   return (
     <div className="relative inline-block w-full" ref={dropdownRef}>
       <button
+      type="button"
         onClick={handleDropdownToggle}
         className="w-full border border-gray-300 rounded-md bg-white p-2 text-left focus:outline-none focus:ring-2 focus:ring-blue-500"
       >
