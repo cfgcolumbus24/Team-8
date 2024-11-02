@@ -20,12 +20,12 @@ const links = [
   {
     name: "Explore",
     icon: <FaCompass />,
-    path: "/explore"
+    path: "/map"
   },
   {
     name: "Connect",
     icon: <FaBell />,
-    path: "/connect"
+    path: "/connections"
   },
   {
     name: "Listings",
@@ -35,18 +35,14 @@ const links = [
   {
     name: "Bookmarks",
     icon: <FaBookmark />,
-    path: "/bookmarks"
+    path: "/bookmark"
   },
   {
     name: "Theme",
     icon: <FaBrush />,
     path: "/theme"
   },
-  {
-    name: "Settings",
-    icon: <MdSettings />,
-    path: "/settings"
-  },
+  
 ];
 
 const Sidebar = ({ onCreatePost }) => {

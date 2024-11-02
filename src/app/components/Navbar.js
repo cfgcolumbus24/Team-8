@@ -187,28 +187,19 @@ const Navbar = () => {
                 </div>
               </div>
               <div className="linksWrapper">
-                <div className="link">
-                  <div className="leftSide">
-                    <span className="icon">
-                      <MdSettings />
-                    </span>
-                    <span className="name">Settings & Privacy</span>
-                  </div>
-                  <span className="actionIcon">
-                    <FaAngleRight />
+                
+                <div className="link" onClick={() => window.location.href = '/help'}>
+                <div className="leftSide">
+                  <span className="icon">
+                    <RiQuestionFill />
                   </span>
+                  <span className="name">Help & Support</span>
                 </div>
-                <div className="link">
-                  <div className="leftSide">
-                    <span className="icon">
-                      <RiQuestionFill />
-                    </span>
-                    <span className="name">Help & Support</span>
-                  </div>
-                  <span className="actionIcon">
-                    <FaAngleRight />
-                  </span>
-                </div>
+                <span className="actionIcon">
+                  <FaAngleRight />
+                </span>
+              </div>
+
               </div>
             </motion.div>
           </div>
