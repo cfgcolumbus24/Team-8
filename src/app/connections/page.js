@@ -156,7 +156,7 @@ const Connections = () => {
                 {topMatches.map((match, index) => (
                   <Link key={index} href={`/profile/${match.name.toLowerCase()}`} className="m-4 p-4 rounded-md border w-72">
                     <div className='flex gap-2'>
-                      <img src={allUsers.find(user => user.name === match.name)?.profilePic} alt={`${match.name}'s profile`} className='w-12 rounded-full' />
+                      <img src={allUsers.find(user => user.name === match.name)?.profilePic} alt={`${match.name}'s profile`} className='w-12 h-12 rounded-full object-cover' />
                       <div>
                         <div className='flex gap-2 items-center justify-center'>
                           <h2>{match.name}</h2> 
@@ -178,7 +178,7 @@ const Connections = () => {
                 {topUsers.map((user, index) => (
                   <Link key={index} href={`/profile/${user.username.slice(1)}`} className="m-4 p-4 rounded-md border w-72">
                     <div className='flex gap-2'>
-                      <img src={user.profilePic} alt={`${user.name}'s profile`} className='w-12 rounded-full' />
+                      <img src={user.profilePic} alt={`${user.name}'s profile`} className='w-12 rounded-full h-12 object-cover' />
                       <div>
                         <div className='flex gap-2 items-center justify-center'>
                           <h2>{user.name}</h2> 
@@ -231,7 +231,7 @@ const Connections = () => {
                   .map((user, index) => (
                     <Link key={index} href={`/profile/${user.username.slice(1)}`} className="m-4 p-4 rounded-md border w-72">
                       <div className='flex gap-2'>
-                        <img src={user.profilePic} alt={`${user.name}'s profile`} className='w-12 rounded-full' />
+                        <img src={user.profilePic} alt={`${user.name}'s profile`} className='w-12 rounded-full h-12 object-cover' />
                         <div>
                           <div className='flex gap-1 items-center justify-center'>
                             <h2>{user.name}</h2> 
