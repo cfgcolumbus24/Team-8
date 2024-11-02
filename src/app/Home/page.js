@@ -27,7 +27,7 @@ const Page = () => {
 
     const newPost = {
       id: Date.now(),
-      name: "Jhon Doe",
+      name: "John Doe",
       username: "@johndoe",
       profilePic: "/assets/image/avatar_default.jpg",
       postImg: selectedImage,

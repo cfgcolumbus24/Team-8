@@ -25,7 +25,7 @@ const links = [
   {
     name: "Connect",
     icon: <FaBell />,
-    path: "/connect",
+    path: "/connections", // Added path for "Connect"
   },
   {
     name: "Messages",
@@ -92,12 +92,19 @@ const Sidebar = ({ onCreatePost }) => {
             );
           }
           return (
-            <Link href={link.path || "#"} key={index}>
-              <div className="link" style={{ cursor: "pointer" }}>
-                <div className="icon">{link.icon}</div>
-                <h3>{link.name}</h3>
-              </div>
-            </Link>
+            <div className="link" key={index}>
+              {link.name === "Connect" ? (
+                <Link href={link.path} style={{ display: 'flex', alignItems: 'center' }}>
+                  <div className="icon">{link.icon}</div>
+                  <h3>{link.name}</h3>
+                </Link>
+              ) : (
+                <>
+                  <div className="icon">{link.icon}</div>
+                  <h3>{link.name}</h3>
+                </>
+              )}
+            </div>
           );
         })}
       </div>

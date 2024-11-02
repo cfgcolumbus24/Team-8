@@ -11,7 +11,8 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        primary: '#1dbcee'
+        primary: '#1dbcee',
+        'lightBlue': "rgba(29, 188, 238, 0.1)"
       },
       screens: {
         'mobile':  "960px",
