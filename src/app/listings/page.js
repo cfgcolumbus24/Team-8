@@ -87,7 +87,7 @@ const Listings = () => {
     <div className="mainContainer">
       <Sidebar />
       <div className="mx-16">
-        <div className="min-h-screen bg-gray-100">
+        <div className="min-h-screen bg-blue-25">
           <div className="max-w-10xl mx-auto p-6">
             {/* Header Section */}
             <div className="flex justify-between items-center mb-8">
@@ -101,7 +101,7 @@ const Listings = () => {
             </div>
 
             {/* Tag Filtering Section */}
-            <div className="mb-8 flex flex-wrap gap-2 bg-teal-50 p-4 rounded-lg shadow-sm">
+            <div className="mb-8 flex flex-wrap gap-2 bg-blue-50 p-4 rounded-lg shadow-sm">
               {artStyles.map(style => (
                 <button
                   key={style}
@@ -112,7 +112,7 @@ const Listings = () => {
                   )}
                   className={`px-3 py-1 rounded-full text-sm transition-colors ${
                     selectedTags.includes(style)
-                      ? 'bg-teal text-black'
+                      ? 'bg-blue-600 text-white'
                       : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
                   }`}
                 >
@@ -129,7 +129,7 @@ const Listings = () => {
                   listing.tags.some(tag => selectedTags.includes(tag))
                 )
                 .map(listing => (
-                <div key={listing.id} className="bg-teal-50 p-6 rounded-lg shadow-md hover:shadow-lg transition-all duration-300">
+                <div key={listing.id} className="bg-blue-50 p-6 rounded-lg shadow-md hover:shadow-lg transition-all duration-300">
                   {/* Listing Header */}
                   <div className="flex justify-between items-start">
                     <div>
@@ -145,7 +145,7 @@ const Listings = () => {
                   {/* Tag Display */}
                   <div className="flex gap-2 mt-4">
                     {listing.tags.map(tag => (
-                      <span key={tag} className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">
+                      <span key={tag} className="bg-gray-200 text-gray-700 px-3 py-1 rounded-full text-sm">
                         {tag}
                       </span>
                     ))}
