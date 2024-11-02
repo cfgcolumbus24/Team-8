@@ -1,4 +1,8 @@
-.mainSection {
+.app {
+  width: 80%; 
+  margin-left: 0.5rem;
+  margin-right: auto; 
+  margin-left: auto;
   display: flex;
   flex-direction: column;
   padding: 4rem;

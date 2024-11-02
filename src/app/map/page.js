@@ -63,7 +63,7 @@ const CustomMap = () => {
     <Navbar />
     <div className="mainContainer">
       <Sidebar />
-      <div className="mainSection">
+      <div className="app">
         <APIProvider apiKey={apiKey}>
           <div className="map-container">
             <Map
