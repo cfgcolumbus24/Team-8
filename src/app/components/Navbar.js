@@ -179,7 +179,7 @@ const Navbar = () => {
                 />
                 <div className="profileData">
                   <div className="name">Cece Clementine</div>
-                  <span className="seeProfile">See Profile</span>
+                  <Link href="/profile/johndoe" className="seeProfile">See Profile</Link>
                 </div>
               </div>
               <div className="linksWrapper">
