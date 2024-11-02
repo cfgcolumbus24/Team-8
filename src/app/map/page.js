@@ -61,40 +61,43 @@ const CustomMap = () => {
   return (
     <>
     <Navbar />
-    <Sidebar />
-    <div className="app">
-      <APIProvider apiKey={apiKey}>
-        <div className="map-container">
-          <Map
-            defaultZoom={13}
-            defaultCenter={center}
-            gestureHandling={"greedy"}
-            disableDefaultUI
-          >
-            {markers.map((marker, index) => (
-              marker.lat && marker.lng ? (
-                <Marker
-                  key={index}
-                  position={{ lat: marker.lat, lng: marker.lng }}
-                  onClick={() => setActiveMarker(marker)}
-                />
-              ) : null
-            ))}
-            {activeMarker && (
-              <InfoWindow
-                position={{ lat: activeMarker.lat, lng: activeMarker.lng }}
-                onCloseClick={() => setActiveMarker(null)}
-              >
-                <div>
-                  <h2>{activeMarker.name}</h2>
-                  <p>{activeMarker.description}</p>
-                </div>
-              </InfoWindow>
-            )}
-          </Map>
-        </div>
-      </APIProvider>
+    <div className="mainContainer">
+      <Sidebar />
+      <div className="mainSection">
+        <APIProvider apiKey={apiKey}>
+          <div className="map-container">
+            <Map
+              defaultZoom={13}
+              defaultCenter={center}
+              gestureHandling={"greedy"}
+              disableDefaultUI
+            >
+              {markers.map((marker, index) => (
+                marker.lat && marker.lng ? (
+                  <Marker
+                    key={index}
+                    position={{ lat: marker.lat, lng: marker.lng }}
+                    onClick={() => setActiveMarker(marker)}
+                  />
+                ) : null
+              ))}
+              {activeMarker && (
+                <InfoWindow
+                  position={{ lat: activeMarker.lat, lng: activeMarker.lng }}
+                  onCloseClick={() => setActiveMarker(null)}
+                >
+                  <div>
+                    <h2>{activeMarker.name}</h2>
+                    <p>{activeMarker.description}</p>
+                  </div>
+                </InfoWindow>
+              )}
+            </Map>
+          </div>
+        </APIProvider>
+      </div>
     </div>
+    
     </>
   );
 }
