@@ -8,7 +8,6 @@ import {
   HiOutlineBookmark,
   HiBookmark,
 } from "react-icons/hi2";
-import { HiOutlineShare } from "react-icons/hi";
 import { useBookmarks } from "../contexts/BookmarkContext"; // Import the context
 import { collection, getFirestore, addDoc } from "firebase/firestore"; 
 import { initializeApp } from "firebase/app";
@@ -106,9 +105,6 @@ const PostActions = ({ userData, isLiked, handleLike, likeCount, commentCount, s
           <div className="commentBtn flex items-center gap-1" onClick={() => setShowComments(true)}>
             <HiOutlineChatBubbleOvalLeftEllipsis />
             <span>{commentCount > 0 ? commentCount : ''}</span>
-          </div>
-          <div className="shareBtn">
-            <HiOutlineShare />
           </div>
         </div>
         <div className="right">
