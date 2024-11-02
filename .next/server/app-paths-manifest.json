@@ -1,5 +1,5 @@
 {
   "/page": "app/page.js",
-  "/welcome/page": "app/welcome/page.js",
-  "/create-account/page": "app/create-account/page.js"
+  "/profile/[username]/page": "app/profile/[username]/page.js",
+  "/favicon.ico/route": "app/favicon.ico/route.js"
 }

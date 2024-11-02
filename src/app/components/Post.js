@@ -1,3 +1,5 @@
+
+import Link from 'next/link';
 import React, { useState } from "react";
 import { FaEllipsisH } from "react-icons/fa";
 import {
@@ -10,16 +12,17 @@ import {
 import { HiOutlineShare } from "react-icons/hi";
 import { motion } from "framer-motion";
 
-// PostHeader: Displays user information and post options
-// Features: Profile picture, name, username, and menu dots
+
 const PostHeader = ({ userData }) => (
   <div className="header">
     <div className="left">
-      <img src={userData.profilePic} alt="" className="profileImg" />
-      <div className="userDetails">
-        <div className="name">{userData.name}</div>
-        <div className="username">{userData.username}</div>
-      </div>
+      <Link href={`/profile/${userData.username}`} className="flex items-center gap-2">
+        <img src={userData.profilePic} alt="" className="profileImg" />
+        <div className="userDetails">
+          <div className="name">{userData.name}</div>
+          <div className="username">{userData.username}</div>
+        </div>
+      </Link>
     </div>
     <div className="right">
       <div className="option">
@@ -28,6 +31,7 @@ const PostHeader = ({ userData }) => (
     </div>
   </div>
 );
+
 
 // PostContent: Handles both text and image content display
 // Features: Responsive layout, image zoom animation
@@ -154,8 +158,11 @@ const CommentItem = ({ comment }) => (
 // Features: User avatar, input field with Enter key submit
 const CommentInput = ({ newComment, setNewComment, handleAddComment }) => (
   <div className="p-4 border-t border-gray-200">
-    <div className="flex gap-2">
-      <img src="/assets/image/avatar_default.jpg" alt="" className="w-8 h-8 rounded-full" />
+    <div className="flex items-center gap-2">
+      <div className="flex items-center gap-2">
+        <img src="/assets/image/avatar_default.jpg" alt="" className="w-8 h-8 rounded-full" />
+        <span className="text-sm font-medium">Philip Tonder</span>
+      </div>
       <input
         type="text"
         value={newComment}
@@ -167,6 +174,7 @@ const CommentInput = ({ newComment, setNewComment, handleAddComment }) => (
     </div>
   </div>
 );
+
 
 // Main Post Component: Orchestrates all post functionality
 // Features: State management, user interactions, and modal control
