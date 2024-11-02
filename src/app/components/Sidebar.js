@@ -22,7 +22,7 @@ const links = [
   {
     name: "Connect",
     icon: <FaBell />,
-    path: "/connections",
+    path: "/connections", // Added path for "Connect"
   },
   {
     name: "Messages",
