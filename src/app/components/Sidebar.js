@@ -55,7 +55,7 @@ const Sidebar = ({ onCreatePost }) => {
           </Link>
           <div className="username">@{username}</div>
         </div>
-      </div>
+      {/* </div> */}
       </Link>
 
       <nav className="inSidebar">
