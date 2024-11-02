@@ -104,6 +104,7 @@ const CreateAccount = () => {
     console.log("Mediums:", selectedMediums);
     console.log("Open to Work:", openToWork);
     console.log("Interests:", selectedInterests);
+    sessionStorage.setItem("username", username); // Store the username in sessionStorage
     makeUser();
   };
 

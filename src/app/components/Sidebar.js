@@ -25,7 +25,6 @@ const Sidebar = ({ onCreatePost }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [username, setUsername] = useState("");
 
-
   useEffect(() => {
     document.body.style.backgroundColor = isDarkMode ? "#000" : "#fff";
     document.body.style.color = isDarkMode ? "#fff" : "#000";
@@ -43,19 +42,14 @@ const Sidebar = ({ onCreatePost }) => {
 
   return (
     <div className="leftSection">
-      <Link href="/profile/john michael" className="flex items-center gap-2 hover:bg-gray-100 p-2 rounded-lg">
+      <Link href={`/profile/${username}`} className="flex items-center gap-2 hover:bg-gray-100 p-2 rounded-lg">
         <img src="https://t4.ftcdn.net/jpg/01/87/75/15/360_F_187751502_TrPkDYFA1MzKcJO9CWoDi2NgcCWqOCUi.jpg" alt="User Avatar" className="w-8 h-8 rounded-full" />
-        <div>
-          <div className="font-medium">John Michael</div>
-          <div className="text-xs text-gray-500">@johnmichael</div>
-        </div>
         <div className="userDetails">
           <Link href="/Profile" className="name">
             {username}
           </Link>
           <div className="username">@{username}</div>
         </div>
-      {/* </div> */}
       </Link>
 
       <nav className="inSidebar">
@@ -162,3 +156,4 @@ const Sidebar = ({ onCreatePost }) => {
 };
 
 export default Sidebar;
+
