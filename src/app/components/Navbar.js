@@ -43,7 +43,7 @@ const Navbar = () => {
           backgroundSize: 'cover',
           backgroundRepeat: 'no-repeat',
           backgroundPosition: 'center',
-          height: '200px', // Adjust as needed
+          height: '200px',
           width: '100%',
         }}
       >
@@ -54,8 +54,8 @@ const Navbar = () => {
             display: 'inline-block',
             padding: '10px 20px',
             backgroundColor: 'white',
-            borderRadius: '12px', // Rounded edges
-            color: '#333', // Dark color for contrast
+            borderRadius: '12px',
+            color: '#333',
             textDecoration: 'none',
             fontWeight: 'bold',
           }}
@@ -80,7 +80,7 @@ const Navbar = () => {
               onKeyUp={(e) => searchUsers(e.target.value)}
               style={{
                 background: 'transparent',
-                color: '#fff', // Ensure the text input stands out
+                color: '#fff',
               }}
             />
             <div
@@ -141,14 +141,28 @@ const Navbar = () => {
           <div className="mobileSearchBtn" onClick={() => setSearchPanel(true)}>
             <MdSearch style={{ color: '#fff' }} />
           </div>
-          <div className="userProfile">
+          <div className="userProfile" style={{ marginRight: '10px' }}>
             <div
               className="userImage"
               onClick={() => setProfileMenu(!ProfileMenu)}
+              style={{
+                width: '80px',
+                height: '80px',
+                borderRadius: '50%',
+                overflow: 'hidden',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+              }}
             >
               <img
                 src={"/assets/image/avatar_default.jpg"}
                 alt="User Profile Pic"
+                style={{
+                  width: '100%',
+                  height: '100%',
+                  objectFit: 'cover',
+                }}
               />
             </div>
             <motion.div
