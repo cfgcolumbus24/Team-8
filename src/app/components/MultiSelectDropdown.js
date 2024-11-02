@@ -2,18 +2,10 @@
 
 import React, { useState, useRef, useEffect } from 'react';
 
-const MultiSelectDropdown = ({ onChange }) => {
+const MultiSelectDropdown = ({ onChange, options }) => {
   const [selectedOptions, setSelectedOptions] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef(null); // Create a ref for the dropdown
-
-  const options = [
-    { value: 'Technology', label: 'Technology' },
-    { value: 'Design', label: 'Design' },
-    { value: 'Business', label: 'Business' },
-    { value: 'Health', label: 'Health' },
-    { value: 'Science', label: 'Science' },
-  ];
 
   const toggleOption = (value) => {
     setSelectedOptions((prev) => {

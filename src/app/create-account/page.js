@@ -20,6 +20,21 @@ const CreateAccount = () => {
 
     const router = useRouter();
 
+    const options = [
+        { value: 'Technology', label: 'Technology' },
+        { value: 'Design', label: 'Design' },
+        { value: 'Business', label: 'Business' },
+        { value: 'Health', label: 'Health' },
+        { value: 'Science', label: 'Science' },
+      ];
+
+    const pronoun_options = [
+        { value: 'He/Him', label: 'He/Him' },
+        { value: 'She/Her', label: 'She/Her' },
+        { value: 'They/Them', label: 'They/Them' },
+        { value: 'Ask Me!', label: 'Ask Me!' },
+    ]
+
     const [selectedInterests, setSelectedInterests] = useState([]);
     const [selectedMediums, setSelectedMediums] = useState([]);
 
@@ -90,11 +105,15 @@ const CreateAccount = () => {
                 </div>
                 <div className="mb-4">
                     <label htmlFor="selectInterests" className="text-sm font-medium mr-2 create-account-label">Interests</label>
-                    <MultiSelectDropdown onChange={handleInterestsChange} />
+                    <MultiSelectDropdown options = {options} onChange={handleInterestsChange} />
                 </div>
                 <div className="mb-4">
                     <label htmlFor="selectMediums" className="text-sm font-medium mr-2 create-account-label">Mediums you work in</label>
-                    <MultiSelectDropdown onChange={handleMediumsChange} />
+                    <MultiSelectDropdown options = {options} onChange={handleMediumsChange} />
+                </div>
+                <div className="mb-4">
+                    <label htmlFor="selectPronouns" className="text-sm font-medium mr-2 create-account-label">Pronouns</label>
+                    <MultiSelectDropdown options = {pronoun_options} onChange={handleMediumsChange} />
                 </div>
                 <div className="mb-4 flex items-center">
                     <label htmlFor="openToWork" className="text-sm font-medium mr-2 create-account-label">Open to Work?</label>
