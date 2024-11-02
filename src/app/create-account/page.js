@@ -20,13 +20,36 @@ const CreateAccount = () => {
 
     const router = useRouter();
 
-    const options = [
-        { value: 'Technology', label: 'Technology' },
-        { value: 'Design', label: 'Design' },
-        { value: 'Business', label: 'Business' },
-        { value: 'Health', label: 'Health' },
-        { value: 'Science', label: 'Science' },
-      ];
+    const art_options = [
+        { value: 'Painting', label: 'Painting' },
+        { value: 'Drawing', label: 'Drawing' },
+        { value: 'Sculpture', label: 'Sculpture' },
+        { value: 'Photography', label: 'Photography' },
+        { value: 'Printmaking', label: 'Printmaking' },
+        { value: 'Ceramics', label: 'Ceramics' },
+        { value: 'Glass Art', label: 'Glass Art' },
+        { value: 'Textile Art', label: 'Textile Art' },
+        { value: 'Digital Art', label: 'Digital Art' },
+        { value: 'Mixed Media', label: 'Mixed Media' },
+        { value: 'Collage', label: 'Collage' },
+        { value: 'Installation Art', label: 'Installation Art' },
+        { value: 'Performance Art', label: 'Performance Art' },
+        { value: 'Mosaic', label: 'Mosaic' },
+        { value: 'Street Art', label: 'Street Art' },
+        { value: 'Calligraphy', label: 'Calligraphy' },
+        { value: 'Graffiti', label: 'Graffiti' },
+        { value: 'Land Art', label: 'Land Art' },
+        { value: 'Encaustic', label: 'Encaustic' },
+        { value: 'Woodworking', label: 'Woodworking' },
+        { value: 'Metalworking', label: 'Metalworking' },
+        { value: 'Fiber Art', label: 'Fiber Art' },
+        { value: 'Tattoo Art', label: 'Tattoo Art' },
+        { value: 'Origami', label: 'Origami' },
+        { value: 'Animation', label: 'Animation' },
+        { value: 'Virtual Reality Art', label: 'Virtual Reality Art' },
+    ];
+    
+    
 
     const pronoun_options = [
         { value: 'He/Him', label: 'He/Him' },
@@ -37,6 +60,7 @@ const CreateAccount = () => {
 
     const [selectedInterests, setSelectedInterests] = useState([]);
     const [selectedMediums, setSelectedMediums] = useState([]);
+    const [selectedPronouns, setSelectedPronouns] = useState([]);
 
     const handleInterestsChange = (selectedOptions) => {
         setSelectedInterests(selectedOptions);
@@ -46,9 +70,14 @@ const CreateAccount = () => {
         setSelectedMediums(selectedOptions)
     };
 
+    const handlePronounsChange = (selectedOptions) => {
+        setSelectedPronouns(selectedOptions)
+    };
+
     const handleCreateAccount = (e) => {
         e.preventDefault();
         console.log('Username:', username);
+        console.log("Pronouns:", selectedPronouns);
         console.log('Email:', email);
         console.log('Password:', password);
         console.log('Is Alumni:', isAlumni);
@@ -105,15 +134,15 @@ const CreateAccount = () => {
                 </div>
                 <div className="mb-4">
                     <label htmlFor="selectInterests" className="text-sm font-medium mr-2 create-account-label">Interests</label>
-                    <MultiSelectDropdown options = {options} onChange={handleInterestsChange} />
+                    <MultiSelectDropdown options = {art_options} onChange={handleInterestsChange} />
                 </div>
                 <div className="mb-4">
                     <label htmlFor="selectMediums" className="text-sm font-medium mr-2 create-account-label">Mediums you work in</label>
-                    <MultiSelectDropdown options = {options} onChange={handleMediumsChange} />
+                    <MultiSelectDropdown options = {art_options} onChange={handleMediumsChange} />
                 </div>
                 <div className="mb-4">
                     <label htmlFor="selectPronouns" className="text-sm font-medium mr-2 create-account-label">Pronouns</label>
-                    <MultiSelectDropdown options = {pronoun_options} onChange={handleMediumsChange} />
+                    <MultiSelectDropdown options = {pronoun_options} onChange={handlePronounsChange} />
                 </div>
                 <div className="mb-4 flex items-center">
                     <label htmlFor="openToWork" className="text-sm font-medium mr-2 create-account-label">Open to Work?</label>
@@ -128,8 +157,14 @@ const CreateAccount = () => {
                     type="submit"
                     style={{ backgroundColor:'rgb(225, 29, 72)', color: 'white', borderRadius: '0.375rem' }}
                     className="w-full py-3 mt-2 create-account-button"
-                    onMouseDown={(e) => e.target.classList.add('active')}
-                    onMouseUp={(e) => e.target.classList.remove('active')}
+                    onMouseDown={(e) => {
+                        e.target.classList.add('active');
+                        e.target.style.backgroundColor = 'rgb(200, 0, 50)';
+                    }}
+                    onMouseUp={(e) => {
+                        e.target.classList.remove('active');
+                        e.target.style.backgroundColor = 'rgb(225, 29, 72)';
+                    }}
                 >
                     Create Account
                 </button>
