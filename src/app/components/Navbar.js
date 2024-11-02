@@ -152,7 +152,7 @@ const Navbar = () => {
               }}
             >
               <img
-                src={"/assets/image/avatar_default.jpg"}
+                src={"https://t4.ftcdn.net/jpg/01/87/75/15/360_F_187751502_TrPkDYFA1MzKcJO9CWoDi2NgcCWqOCUi.jpg"}
                 alt="User Profile Pic"
                 style={{
                   width: '100%',
@@ -174,11 +174,11 @@ const Navbar = () => {
             >
               <div className="profileWrapper">
                 <img
-                  src={"/assets/image/avatar_default.jpg"}
+                  src={"https://t4.ftcdn.net/jpg/01/87/75/15/360_F_187751502_TrPkDYFA1MzKcJO9CWoDi2NgcCWqOCUi.jpg"}
                   alt="User Profile Pic"
                 />
                 <div className="profileData">
-                  <div className="name">Cece Clementine</div>
+                  <div className="name">John Michael</div>
                   <span className="seeProfile">See Profile</span>
                 </div>
               </div>
