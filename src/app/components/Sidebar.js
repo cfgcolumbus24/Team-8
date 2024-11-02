@@ -1,4 +1,4 @@
-"use client"; // Add this line at the very top
+"use client";
 import React, { useState, useEffect } from "react";
 import { MdSettings } from "react-icons/md";
 import {
@@ -15,22 +15,27 @@ const links = [
   {
     name: "Forum",
     icon: <FaHome />,
+    path: "/",
   },
   {
     name: "Explore",
     icon: <FaCompass />,
+    path: "/explore"
   },
   {
     name: "Connect",
     icon: <FaBell />,
+    path: "/connect"
   },
   {
     name: "Listings",
     icon: <FaEnvelope />,
+    path: "/listings"
   },
   {
     name: "Bookmarks",
     icon: <FaBookmark />,
+    path: "/bookmarks"
   },
   {
     name: "Theme",
@@ -40,13 +45,14 @@ const links = [
   {
     name: "Settings",
     icon: <MdSettings />,
+    path: "/settings"
   },
 ];
 
 const Sidebar = ({ onCreatePost }) => {
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  // function to change the theme
+
   useEffect(() => {
     document.body.style.backgroundColor = isDarkMode ? "#000" : "#fff";
     document.body.style.color = isDarkMode ? "#fff" : "#000";
@@ -54,7 +60,7 @@ const Sidebar = ({ onCreatePost }) => {
 
   const toggleTheme = (theme) => {
     setIsDarkMode(theme === "dark");
-    setIsModalOpen(false); // closing the modal
+    setIsModalOpen(false);
   };
 
   return (
@@ -87,10 +93,12 @@ const Sidebar = ({ onCreatePost }) => {
             );
           }
           return (
-            <div className="link" key={index}>
-              <div className="icon">{link.icon}</div>
-              <h3>{link.name}</h3>
-            </div>
+            <Link href={link.path} key={index}>
+              <div className="link">
+                <div className="icon">{link.icon}</div>
+                <h3>{link.name}</h3>
+              </div>
+            </Link>
           );
         })}
       </nav>
