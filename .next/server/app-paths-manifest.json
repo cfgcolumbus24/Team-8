@@ -1,7 +1,5 @@
-<<<<<<< HEAD
 {
-  "/page": "app/page.js"
+  "/page": "app/page.js",
+  "/welcome/page": "app/welcome/page.js",
+  "/create-account/page": "app/create-account/page.js"
 }
-=======
-{}
->>>>>>> 50d0ccea8ed854f794272d3245f1057e7101bccf
