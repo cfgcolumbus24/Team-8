@@ -15,10 +15,12 @@ const Navbar = () => {
   const [ProfileMenu, setProfileMenu] = useState(false);
   const [searchedUser, setSearchedUser] = useState(userData);
   const [searchPanel, setSearchPanel] = useState(false);
+  const [firstName, setFirstNames] = useState();
+  const [lastName, setLastNames] = useState();
 
   const searchUsers = (value) => {
     const filteredUsers = userData.filter((user) =>
-      user.name.toLowerCase().includes(value.toLowerCase())
+      firstName.toLowerCase().includes(value.toLowerCase())
     );
     setSearchedUser(
       filteredUsers.length === 0 ? [{ error: "User Not Found" }] : filteredUsers
@@ -32,8 +34,14 @@ const Navbar = () => {
       }
 
       const storedUsername = sessionStorage.getItem("username");
+      const storedFirstName = sessionStorage.getItem("firstName");
+      const storedLastName = sessionStorage.getItem("lastName");
       if (storedUsername) {
         setUsername(storedUsername); // Set the username in state
+      }
+      if (storedFirstName && storedLastName) {
+        setFirstName(storedFirstName);
+        setLastName(storedLastName);
       }
     });
   }, []);
@@ -128,7 +136,7 @@ const Navbar = () => {
                     <div
                       key={index}
                       className="searchResultItem"
-                      onClick={() => setSearchValue(user.name)}
+                      onClick={() => setSearchValue(firstName)}
                     >
                       <div className="userImage">
                         <img src={`${user.profilePic}`} alt="" />
@@ -263,7 +271,7 @@ const Navbar = () => {
                   className="mobileSearchItem"
                   key={index}
                   onClick={() => {
-                    setSearchValue(user.name);
+                    setSearchValue(firstName);
                     setSearchPanel(false);
                   }}
                 >
