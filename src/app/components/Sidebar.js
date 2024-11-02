@@ -12,7 +12,7 @@ import {
 import Link from "next/link";
 
 const links = [
-  { name: "Forum", icon: <FaHome />, path: "/" },
+  { name: "Forum", icon: <FaHome />, path: "/forum" },
   { name: "Explore", icon: <FaCompass />, path: "/map" },
   { name: "Connect", icon: <FaBell />, path: "/connections" },
   { name: "Listings", icon: <FaEnvelope />, path: "/listings" },
