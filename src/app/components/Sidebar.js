@@ -65,18 +65,13 @@ const Sidebar = ({ onCreatePost }) => {
 
   return (
     <div className="leftSection">
-      <div className="userProfileWidget">
-        <div className="profileImage">
-          <img src={"/assets/image/avatar_default.jpg"} alt="" />
+      <Link href="/profile/johndoe" className="flex items-center gap-2 hover:bg-gray-100 p-2 rounded-lg">
+        <img src="/assets/image/avatar_default.jpg" alt="" className="w-8 h-8 rounded-full" />
+        <div>
+          <div className="font-medium">John Doe</div>
+          <div className="text-xs text-gray-500">@johndoe</div>
         </div>
-        <div className="userDetails">
-          <Link href="/Profile" className="name">
-            John Doe
-          </Link>
-          <div className="username">@johndoe</div>
-        </div>
-      </div>
-
+      </Link>
       <nav className="inSidebar">
         {links.map((link, index) => {
           if (link.name === "Theme") {

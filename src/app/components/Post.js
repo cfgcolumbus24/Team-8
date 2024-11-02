@@ -15,7 +15,7 @@ import { useBookmarks } from "../contexts/BookmarkContext"; // Import the contex
 const PostHeader = ({ userData }) => (
   <div className="header">
     <div className="left">
-      <Link href={`/profile/${userData.username}`} className="flex items-center gap-2">
+      <Link href={`/profile/${userData.username.replace('@','')}`} className="flex items-center gap-2">
         <img src={userData.profilePic} alt="" className="profileImg" />
         <div className="userDetails">
           <div className="name">{userData.name}</div>
