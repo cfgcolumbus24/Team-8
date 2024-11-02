@@ -75,6 +75,8 @@ const CreateAccount = () => {
   };
 
   return (
+    <>
+    <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"><a href="/welcome">Go to Welcome</a></button>
     <div className="max-w-sm mx-auto p-6 border create-account-container">
       <h2 className="text-2xl font-bold mb-4 create-account-title">
         Create Account
@@ -206,10 +208,13 @@ const CreateAccount = () => {
             e.target.style.backgroundColor = "rgb(225, 29, 72)";
           }}
         >
-          Create Account
+          <a href="/Home">
+            Create Account
+          </a>
         </button>
       </form>
     </div>
+    </>
   );
 };
 

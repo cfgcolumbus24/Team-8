@@ -21,6 +21,8 @@ const Login = () => {
   };
 
   return (
+    <>
+    <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"><a href="/welcome">Go to Welcome</a></button>
     <div className="max-w-sm mx-auto p-6 border" style={{ borderColor: 'rgb(0, 0, 0)', borderRadius: '0.375rem' }}>
       <h2 className="text-2xl font-bold mb-4" style={{ color: 'rgb(0 , 0, 0)' }}>Login</h2>
       <form onSubmit={handleSubmitLogin}>
@@ -55,7 +57,9 @@ const Login = () => {
           onMouseDown={(e) => e.target.style.backgroundColor = 'rgb(200, 0, 50)'}
           onMouseUp={(e) => e.target.style.backgroundColor = 'rgb(225, 29, 72)'}
         >
+        <a href="/Home">
           Login
+        </a>
         </button>
         <button
           type="button"
@@ -65,10 +69,13 @@ const Login = () => {
           onMouseUp={(e) => e.target.style.backgroundColor = 'rgb(225, 29, 72)'}
           onClick={() => router.push('/create-account')}
         >
+          <a href="/Home">
           Create Account
+          </a>
         </button>
       </form>
     </div>
+    </>
   );
 };
 
