@@ -6,12 +6,14 @@ import { useClickOutside } from "@mantine/hooks";
 import userData from "@/app/UserData";
 import Post from "@/app/components/Post";
 import Sidebar from "@/app/components/Sidebar";
+import Navbar from "../components/Navbar";
 
 const   Page = () => {
   const [isFocused, setIsFocused] = useState(false);
   const ref = useClickOutside(() => setIsFocused(false));
   return (
     <>
+      <Navbar />
       <div className="mainContainer">
         <Sidebar/>
 
