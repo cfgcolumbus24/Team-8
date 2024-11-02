@@ -3,3 +3,5 @@ keys/config.js
 .env
 node_modules/
 .next/
+/node_modules
+/.env
