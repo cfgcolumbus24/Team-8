@@ -30,8 +30,16 @@ const Navbar = () => {
       if (!e.target.closest(".userProfile")) {
         setProfileMenu(false);
       }
+
+      const storedUsername = sessionStorage.getItem("username");
+      if (storedUsername) {
+        setUsername(storedUsername); // Set the username in state
+      }
     });
   }, []);
+
+  const [username, setUsername] = useState("");
+
 
   return (
     <>
@@ -126,7 +134,7 @@ const Navbar = () => {
                       <div className="userImage">
                         <img src={`${user.profilePic}`} alt="" />
                       </div>
-                      <h3>{user.name}</h3>
+                      <h3>{username}</h3>
                     </div>
                   );
                 }
@@ -178,8 +186,8 @@ const Navbar = () => {
                   alt="User Profile Pic"
                 />
                 <div className="profileData">
-                  <div className="name">John Michael</div>
-                  <Link href="/profile/johndoe" className="seeProfile">See Profile</Link>
+                  <div className="name">{username}</div>
+                  <span className="seeProfile">See Profile</span>
                 </div>
               </div>
               <div className="linksWrapper">
@@ -263,7 +271,7 @@ const Navbar = () => {
                   <div className="profileImage">
                     <img src={`${user.profilePic}`} alt="" />
                   </div>
-                  <h3 style={{ color: '#fff' }}>{user.name}</h3>
+                  <h3 style={{ color: '#fff' }}>{username}</h3>
                 </div>
               );
             }

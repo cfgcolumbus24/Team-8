@@ -23,10 +23,17 @@ const links = [
 const Sidebar = ({ onCreatePost }) => {
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [username, setUsername] = useState("");
+
 
   useEffect(() => {
     document.body.style.backgroundColor = isDarkMode ? "#000" : "#fff";
     document.body.style.color = isDarkMode ? "#fff" : "#000";
+
+    const storedUsername = sessionStorage.getItem("username");
+    if (storedUsername) {
+      setUsername(storedUsername); // Set the username in state
+    }
   }, [isDarkMode]);
 
   const toggleTheme = (theme) => {
@@ -39,11 +46,17 @@ const Sidebar = ({ onCreatePost }) => {
       <Link href="/profile/john michael" className="flex items-center gap-2 hover:bg-gray-100 p-2 rounded-lg">
         <img src="https://t4.ftcdn.net/jpg/01/87/75/15/360_F_187751502_TrPkDYFA1MzKcJO9CWoDi2NgcCWqOCUi.jpg" alt="User Avatar" className="w-8 h-8 rounded-full" />
         <div>
-          <div className="font-medium">John Michael</div>
-          <div className="text-xs text-gray-500">@johnmichael</div>
+          <div className="font-medium">{username}</div>
+          <div className="text-xs text-gray-500">@{username}</div>
         </div>
       </Link>
-
+        <div className="userDetails">
+          <Link href="/Profile" className="name">
+            {username}
+          </Link>
+          <div className="username">@{username}</div>
+        </div>
+      </div>
       <nav className="inSidebar">
         {links.map((link, index) => (
           link.name === "Theme" ? (
