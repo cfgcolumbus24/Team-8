@@ -27,7 +27,7 @@ const Page = () => {
 
     const newPost = {
       id: Date.now(),
-      name: "Jhon Doe",
+      name: "John Doe",
       username: "@johndoe",
       profilePic: "/assets/image/avatar_default.jpg",
       postImg: selectedImage,
@@ -44,7 +44,7 @@ const Page = () => {
     <>
     <Navbar />
     <div className="mainContainer" style={{ position: 'relative' }}>
-      <Sidebar />
+      <Sidebar onCreatePost={() => setIsModalOpen(true)} />
       <div className="mainSection">
         {/* Stories section remains the same */}
 

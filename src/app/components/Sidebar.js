@@ -1,3 +1,4 @@
+"use client"; // Add this line at the very top
 import React, { useState, useEffect } from "react";
 import { MdSettings } from "react-icons/md";
 import {
@@ -14,27 +15,22 @@ const links = [
   {
     name: "Forum",
     icon: <FaHome />,
-    path: "/"
   },
   {
     name: "Explore",
     icon: <FaCompass />,
-    path: "/explore"
   },
   {
     name: "Connect",
     icon: <FaBell />,
-    path: "/connect"
   },
   {
     name: "Listings",
     icon: <FaEnvelope />,
-    path: "/listings"
   },
   {
     name: "Bookmarks",
     icon: <FaBookmark />,
-    path: "/bookmarks"
   },
   {
     name: "Theme",
@@ -44,14 +40,13 @@ const links = [
   {
     name: "Settings",
     icon: <MdSettings />,
-    path: "/settings"
   },
 ];
 
-const Sidebar = () => {
+const Sidebar = ({ onCreatePost }) => {
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
-
+  // function to change the theme
   useEffect(() => {
     document.body.style.backgroundColor = isDarkMode ? "#000" : "#fff";
     document.body.style.color = isDarkMode ? "#fff" : "#000";
@@ -59,7 +54,7 @@ const Sidebar = () => {
 
   const toggleTheme = (theme) => {
     setIsDarkMode(theme === "dark");
-    setIsModalOpen(false);
+    setIsModalOpen(false); // closing the modal
   };
 
   return (
@@ -83,7 +78,7 @@ const Sidebar = () => {
               <div
                 className="link"
                 key={index}
-                onClick={() => setIsModalOpen(true)} 
+                onClick={() => setIsModalOpen(true)}
                 style={{ cursor: "pointer" }}
               >
                 <span className="icon">{link.icon}</span>
@@ -92,26 +87,19 @@ const Sidebar = () => {
             );
           }
           return (
-            <Link 
-              href={link.path} 
-              key={index}
-              className="link"
-              style={{ 
-                textDecoration: 'none', 
-                color: 'inherit',
-                display: 'flex',
-                alignItems: 'center',
-                gap: '10px'
-              }}
-            >
-              <span className="icon">{link.icon}</span>
+            <div className="link" key={index}>
+              <div className="icon">{link.icon}</div>
               <h3>{link.name}</h3>
-            </Link>
+            </div>
           );
         })}
       </nav>
 
-      <label htmlFor="createNewPost" className="inBtn sidebarCreateBtn">
+      <label 
+        className="inBtn sidebarCreateBtn" 
+        onClick={onCreatePost} 
+        style={{ cursor: 'pointer' }}
+      >
         Create Post
       </label>
 

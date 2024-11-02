@@ -141,9 +141,6 @@ const Navbar = () => {
           <div className="mobileSearchBtn" onClick={() => setSearchPanel(true)}>
             <MdSearch style={{ color: '#fff' }} />
           </div>
-          <label className="inBtn" htmlFor="createNewPost" style={{ color: '#fff' }}>
-            Create
-          </label>
           <div className="userProfile">
             <div
               className="userImage"
