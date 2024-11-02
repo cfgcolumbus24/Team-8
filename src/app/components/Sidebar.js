@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { MdSettings } from "react-icons/md";
 import {
   FaBell,
@@ -42,6 +42,19 @@ const links = [
 ];
 
 const Sidebar = () => {
+  const [isDarkMode, setIsDarkMode] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  // function to change the theme
+  useEffect(() => {
+    document.body.style.backgroundColor = isDarkMode ? "#000" : "#fff";
+    document.body.style.color = isDarkMode ? "#fff" : "#000";
+  }, [isDarkMode]);
+
+  const toggleTheme = (theme) => {
+    setIsDarkMode(theme === "dark");
+    setIsModalOpen(false); // closing the modal
+  };
+
   return (
     <div className="leftSection">
       <div className="userProfileWidget">
@@ -55,9 +68,21 @@ const Sidebar = () => {
           <div className="username">@johndoe</div>
         </div>
       </div>
-
       <div className="inSidebar">
         {links.map((link, index) => {
+          if (link.name === "Theme") {
+            return (
+              <div
+                className="link"
+                key={index}
+                onClick={() => setIsModalOpen(true)} 
+                style={{ cursor: "pointer" }}
+              >
+                <div className="icon">{link.icon}</div>
+                <h3>{link.name}</h3>
+              </div>
+            );
+          }
           return (
             <div className="link" key={index}>
               <div className="icon">{link.icon}</div>
@@ -70,6 +95,75 @@ const Sidebar = () => {
       <label htmlFor="createNewPost" className="inBtn sidebarCreateBtn">
         Create Post
       </label>
+
+      {isModalOpen && (
+        <div
+          style={{
+            position: "fixed",
+            top: 0,
+            left: 0,
+            width: "100%",
+            height: "100%",
+            backgroundColor: "rgba(0, 0, 0, 0.5)",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            zIndex: 1000,
+          }}
+        >
+          <div
+            style={{
+              backgroundColor: "#fff",
+              padding: "20px",
+              borderRadius: "12px",
+              boxShadow: "0 2px 10px rgba(0, 0, 0, 0.3)",
+            }}
+          >
+            <h3>Select Theme</h3>
+            <button
+              onClick={() => toggleTheme("light")}
+              style={{
+                margin: "10px",
+                padding: "10px 20px",
+                backgroundColor: "#f0f0f0",
+                border: "none",
+                borderRadius: "8px",
+                cursor: "pointer",
+              }}
+            >
+              Light Mode
+            </button>
+            <button
+              onClick={() => toggleTheme("dark")}
+              style={{
+                margin: "10px",
+                padding: "10px 20px",
+                backgroundColor: "#333",
+                color: "#fff",
+                border: "none",
+                borderRadius: "8px",
+                cursor: "pointer",
+              }}
+            >
+              Dark Mode
+            </button>
+            <button
+              onClick={() => setIsModalOpen(false)}
+              style={{
+                display: "block",
+                marginTop: "10px",
+                padding: "10px",
+                backgroundColor: "#ddd",
+                border: "none",
+                borderRadius: "8px",
+                cursor: "pointer",
+              }}
+            >
+              Cancel
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
