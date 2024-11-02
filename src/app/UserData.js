@@ -4,7 +4,7 @@ const userData = [
         username: "@vinci",
         profilePic: "https://images.unsplash.com/photo-1505695716405-61e75ecc5bab?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxfDB8MXxyYW5kb218MHx8Z2lybCxib3l8fHx8fHwxNjg5NzcxMTE5&ixlib=rb-4.0.3&q=80&utm_campaign=api-credit&utm_medium=referral&utm_source=unsplash_source&w=1080",
         storyImage: "https://images.unsplash.com/photo-1518611012118-696072aa579a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxfDB8MXxyYW5kb218MHx8bWVuLGdpcmwsd29tZW4sYm95fHx8fHx8MTY4OTc3MTI3Mw&ixlib=rb-4.0.3&q=80&utm_campaign=api-credit&utm_medium=referral&utm_source=unsplash_source&w=1080",
-        postImg: "https://i.etsystatic.com/11771780/r/il/46951e/984972233/il_570xN.984972233_fe42.jpg",
+        postImg: "https://cdn.sanity.io/images/dqllnil6/production/0052868a16885f65b230a60e8c920d1d156f0a1a-750x521.jpg?w=3840&q=60&auto=format",
         tags: ["He/Him", "Renaissance", "Inventor", "Anatomy", "Engineering"],
         aboutMe: "Renaissance polymath, inventor, and artist. Known for the Mona Lisa and The Last Supper. Passionate about combining art with science and engineering. Always carrying my notebook for new ideas and observations.",
         status: "active"
