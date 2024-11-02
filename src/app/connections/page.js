@@ -169,6 +169,13 @@ const Connections = () => {
                         <p>{user.username}</p>
                       </div>
                     </div>
+                    <div className="mt-2">
+                      <div className="flex flex-wrap gap-1">
+                        {user.tags.map((tag, tagIndex) => (
+                          <span key={tagIndex} className="px-2 py-1 bg-gray-100 text-gray-700 rounded-full text-xs">{tag}</span>
+                        ))}
+                      </div>
+                    </div>
                     <p className='mt-4'>{user.bio}</p>
                   </Link>
                 ))}
@@ -176,7 +183,6 @@ const Connections = () => {
             </div>
             <div className='mx-16 p-4'>
               <h1 className='text-lg font-bold'>All Users</h1>
-
               <div className='mb-4 flex flex-wrap gap-2 bg-lightBlue p-4 rounded-lg shadow-sm'>
                 {tags.map(tag => (
                   <button
@@ -188,7 +194,7 @@ const Connections = () => {
                     )}
                     className={`px-3 py-1 rounded-full text-sm transition-colors ${
                       selectedTags.includes(tag)
-                        ? 'bg-teal text-black'
+                        ? 'bg-lightBlue text-black'
                         : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
                     }`}
                   >
@@ -196,7 +202,6 @@ const Connections = () => {
                   </button>
                 ))}
               </div>
-
               <div className='flex flex-wrap'>
                 {allUsers
                   .filter(user => 
@@ -213,6 +218,13 @@ const Connections = () => {
                             {getStatusBadge(user.status)}
                           </div>
                           <p>{user.username}</p>
+                        </div>
+                      </div>
+                      <div className="mt-2">
+                        <div className="flex flex-wrap gap-1">
+                          {user.tags.map((tag, tagIndex) => (
+                            <span key={tagIndex} className="px-2 py-1 bg-gray-100 text-gray-700 rounded-full text-xs">{tag}</span>
+                          ))}
                         </div>
                       </div>
                       <p className='mt-4'>{user.bio}</p>
